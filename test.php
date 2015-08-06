@@ -1,9 +1,9 @@
 <?php
 
-require_once 'shamash.php';
+require_once 'datium.php';
 
-use opencafe\shamash\Sham;
+use opencafe\datium;
 
-Sham::get();
+Datium::get();
 
 ?>
