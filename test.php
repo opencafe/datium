@@ -5,7 +5,7 @@ try{
 
 require_once 'datium.php';
 
-var_dump( Datium::now()->get() );
+var_dump( Datium::now()->add('1 year')->get() );
 
 
 } catch (Exception $e ) {

@@ -18,6 +18,10 @@ class Datium {
    */
   protected $config;
 
+  protected $date_interval = array( 'D', 'M', 'Y', 'H', 'm', 'S' );
+
+  protected $date_simple = array ( ' day', ' month', ' year', ' hour', ' minute', ' second' );
+
   public function __construct() {
 
     $this->config = include('config.php');
@@ -35,6 +39,24 @@ class Datium {
   public static function now() {
 
     return new Datium();
+
+  }
+
+  public function diff() {
+
+  }
+
+  public function add( $value ) {
+
+    $value = str_replace( $this->date_simple, $this->date_interval, $value );
+
+    $this->date_time->add( new DateInterval('P' . $value ) );
+
+    return $this;
+
+  }
+
+  public function sub( $value ) {
 
   }
 
