@@ -1,90 +1,52 @@
-<?php namespace opencafe\datium;
+<?php
 
-
+/**
+ *
+ * @since Aug 17, 2015
+ *
+ *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+ */
 class Datium {
 
-  protected static $holiday = array ();
+  /**
+   * Store DateTime object
+   */
+  protected $date_time;
 
+  /**
+   * Store config file statements
+   */
+  protected $config;
 
-  public static function get( $type = 'timestamp' ) {
+  public function __construct() {
 
-    echo 'hello, datium!';
-    exit;
+    $this->config = include('config.php');
 
-      switch( $type ) {
+    date_default_timezone_set( $this->config['timezone'] );
 
-        case 'timestamp' :
-
-        break;
-        case 'timeago' :
-
-          break;
-        case 'format' :
-
-          break;
-
-        default :
-          self::get();
-
-      }
+    $this->date_time = new DateTime('now');
 
   }
 
-  public static function toJalali() {
+  /**
+   * Get current datetime
+   * @since Aug 17 2015
+   */
+  public static function now() {
 
-
-  }
-
-  public static function toGregorian() {
-
-
-  }
-
-  public static function addDay() {
-
+    return new Datium();
 
   }
 
-  public static function addWeek() {
+  /**
+   * Get output
+   * @since Aug 17 2015
+   */
+  public function get() {
+
+    return $this->date_time;
 
   }
-
-  public static function addMonth() {
-
-  }
-
-  public static function addYear() {
-
-  }
-
-  public static function subDay() {
-
-  }
-
-  public static function subWeek() {
-
-  }
-
-  public static function subMonth() {
-
-  }
-
-  public static function subYear() {
-
-  }
-
-  public static function nextHoliday() {
-
-  }
-
-  public static function lastHoliday() {
-
-  }
-
-  public static function set( $date ) {
-
-  }
-
 
 }
 ?>

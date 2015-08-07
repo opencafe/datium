@@ -1,9 +1,18 @@
 <?php
 
+
+try{
+
 require_once 'datium.php';
 
-use opencafe\datium;
+var_dump( Datium::now()->get() );
 
-Datium::get();
+
+} catch (Exception $e ) {
+
+  var_dump( $e );
+
+}
+
 
 ?>
