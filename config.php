@@ -61,9 +61,9 @@ return array(
 
                         */
 
-  'days_of_week' =>   array( 'Persian' => array ( 'Shanbe', 'Yekshanbe', 'Doshanbe', 'Seshanbe', 'Chaharshanbe', 'Panjshanbe', 'Jome' ),
+  'days_of_week' =>   array( 'Persian' => array( 'Shanbe', 'Yekshanbe', 'Doshanbe', 'Seshanbe', 'Chaharshanbe', 'Panjshanbe', 'Jome' ),
 
-                      'English' => array ( 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wensday', 'Friday' )  ),
+                      'English' => array( 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wensday', 'Friday' )  ),
 
 
  );
