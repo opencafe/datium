@@ -1,18 +1,15 @@
 <?php
 
-
 try{
 
-require_once 'datium.php';
+require_once( 'bootstrap.php' );
 
-echo( Datium::now()->add('1 year')->per_date()->get() );
-echo "<br>";
-echo( Datium::now()->sub('1 year')->per_date()->get() );
-echo "<br>";
-echo( Datium::now()->per_date()->get() );
-echo "<br>";
-
-
+  var_dump( Datium::now()->add('1 year')->get('ir') );
+  echo "<br>";
+  var_dump( Datium::now()->sub('1 year')->get('ir') );
+  echo "<br>";
+  var_dump( Datium::now()->get('ir') );
+  echo "<br>";
 
 } catch (Exception $e ) {
 

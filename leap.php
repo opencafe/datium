@@ -1,24 +1,39 @@
-<?php
+  <?php
 
 class Leap {
 
 
-	public function __construct(){
+	protected $year;
+
+
+	public function __construct( $year ){
+
+			$this->$year = $year;
 
 	}
 
 
-	public function isLeapYear( $value ){
+	public function now(){
 
-		if($value / 100 != 0 && $value / 4 == 0){
+		if( $this->year / 100 != 0 && $this->year / 4 == 0 ) {
 
 			return true;
+
+		} else {
+
+			return false;
+
 		}
 
-		else
-		{
-			return false;
-		}
+	}
+
+	public function next() {
+
+
+	}
+
+	public function last() {
+
 
 	}
 
