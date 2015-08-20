@@ -18,7 +18,7 @@ class Datium {
   protected $_y;
 
   protected $_m;
-  
+
   protected $_d;
 
 
@@ -35,7 +35,7 @@ class Datium {
 
   public function __construct() {
 
-    $this->config = include('config.php'); 
+    $this->config = include('config.php');
 
     date_default_timezone_set( $this->config['timezone'] );
 
@@ -60,7 +60,7 @@ class Datium {
   $_m = $this->date_time->format( 'm' );
 
   $_d = $this->date_time->format( 'd' );
-  
+
   $_day = 0;
 
   $p_month = array(   1 =>  'Farvardin',
@@ -89,13 +89,13 @@ class Datium {
                       10 => 31,
                       11 => 30,
                       12 => 30 );
-   
+
    for ( $i = 1 ; $i < $_m ; $i++ ) {
-   
-   $_day += $g_month[$i]; 
-   
+
+   $_day += $g_month[$i];
+
    }
-   
+
    $_day += $_d;
 
    $this->leap = new leap();
@@ -105,18 +105,18 @@ class Datium {
    if ( $_day <= 79 ) {
 
     if( ( $_y - 1 ) % 4 == 0 ) $_day = $_day + 11;
-    
+
     else
       $_day = $_day + 10;
 
     $_y = $_y - 622;
-    
+
     if($_day % 30 == 0) {
-    
+
       $_m = ( $_day / 30 ) + 9;
-    
+
       $_d = 30;
-    
+
     }
     else {
 
@@ -125,7 +125,7 @@ class Datium {
       $_d = $_day % 30;
 
     }
-    
+
    }
 
    else {
@@ -147,7 +147,7 @@ class Datium {
 
       $_m = ( $_day / 31 ) + 1;
 
-      $_d = ( $_day % 31 ); 
+      $_d = ( $_day % 31 );
     }
 
     }
@@ -177,9 +177,9 @@ class Datium {
    }
 
    foreach ( $p_month as $key => $value ) {
-   
+
      if ( $key == intval( $_m ) ) $_m = $value;
-   
+
    }
 
 
@@ -211,6 +211,16 @@ class Datium {
     $this->date_time->sub( new DateInterval('P' . $value ) );
 
     return $this;
+
+  }
+
+  /**
+   * Check if current year is leap or not
+   * @return boolean
+   */
+  public function leap() {
+
+    return new Leap();
 
   }
 
