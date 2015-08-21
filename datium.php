@@ -60,6 +60,9 @@ class Datium {
 
   }
 
+  /**
+   *
+   */
   public function sub( $value ) {
 
     $value = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );

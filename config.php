@@ -14,7 +14,7 @@ return array(
 
                 */
 
-  'evets' =>     array( 'Iran' => array( 1 => 'nowruz',
+  'evets' =>     array( 'iran' => array( 1 => 'nowruz',
                                          2 => 'nowruz',
                                          3 => 'nowruz',
                                          4 => 'nowruz',
@@ -24,11 +24,11 @@ return array(
                   /**
                    * Array is between 1 and 365 day of year
 
-                   'Afghanistan',
+                   'afghanistan',
 
-                   'Tajikestan',
+                   'tajikestan',
 
-                   'General',
+                   'general',
 
                    */
 
@@ -69,7 +69,7 @@ return array(
 
                       */
 
-  'weekend' =>        array( 'Iran'  => array( 'friday' ) ),
+  'weekend' =>        array( 'iran'  => array( 'friday' ) ),
 
                        /**
                         *
@@ -98,7 +98,7 @@ return array(
                                           11 => 'Bahman',
                                           12 => 'Esfand' ),
 
-                    'English' => array('') ),
+                    'english' => array('') ),
 
   'gregorian_month_days' => array(   1 => 31,
                                      2 => 28,

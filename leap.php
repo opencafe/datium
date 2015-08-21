@@ -1,11 +1,20 @@
   <?php
 
+/**
+ * @since Aug, 21 2015
+ */
 class Leap {
 
-
+  /**
+   * @param integer store year value
+   */
 	protected $year;
 
 
+  /**
+   * @param $year integer
+   * @since Aug, 21 2015
+   */
 	public function __construct( $year ){
 
 			$this->year = $year;
@@ -14,38 +23,16 @@ class Leap {
 
 	}
 
-  public function get( $year ) {
+  /**
+   * Check the year is leap or not
+   * @since Aug, 21 2015
+   * @return boolean
+   */
+  public function get() {
 
-    if( $year / 100 != 0 && $this->year / 4 == 0 ) {
-
-			return true;
-
-		} else {
-
-			return false;
-
-		}
+    return ( ( ( $this->year % 4 ) == 0 ) && ( ( ( $this->year % 100 ) != 0 ) || ( ( $this->year % 400 ) == 0 ) ) );
 
   }
-
-
-	public function now(){
-
-		return $this->get( $this->year );
-
-	}
-
-	public function next() {
-
-    return $this->get( $this->year + 1 );
-
-	}
-
-	public function last() {
-
-    return $this->get( $this->year - 1 );
-
-	}
 
 }
 

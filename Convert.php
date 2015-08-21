@@ -48,7 +48,7 @@ class Convert {
 
      $this->leap = new leap( $this->year );
 
-     if( $this->leap->now() && $this->month > 2 ) $this->temp_day++;
+     if( $this->leap->get() && $this->month > 2 ) $this->temp_day++;
 
      if ( $this->temp_day <= 79 ) {
 
