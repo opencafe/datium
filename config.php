@@ -32,13 +32,20 @@ return array(
 
                    */
 
+                    // Persian in Iran (farsi)
 
-  'language' =>     'persian',
+  'language' =>     'fa',
 
                     /**
                      *
 
-                    'English',
+                    Persian in Afghanistan (dari)
+
+                    'af',
+
+                    English
+
+                    'en',
 
                     */
 

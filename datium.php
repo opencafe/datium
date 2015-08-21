@@ -76,7 +76,9 @@ class Datium {
    */
   public function leap() {
 
-    return new Leap();
+    $leap = new Leap( $this->date_time->format('Y') );
+
+    return $leap;
 
   }
 
@@ -112,6 +114,8 @@ class Datium {
 
       // returns all date object type
       case 'all':
+
+            return $this->date_time;
 
             break;
 

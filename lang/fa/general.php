@@ -4,10 +4,10 @@
 
          'nowruz' => 'عید نوروز',
 
-         'Islamic Republic of Iran national day' => 'روز جمهوری اسلامی',
+         'iran_national_day' => 'روز جمهوری اسلامی',
 
-         '13 bedar' => '۱۳ بدر',
-         
+         '13_bedar' => '۱۳ بدر',
+
 
   );
 
