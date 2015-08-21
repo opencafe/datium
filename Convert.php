@@ -18,6 +18,8 @@ class Convert {
 
   protected $temp_day;
 
+  protected $date;
+
   public function __construct() {
 
     $this->config = include('Config.php');
@@ -52,8 +54,8 @@ class Convert {
 
      if ( $this->temp_day <= 79 ) {
 
-      if( ( $this->year - 1 ) % 4 == 0 ) $this->temp_day = $this->temp_day + 11;
-
+      if( ( $this->year - 1 ) % 4 == 0 )
+        $this->temp_day = $this->temp_day + 11;
       else
         $this->temp_day = $this->temp_day + 10;
 
@@ -63,7 +65,7 @@ class Convert {
 
         $this->month = ( $this->temp_day / 30 ) + 9;
 
-        $this->year = 30;
+        $this->day = 30;
 
       }
       else {
@@ -88,14 +90,14 @@ class Convert {
 
           $this->month = ( $this->temp_day / 31 );
 
-          $this->month = 31;
+          $this->day = 31;
         }
 
       else {
 
         $this->month = ( $this->temp_day / 31 ) + 1;
 
-        $this->month = ( $this->temp_day % 31 );
+        $this->day = ( $this->temp_day % 31 );
       }
 
       }
@@ -124,14 +126,13 @@ class Convert {
 
      }
 
-     foreach ( $this->persian_month as $key => $value ) {
+    //  foreach ( $this->persian_month as $key => $value ) {
+     //
+    //    if ( $key == intval( $this->month ) ) $this->month = $value;
+     //
+    //  }
 
-       if ( $key == intval( $this->month ) ) $this->month = $value;
-
-     }
-
-
-     $this->date_time = $this->month . ',' . $this->day . ' ' . $this->year . ' ' . $this->date_time->format( 'H:i:s' );
+     $this->date_time->setDate( $this->year, $this->month, $this->day );
 
      return $this->date_time;
 

@@ -15,8 +15,15 @@ class Datium {
 
   /**
    * Store config file statements
+   * @param array
    */
   protected $config;
+
+  /**
+   * return store day number
+   * @param integer
+   */
+  protected $day_of;
 
   protected $leap;
 
@@ -79,9 +86,55 @@ class Datium {
    */
   public function leap() {
 
-    $leap = new Leap( $this->date_time->format('Y') );
+    $this->leap = new Leap( $this->date_time->format('Y') );
 
-    return $leap;
+    return $this->leap;
+
+  }
+
+  /**
+   * @since Aug, 22 2015
+   */
+  public function dayOf() {
+
+    $this->day_of = new DayOf( $this->date_time );
+
+    return $this->day_of;
+
+  }
+
+  /**
+   * @since Aug, 22 2015
+   */
+  public function format( $format ) {
+
+    $this->date_time = $this->date_time->format( $format );
+
+    switch( $this->config['calendar'] ){
+
+      case 'ir':
+
+          $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['persian'], $this->date_time );
+
+          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->date_time );
+
+          break;
+
+      case 'af':
+
+          break;
+
+      case 'ja':
+
+          break;
+
+      case 'gr':
+
+          break;
+
+    }
+
+    return $this->date_time;
 
   }
 
@@ -89,9 +142,9 @@ class Datium {
    * Get output
    * @since Aug 17 2015
    */
-  public function get( $type ) {
+  public function get( $format = 'Y-m-d H:i:s' ) {
 
-    switch( $type ){
+    switch( $this->config['calendar'] ){
 
       // returns iran calendar
       case 'ir':
@@ -131,8 +184,7 @@ class Datium {
 
     }
 
-    return $this->date_time;
-
+    return  $this->format( $format );
 
   }
 
