@@ -49,8 +49,17 @@ return array(
 
                     */
 
+                  
+  'calendar' =>  array( 
+    
                    // iran
-  'calendar' =>      'ir',
+                      'ir',
+
+                   // ghamari
+                      'gh'
+
+                      ),
+
 
                      /**
                       *
@@ -59,17 +68,18 @@ return array(
 
                       'af',
 
-                      jalali
-
-                      'ja',
-
                       gregorian
 
                       'gr',
 
                       */
 
-  'weekend' =>        array( 'iran'  => array( 'friday' ) ),
+  'weekend' =>        array( 'iran'  => array( 'friday' ),
+
+                            'islamic' => array('friday', 'saturday') 
+                     ),
+
+                      
 
                        /**
                         *
@@ -105,7 +115,21 @@ return array(
                                         'October',
                                         'November',
                                         'December'
-                                       ) ),
+                                       ),
+
+                    'islamic' => array( 1 => 'Muharram',
+                                        2 => 'Safar',
+                                        3 => 'Rabi I',
+                                        4 => 'Rabi II',
+                                        5 => 'Jumada I',
+                                        6 => 'Jumada II',
+                                        7 => 'Rajab',
+                                        8 => 'Shaban',
+                                        9 => 'Ramadan',
+                                        10 => 'Shawwal',
+                                        11 => 'Dhu al_Qadah',
+                                        12 => 'Dhu al_Hijjah' 
+                                        ) ),
 
   'week_days_name' => array( 'persian' => array(
                                           'Shanbe',
@@ -117,16 +141,42 @@ return array(
                                           'Jome'
                                           ),
 
-                        'english' => array(
+                             'english' => array(
                                           'Saturday',
                                           'Sunday',
                                           'Monday',
                                           'Tuesday',
                                           'Wednesday',
                                           'Thursday',
-                                          'Friday',
-                        ),
+                                          'Friday'
+                                      ),
+                        
+                             'islamic' => array(
+
+                                          1 => 'al-Ithnayn',
+                                          2 => 'ath-Thulatha\'',
+                                          3 =>  'al-Arbi\'a',
+                                          4 =>  'al-Khamees',
+                                          5 =>  'al-Jumu\'ah',
+                                          6 =>  'as-Sabt',
+                                          7 =>  'al-Aḥad',
+
+                                          )
+
                       ),
+  'shamsi_month_days' => array(      1 => 31,
+                                     2 => 31,
+                                     3 => 31,
+                                     4 => 31,
+                                     5 => 31,
+                                     6 => 31,
+                                     7 => 30,
+                                     8 => 30,
+                                     9 => 30,
+                                     10 => 30,
+                                     11 => 30,
+                                     12 => 29 ),
+
 
   'gregorian_month_days' => array(   1 => 31,
                                      2 => 28,

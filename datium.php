@@ -27,6 +27,8 @@ class Datium {
 
   protected $leap;
 
+  protected $geregorian_DayofWeek;
+
   protected $convert_calendar;
 
   public function __construct() {
@@ -36,6 +38,8 @@ class Datium {
     date_default_timezone_set( $this->config['timezone'] );
 
     $this->date_time = new DateTime('now');
+
+    $this->geregorian_DayofWeek = $this->date_time->format('N');
 
     $this->convert_calendar = new Convert();
 
@@ -106,11 +110,13 @@ class Datium {
   /**
    * @since Aug, 22 2015
    */
-  public function format( $format ) {
+  public function format( $calendar, $format ) {
 
     $this->date_time = $this->date_time->format( $format );
 
-    switch( $this->config['calendar'] ){
+    if( in_array( $calendar, $this->config['calendar'] ) ) {
+
+    switch( $calendar ){
 
       case 'ir':
 
@@ -124,7 +130,12 @@ class Datium {
 
           break;
 
-      case 'ja':
+      case 'gh':
+
+          $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['islamic'], $this->date_time );
+
+          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->date_time );
+
 
           break;
 
@@ -134,6 +145,8 @@ class Datium {
 
     }
 
+  }
+
     return $this->date_time;
 
   }
@@ -142,9 +155,11 @@ class Datium {
    * Get output
    * @since Aug 17 2015
    */
-  public function get( $format = 'Y-m-d H:i:s' ) {
+  public function get( $calendar = 'ir', $format = 'Y-m-d H:i:s' ) {
 
-    switch( $this->config['calendar'] ){
+    if( in_array( $calendar, $this->config['calendar'] ) ){
+
+    switch( $calendar ){
 
       // returns iran calendar
       case 'ir':
@@ -158,8 +173,12 @@ class Datium {
 
             break;
 
-      // returns jalali calendar
-      case 'ja':
+      // returns islamic calendar
+      case 'gh':
+
+            $this->date_time = $this->convert_calendar->toGhamari( $this->date_time );
+
+            $this->islamic_dayofweek = $this->date_time->format('N');
 
             break;
 
@@ -183,8 +202,9 @@ class Datium {
             break;
 
     }
+  }
 
-    return  $this->format( $format );
+    return  $this->format( $calendar, $format );
 
   }
 

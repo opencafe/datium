@@ -138,7 +138,82 @@ class Convert {
 
   }
 
-  public function toJalali() { }
+  public function toGhamari( $date_time ) {
+
+    $this->date_time = $this->toShamsi( $date_time );
+
+    $this->year = $this->date_time->format('Y');
+
+    $this->month = $this->date_time->format('n');
+
+    $this->day = $this->date_time->format('d');
+
+    $this->temp_day = 0 ;
+
+    for ( $index = 1 ; $index < $this->month ; $index++ ) {
+
+        $this->temp_day += $this->config['shamsi_month_days'][$index];
+
+      }
+
+     $this->temp_day += $this->day;
+
+     $this->leap = new leap( $this->year );
+
+    if( $this->leap->get() && $this->month > 11 ) $this->temp_day++;
+
+    $_year = ( ( ( ( ( $this->year - 1 ) * 365.2422 ) + $this->temp_day ) - 119) / 354.3670 ) + 1;
+
+    $_year = explode( '.', $_year );
+
+    $this->year = $_year[0];
+
+    $_month = $_year[1];
+
+     $var_temp = '0.0';
+
+      for ( $i = strlen( $_month ); $i > 2; $i-- ) {
+
+        $var_temp .= '0';
+
+     }
+
+     $var_temp .= '1';
+
+    $_month = $_month * $var_temp ;
+
+    $_month = ( $_month * 12 ) + 1;
+
+    $_month = explode( '.', $_month );
+
+    $this->month = $_month[0];
+
+    $_day = $_month[1];
+
+    $var_temp = '0.0';
+
+    for ( $i = strlen( $_day );  $i > 2;  $i-- ) {
+
+       $var_temp .= '0' ; 
+
+    }
+
+    $var_temp .= '1';
+
+    $_day = $_day * $var_temp;
+
+    $_day = ( $_day * 29.530 ) + 1;
+
+    $_day = explode( '.', $_day );
+
+    $this->day = $_day[0];
+
+   $this->date_time->setDate( $this->year, $this->month, $this->day );
+
+    
+   return $this->date_time;  
+
+   }
 
 
 }
