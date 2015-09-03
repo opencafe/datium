@@ -15,7 +15,7 @@ class Leap {
    * @param $year integer
    * @since Aug, 21 2015
    */
-	public function __construct( $year ){
+	public function __construct( $year ) {
 
 			$this->year = $year;
 

@@ -22,7 +22,7 @@ class Convert {
 
   public function __construct() {
 
-    $this->config = include('Config.php');
+    $this->config = include( 'Config.php' );
 
     $this->persian_month = $this->config['month']['persian'];
 
@@ -194,7 +194,7 @@ class Convert {
 
     for ( $i = strlen( $_day );  $i > 2;  $i-- ) {
 
-       $var_temp .= '0' ; 
+       $var_temp .= '0' ;
 
     }
 
@@ -210,8 +210,8 @@ class Convert {
 
    $this->date_time->setDate( $this->year, $this->month, $this->day );
 
-    
-   return $this->date_time;  
+
+   return $this->date_time;
 
    }
 

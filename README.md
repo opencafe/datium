@@ -1,2 +1,13 @@
 # Datium
-Datium is a modern php Persian calendar which designed to adoptable with middle east calendars.
+
+
+Hey!! we are still working on this project, this is not finalizing version of datium...
+
+
+..................................................................................................................................
+
+
+Under Development
+
+
+..................................................................................................................................
