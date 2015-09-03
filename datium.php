@@ -31,13 +31,33 @@ class Datium {
 
   protected $convert_calendar;
 
-  public function __construct() {
+  protected static $array_date;
+
+  public function __construct( $type ) {
 
     $this->config = include('Config.php');
 
     date_default_timezone_set( $this->config['timezone'] );
 
-    $this->date_time = new DateTime('now');
+    switch( $type ) {
+
+      case 'now':
+
+        $this->date_time = new DateTime( 'now' );
+
+        break;
+
+      case 'make':
+
+        $this->date_time = new DateTime( 'now' );
+
+        $this->date_time->setDate( self::$array_date['year'], self::$array_date['month'], self::$array_date['day'] );
+
+        $this->date_time->setTime( self::$array_date['hour'], self::$array_date['minute'], self::$array_date['second'] );
+
+        break;
+
+    }
 
     $this->geregorian_DayofWeek = $this->date_time->format('N');
 
@@ -48,19 +68,48 @@ class Datium {
   /**
    * Get current datetime
    * @since Aug 17 2015
+   * @return object
    */
   public static function now() {
 
-    return new Datium();
+    return new Datium( 'now' );
+
+  }
+
+  /**
+   * Create new date time
+   * @param $year integer
+   * @param $month integer
+   * @param $day integer
+   * @param $hour integer
+   * @param $minute integer
+   * @param $second integer
+   * @return object
+   */
+  public static function create( $year = 2000, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0 ) {
+
+      self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
+
+      return new Datium( 'make' );
 
   }
 
 
-  public function diff() {
+  /**
+   * Difference between two time
+   * @param $start datetime
+   * @param $end datetime
+   */
+  public function diff( $start, $end ) {
 
 
   }
 
+  /**
+   * Add new date value to current date
+   * @param $value string
+   * @return object
+   */
   public function add( $value ) {
 
     $value = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
@@ -72,7 +121,9 @@ class Datium {
   }
 
   /**
-   *
+   * Sub date from current date
+   * @param $value
+   * @param return obejct
    */
   public function sub( $value ) {
 
@@ -154,6 +205,8 @@ class Datium {
   /**
    * Get output
    * @since Aug 17 2015
+   * @param $calendar string
+   * @param $format string
    */
   public function get( $calendar = 'ir', $format = 'Y-m-d H:i:s' ) {
 
