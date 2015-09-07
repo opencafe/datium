@@ -14,12 +14,34 @@ return array(
 
                 */
 
-  'evets' =>     array( 'iran' => array( 1 => 'nowruz',
-                                         2 => 'nowruz',
-                                         3 => 'nowruz',
-                                         4 => 'nowruz',
-                                         12 => 'Islamic Republic of Iran national day',
-                                         13 => '13 bedar') ),
+  'events' =>     array( 'iran' => array( 'national' => array( 1 => array( 1 => 'nowruz',
+                                                                           2 => 'nowruz',
+                                                                           3 => 'nowruz',
+                                                                           4 => 'nowruz',
+                                                                           12 => 'Islamic Republic of Iran national day',
+                                                                           13 => '13 bedar'
+                                                                              ),
+                                                               
+                                                               3 => array( 14 => 'Khomeini\'s death',
+                                                                                  15 => 'killing 15 Khordad',
+                                                                                  ),
+                                                               
+                                                               11 => array( 22 => 'Victory of Islamic revoloution',
+                                                                                  ),
+
+                                                               12 => array( 29 => 'national day of oil industry',
+                                                                                   ),
+                                                               ),
+                                        
+                                        //'religious' => array( 1 => )
+
+                                        ),
+
+
+
+                  //'islamic' => array( =>  )
+
+                                          ),
 
                   /**
                    * Array is between 1 and 365 day of year

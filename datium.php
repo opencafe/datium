@@ -27,6 +27,8 @@ class Datium {
 
   protected $leap;
 
+  protected $events;
+
   protected $geregorian_DayofWeek;
 
   protected $convert_calendar;
@@ -158,6 +160,15 @@ class Datium {
 
   }
 
+  public function events() {
+
+    $this->events = new Events( $this->date_time );
+
+    return $this->events;
+
+
+  }
+
   /**
    * @since Aug, 22 2015
    */
@@ -230,8 +241,6 @@ class Datium {
       case 'gh':
 
             $this->date_time = $this->convert_calendar->toGhamari( $this->date_time );
-
-            $this->islamic_dayofweek = $this->date_time->format('N');
 
             break;
 
