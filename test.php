@@ -5,28 +5,28 @@ try{
 require_once( 'bootstrap.php' );
 
 echo 'this year: ';
-var_dump( Datium::now()->get() );
+var_dump( Datium\Datium::now()->get() );
 echo "<br>";
-var_dump( Datium::now()->sub('3 year')->get() );
+var_dump( Datium\Datium::now()->sub('3 year')->get() );
 echo "<br>";
-var_dump( Datium::now()->add('3 year')->get() );
+var_dump( Datium\Datium::now()->add('3 year')->get() );
 echo "<br>";
-var_dump( Datium::now()->get() );
+var_dump( Datium\Datium::now()->get() );
 echo "<br>Leap year ";
-var_dump( Datium::now()->leap()->get() );
+var_dump( Datium\Datium::now()->leap()->get() );
 echo "<br>Create new DateTime: ";
-var_dump( Datium::create(2000, 1, 1, 0, 0, 0)->get() );
+var_dump( Datium\Datium::create(2000, 1, 1, 0, 0, 0)->get() );
 echo "<br>";
 echo 'Is next year leap? ';
-var_dump( Datium::now()->add('1 year')->leap()->get() );
+var_dump( Datium\Datium::now()->add('1 year')->leap()->get() );
 echo "<br>";
-var_dump( Datium::now()->dayOf()->year() );
+var_dump( Datium\Datium::now()->dayOf()->year() );
 echo "<br>";
-var_dump( Datium::now()->get( 'gh', 'l jS F Y h:i:s A') );
+var_dump( Datium\Datium::now()->get( 'gh', 'l jS F Y h:i:s A') );
 echo "<br>";
-var_dump( Datium::now()->get( 'ir', 'l jS F Y h:i:s A') );
+var_dump( Datium\Datium::now()->get( 'ir', 'l jS F Y h:i:s A') );
 echo "<br>is persian holiday? ";
-var_dump( Datium::now()->events()->is_persian_holiday() );
+var_dump( Datium\Datium::create(2015, 3, 29)->events()->iran()->validate() );
 
 } catch (Exception $e ) {
 

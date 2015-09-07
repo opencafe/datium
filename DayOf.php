@@ -1,4 +1,4 @@
-<?php
+<?php namespace Datium\Tools;
 
 class DayOf {
 

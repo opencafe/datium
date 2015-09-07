@@ -1,4 +1,4 @@
-  <?php
+<?php namespace Datium\Tools;
 
 /**
  * @since Aug, 21 2015

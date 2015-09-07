@@ -1,4 +1,10 @@
-<?php
+<?php namespace Datium;
+
+use DateTime;
+use DateInterval;
+use Datium\Tools\Convert;
+use Datium\Tools\Leap;
+use Datium\Tools\DayOf;
 
 /**
  *

@@ -1,4 +1,4 @@
-<?php
+<?php namespace Datium\Tools;
 
 /**
  * Lang class tranlate every expresion according to lang
