@@ -12,7 +12,7 @@ class Iran extends Events implements iEvents {
 
       $this->result = array();
 
-      $this->date_time = $this->convert_calendar->toShamsi( $this->date_time );
+      $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
 
   		$this->day_name = $this->date_time->format('l');
 

@@ -8,7 +8,7 @@ class Convert {
 
   protected $day;
 
-  protected $date_time;
+  public $date_time;
 
   protected $config;
 
@@ -28,7 +28,7 @@ class Convert {
 
   }
 
-  public function toShamsi( $date_time ) {
+  public function shamsi( $date_time ) {
 
     $this->date_time = $date_time;
 
@@ -138,9 +138,11 @@ class Convert {
 
   }
 
-  public function toGhamari( $date_time ) {
+  public function ghamari( $date_time ) {
 
-    $this->date_time = $this->toShamsi( $date_time );
+    $this->date_time = $date_time;
+
+    $this->date_time = $this->shamsi( $this->date_time );
 
     $this->year = $this->date_time->format('Y');
 

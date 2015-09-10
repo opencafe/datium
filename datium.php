@@ -39,11 +39,15 @@ class Datium {
 
   protected $convert_calendar;
 
+  protected $calendar_type;
+
   protected static $array_date;
 
   public function __construct( $type ) {
 
     $this->config = include('Config.php');
+
+    $this->calendar_type = $this->config[ 'default_calendar' ];
 
     date_default_timezone_set( $this->config['timezone'] );
 
@@ -99,6 +103,28 @@ class Datium {
       self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
 
       return new Datium( 'make' );
+
+  }
+
+  public static function createShamsi() {
+
+  }
+
+  public static function createGhamari() {
+
+
+  }
+
+  public static function createGregorian() {
+
+    self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
+
+    return new Datium( 'make' );
+
+  }
+
+  public static function createTimestamp() {
+
 
   }
 
@@ -219,22 +245,50 @@ class Datium {
 
   }
 
+  public function toShamsi() {
+
+    $this->calendar_type = 'changed';
+
+    $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
+
+    return $this;
+
+  }
+
+  public function toGhamari() {
+
+    $this->calendar_type = 'changed';
+
+    $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
+
+    return $this;
+
+  }
+
+  public function toGregorian() {
+
+    $this->calendar_type = 'changed';
+    
+    return $this;
+
+  }
+
   /**
    * Get output
    * @since Aug 17 2015
    * @param $calendar string
    * @param $format string
    */
-  public function get( $calendar = 'ir', $format = 'Y-m-d H:i:s' ) {
+  public function get( $format = 'Y-m-d H:i:s' ) {
 
-    if( in_array( $calendar, $this->config['calendar'] ) ){
+    if( in_array( $this->calendar_type, $this->config['calendar'] ) ){
 
-    switch( $calendar ){
+    switch( $this->calendar_type ){
 
       // returns iran calendar
       case 'ir':
 
-            $this->date_time = $this->convert_calendar->toShamsi( $this->date_time );
+            $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
 
             break;
 
@@ -246,7 +300,7 @@ class Datium {
       // returns islamic calendar
       case 'gh':
 
-            $this->date_time = $this->convert_calendar->toGhamari( $this->date_time );
+            $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
 
             break;
 
@@ -269,10 +323,14 @@ class Datium {
 
             break;
 
+      case 'changed':
+
+            break;
+
     }
   }
 
-    return  $this->format( $calendar, $format );
+    return  $this->format( $this->calendar_type, $format );
 
   }
 

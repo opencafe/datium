@@ -21,18 +21,18 @@ return array(
                                                                            12 => 'Islamic Republic of Iran national day',
                                                                            13 => '13 bedar'
                                                                               ),
-                                                               
+
                                                                3 => array( 14 => 'Khomeini\'s death',
                                                                                   15 => 'killing 15 Khordad',
                                                                                   ),
-                                                               
+
                                                                11 => array( 22 => 'Victory of Islamic revoloution',
                                                                                   ),
 
                                                                12 => array( 29 => 'national day of oil industry',
                                                                                    ),
                                                                ),
-                                        
+
                                         //'religious' => array( 1 => )
 
                                         ),
@@ -71,9 +71,9 @@ return array(
 
                     */
 
-                  
-  'calendar' =>  array( 
-    
+
+  'calendar' =>  array(
+
                    // iran
                       'ir',
 
@@ -81,6 +81,9 @@ return array(
                       'gh'
 
                       ),
+
+
+  'default_calendar' => 'ir',
 
 
                      /**
@@ -98,10 +101,10 @@ return array(
 
   'weekend' =>        array( 'iran'  => array( 'friday' ),
 
-                            'islamic' => array('friday', 'saturday') 
+                            'islamic' => array('friday', 'saturday')
                      ),
 
-                      
+
 
                        /**
                         *
@@ -150,7 +153,7 @@ return array(
                                         9 => 'Ramadan',
                                         10 => 'Shawwal',
                                         11 => 'Dhu al_Qadah',
-                                        12 => 'Dhu al_Hijjah' 
+                                        12 => 'Dhu al_Hijjah'
                                         ) ),
 
   'week_days_name' => array( 'persian' => array(
@@ -172,7 +175,7 @@ return array(
                                           'Thursday',
                                           'Friday'
                                       ),
-                        
+
                              'islamic' => array(
 
                                           1 => 'al-Ithnayn',

@@ -82,13 +82,28 @@ Datium::now()->add('1 year')->leap()->get();
 // output => TRUE
 ```
 
-## Get day of year
+## Get day of date
+
+
+## Day of Year
 What the day is current date in current year
 
 ```js
-// If current date is 2015-09-03
+// If current date 'll be 2015-09-03
 
 Datium::now()->dayOf()->year();
-// 246
+// output => 246
+
+```
+
+## Day of Week
+What day of week is current day.
+
+```js
+
+// If current date 'll be 2015-09-09 thursday
+
+Datium::now->dayOf()->week();
+// output => 5
 
 ```
