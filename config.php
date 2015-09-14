@@ -111,7 +111,10 @@ return array(
                       'ir',
 
                    // ghamari
-                      'gh'
+                      'gh',
+
+                   //gereogian
+                      'gr'   
 
                       ),
 

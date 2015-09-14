@@ -186,7 +186,7 @@ class Datium {
    */
   public function dayOf() {
 
-    $this->day_of = new DayOf( $this->date_time );
+    $this->day_of = new DayOf( $this->date_time, $this->calendar_type );
 
     return $this->day_of;
 
@@ -238,7 +238,9 @@ class Datium {
 
       case 'gr':
 
-          break;
+          $this->date_time = $this->date_time;
+
+        break;
 
     }
 
@@ -270,7 +272,9 @@ class Datium {
 
   public function toGregorian() {
 
-    $this->calendar_type = 'changed';
+    $this->calendar_type = 'gr';
+
+    $this->date_time = $this->date_time;
     
     return $this;
 

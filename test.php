@@ -4,14 +4,14 @@ try{
 
 require_once( 'bootstrap.php' );
 
-echo 'this year: ';
-var_dump( Datium\Datium::now()->toShamsi()->get() );
+echo 'this year: <br>';
+var_dump( Datium\Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 var_dump( Datium\Datium::now()->toShamsi()->sub('3 year')->get() );
 echo "<br>";
 var_dump( Datium\Datium::now()->toShamsi()->add('3 year')->get() );
 echo "<br>";
-var_dump( Datium\Datium::now()->get() );
+var_dump( Datium\Datium::now()->toGregorian()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>Leap year ";
 var_dump( Datium\Datium::now()->leap()->get() );
 echo "<br>Create new DateTime: ";
@@ -34,7 +34,7 @@ var_dump( Datium\Datium::now()->toGhamari()->dayOf()->year('gh') );
 echo "<br>";
 echo "Day of Week";
 echo "<br>";
-var_dump( Datium\Datium::now()->dayOf()->week('gr') );
+var_dump( Datium\Datium::now()->dayOf()->week('gh') );
 echo "<br>";
 echo "Change date form gregorian to shamsi with method: ";
 var_dump( Datium\Datium::create( 1989, 10, 28)->toShamsi()->get( 'l jS F Y h:i:s A' ) );

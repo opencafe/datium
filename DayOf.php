@@ -15,13 +15,19 @@ class DayOf {
 
   protected $result;
 
+  protected $calendar_type;
+
   protected $geregorian_DayofWeek;
 
-  public function __construct( $date_time ) {
+  public function __construct( $date_time, $calendar_type = 'ir' ) {
 
     $this->config = include( 'Config.php' );
 
     $this->date_time = $date_time;
+
+    $this->calendar_type = $calendar_type;
+
+    $this->day = $this->date_time->format('l');
 
     $this->geregorian_DayofWeek = $this->date_time->format('w');
 
@@ -34,9 +40,9 @@ class DayOf {
    * @since Aug, 03 2015
    * @return integer
    */
-  public function year( $type ) {
+  public function year() {
 
-    switch ( $type ) {
+    switch ( $this->calendar_type ) {
       
       case 'ir':
 
@@ -112,19 +118,19 @@ class DayOf {
    * @since Aug, 09 2015
    * @return integer
    */
-  public function week( $type ) {
+  public function week() {
 
-    switch ( $type ) {
+    switch ( $this->calendar_type ) {
       
       case 'ir':
 
-      $this->result = $this->persian_year_of_day();
+      $this->result = $this->persian_week_of_day();
 
         break;
 
       case 'gh':
 
-      $this->result = $this->islamic_year_of_day();
+      $this->result = $this->islamic_week_of_day();
 
        break;
 
@@ -145,8 +151,6 @@ class DayOf {
    */
   protected function persian_week_of_day() {
 
-    $this->day = $this->date_time->format('l');
-
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day);
 
     foreach ( $this->config['week_days_name']['persian'] as $key => $value ) {
@@ -162,8 +166,6 @@ class DayOf {
    * @return integer
    */
   protected function islamic_week_of_day() {
-
-    $this->day = $this->date_time->format('l');
 
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->day);
 
