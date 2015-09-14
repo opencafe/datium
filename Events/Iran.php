@@ -18,11 +18,9 @@ class Iran extends Events implements iEvents {
 
   		$this->day_name = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day_name );
 
-  		//$this->day_name = 'Jome';
+  		$this->month = $this->date_time->format('m'); 
 
-  		$this->month = $this->date_time->format('m'); //1;
-
-  		$this->day = $this->date_time->format('d'); //13;
+  		$this->day = $this->date_time->format('d');
 
   		if( $this->day_name == 'Jome' ) array_push( $this->result, $this->day_name );
 
@@ -55,6 +53,42 @@ class Iran extends Events implements iEvents {
   			 }
 
   		}
+
+     $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
+
+      $this->month = $this->date_time->format('m');
+
+      $this->day = $this->date_time->format('d');
+
+      foreach ( $this->config['events']['iran']['religious'] as $month => $value ) {
+
+        if( in_array( $this->month, [$month] ) ) {
+
+        foreach ( $this->config['events']['iran']['religious'][$month] as $day => $value ) {
+
+          if( in_array( $this->day, [$day] ) ) {
+
+            if( is_null( $this->result ) ) array_push( $this->result, $this->day_name );
+
+            else {
+
+              array_push( $this->result, $value );
+
+            }
+
+          }
+
+        }
+
+      }
+
+        elseif ( is_null($this->result) ) {
+
+          $this->result = FALSE;
+
+         }
+
+      }
 
   			return $this->result;
 

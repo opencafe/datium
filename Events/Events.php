@@ -39,19 +39,6 @@ class Events {
 
 	}
 
-	public function isPersianHoliday() {
-
-
-	}
-
-	public function next_persian_holiday() {
-
-	}
-
-	public function last_pesrian_holiday() {
-
-	}
-
 
 
 }
