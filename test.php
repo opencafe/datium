@@ -22,7 +22,7 @@ var_dump( Datium\Datium::now()->add('1 year')->leap()->get() );
 echo "<br>";
 echo "Day of Year in gregorian:";
 echo "<br>";
-var_dump( Datium\Datium::now()->dayOf()->year() );
+var_dump( Datium\Datium::now()->toGregorian()->dayOf()->year() );
 echo "<br>";
 echo "Day of Year in shamsi:";
 echo "<br>";
