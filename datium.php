@@ -71,7 +71,7 @@ class Datium {
 
     }
 
-    $this->geregorian_DayofWeek = $this->date_time->format('N');
+    $this->geregorian_DayofWeek = $this->date_time->format('w');
 
     $this->convert_calendar = new Convert();
 
@@ -192,6 +192,9 @@ class Datium {
 
   }
 
+  /**
+   * @since Sept, 7 2015
+   */
   public function events() {
 
     $this->events = new Events( $this->date_time );
@@ -247,7 +250,7 @@ class Datium {
 
   public function toShamsi() {
 
-    $this->calendar_type = 'changed';
+    $this->calendar_type = 'ir';
 
     $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
 
@@ -257,7 +260,7 @@ class Datium {
 
   public function toGhamari() {
 
-    $this->calendar_type = 'changed';
+    $this->calendar_type = 'gh';
 
     $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
 
@@ -283,56 +286,11 @@ class Datium {
 
     if( in_array( $this->calendar_type, $this->config['calendar'] ) ){
 
-    switch( $this->calendar_type ){
-
-      // returns iran calendar
-      case 'ir':
-
-            $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
-
-            break;
-
-      // returns afghanistan calendar
-      case 'af':
-
-            break;
-
-      // returns islamic calendar
-      case 'gh':
-
-            $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
-
-            break;
-
-      // returns geregorian calendar
-      case 'gr':
-
-            break;
-
-      // returns all date object type
-      case 'all':
-
-            return $this->date_time;
-
-            break;
-
-      // returns default configuration, by default iran calendar.
-      case 'default':
-
-            return $this->get( $this->config['calendar'] );
-
-            break;
-
-      case 'changed':
-
-            break;
-
-    }
-  }
-
     return  $this->format( $this->calendar_type, $format );
 
   }
+
+}
 
 }
 ?>

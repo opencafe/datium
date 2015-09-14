@@ -33,7 +33,40 @@ return array(
                                                                                    ),
                                                                ),
 
-                                        //'religious' => array( 1 => )
+                                        'religious' => array( 1 => array( 9 => 'day of tasoa',
+                                                                          10 => 'day of ashura'
+                                                                           ),
+
+                                                              2 => array( 20 => 'day of arbaeen',
+                                                                          28 => 'prophet of islam death',
+                                                                          30 => 'killing imam reza'
+                                                                           ),
+
+                                                              3 => array( 17 => 'day of born prophet islam'
+                                                                            ),
+
+                                                              6 => array( 3 => 'prophet of islam dauther\'s fatemeh death'
+                                                                            ),
+
+                                                              7 => array( 13 => 'day of born imam ali',
+                                                                          27 => 'selection day of prophet islam' 
+                                                                          ),
+
+                                                              8 => array( 15 => 'day of born imam mehdi' 
+                                                                            ),
+
+                                                              9 => array( 21 => 'killing imam ali'
+                                                                           ),
+
+                                                              10 => array( 1 => 'eid fetr',
+                                                                           2 => 'eid fetr'
+                                                                           ),
+
+                                                              12 => array( 10 => 'eid ghorban',
+                                                                           18 => 'eid ghadir'
+                                                                           )
+                                                             ),
+
 
                                         ),
 
@@ -41,7 +74,7 @@ return array(
 
                   //'islamic' => array( =>  )
 
-                                          ),
+                        ),
 
                   /**
                    * Array is between 1 and 365 day of year
@@ -178,13 +211,13 @@ return array(
 
                              'islamic' => array(
 
-                                          1 => 'al-Ithnayn',
-                                          2 => 'ath-Thulatha\'',
-                                          3 =>  'al-Arbi\'a',
-                                          4 =>  'al-Khamees',
-                                          5 =>  'al-Jumu\'ah',
-                                          6 =>  'as-Sabt',
-                                          7 =>  'al-Aḥad',
+                                               'al-Aḥad',
+                                               'al-Ithnayn',
+                                               'ath-Thulatha\'',
+                                               'al-Arbi\'a',
+                                               'al-Khamees',
+                                               'al-Jumu\'ah',
+                                               'as-Sabt',  
 
                                           )
 
@@ -215,6 +248,20 @@ return array(
                                      10 => 31,
                                      11 => 30,
                                      12 => 30 ),
+
+  'islamic_month_days' => array(     1 => 30,
+                                     2 => 29,
+                                     3 => 30,
+                                     4 => 30,
+                                     5 => 29,
+                                     6 => 29,
+                                     7 => 30,
+                                     8 => 29,
+                                     9 => 30,
+                                     10 => 29,
+                                     11 => 30,
+                                     12 => 30 ),
+
 
     'date_interval' => array( 'D', 'M', 'Y', 'H', 'm', 'S' ),
 

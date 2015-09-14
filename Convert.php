@@ -14,8 +14,6 @@ class Convert {
 
   protected $leap;
 
-  protected $persian_month;
-
   protected $temp_day;
 
   protected $date;
@@ -27,7 +25,12 @@ class Convert {
     $this->persian_month = $this->config['month']['persian'];
 
   }
-
+  
+  /**
+   *convert geregorian year to persian year
+   * @since Aug, 13 2015
+   * @return object
+   */
   public function shamsi( $date_time ) {
 
     $this->date_time = $date_time;
@@ -55,8 +58,11 @@ class Convert {
      if ( $this->temp_day <= 79 ) {
 
       if( ( $this->year - 1 ) % 4 == 0 )
+
         $this->temp_day = $this->temp_day + 11;
+      
       else
+      
         $this->temp_day = $this->temp_day + 10;
 
       $this->year = $this->year - 622;
@@ -68,6 +74,7 @@ class Convert {
         $this->day = 30;
 
       }
+
       else {
 
         $this->month = ( $this->temp_day / 30 ) + 10;
@@ -126,18 +133,17 @@ class Convert {
 
      }
 
-    //  foreach ( $this->persian_month as $key => $value ) {
-     //
-    //    if ( $key == intval( $this->month ) ) $this->month = $value;
-     //
-    //  }
-
      $this->date_time->setDate( $this->year, $this->month, $this->day );
 
      return $this->date_time;
 
   }
 
+  /**
+   *convert geregorian and persian year to islamic year
+   * @since Aug, 29 2015
+   * @return object
+   */
   public function ghamari( $date_time ) {
 
     $this->date_time = $date_time;
