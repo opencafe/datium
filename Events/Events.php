@@ -11,7 +11,11 @@ class Events {
 
 	protected $date_time;
 
+	protected $year;
+
 	protected $month;
+
+	protected $day_of_week;
 
 	protected $day;
 
@@ -29,7 +33,7 @@ class Events {
 
 		$this->date_time = $date_time;
 
-		return $this;
+		$this->day_of_week = $this->date_time->format( 'l' );
 
 	}
 
