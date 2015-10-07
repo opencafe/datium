@@ -26,7 +26,7 @@ class Iran extends Events implements iEvents {
 
   		$this->day_name = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day_name );
 
-  		$this->month = $this->date_time->format('m'); 
+  		$this->month = $this->date_time->format('m');
 
   		$this->day = $this->date_time->format('d');
 
@@ -105,7 +105,12 @@ class Iran extends Events implements iEvents {
 
       //$date_time = $this->convert_calendar->ghamari( $this->date_time );
 
+<<<<<<< HEAD
       //$this->date_religious = $this->next_religious( $date_time );
+=======
+
+    }
+>>>>>>> 2ecb781a5b720286e2384495f00702e9383d566e
 
       //return $this->date_time;
 
