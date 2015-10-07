@@ -42,6 +42,9 @@ echo "<br>";
 var_dump( Datium\Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
 echo "<br>is persian holiday? ";
 var_dump( Datium\Datium::create(2015, 3, 29)->events()->iran()->validate() );
+echo "<br>next holiday is? ";
+var_dump( Datium\Datium::now()->events()->iran()->next() );
+echo "<br>";
 
 } catch (Exception $e ) {
 
