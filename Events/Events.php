@@ -34,6 +34,8 @@ class Events {
 		$this->date_time = $date_time;
 
 		$this->day_of_week = $this->date_time->format( 'l' );
+		
+		$return $this;
 
 	}
 
