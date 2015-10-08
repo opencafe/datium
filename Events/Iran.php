@@ -14,6 +14,17 @@ class Iran extends Events implements iEvents {
 
     protected $date_religious = "";
 
+    protected $date_time_events;
+
+    public function __construct( $date_time ){
+
+      $this->date_time_events = $date_time; //new variable DateTime return it in line 3 next() function.
+
+      parent::__construct( $date_time );
+
+      return $this;
+    
+    }
 
 
     public function validate() {
@@ -103,11 +114,11 @@ class Iran extends Events implements iEvents {
 
     public function next() {
 
-      //$date_time = $this->convert_calendar->ghamari( $this->date_time );
+      $date_time = $this->convert_calendar->ghamari( $this->date_time );
 
-      //$this->date_religious = $this->next_religious( $date_time );
+      $this->date_religious = $this->next_religious( $date_time );
 
-      //return $this->date_time;
+      return $this->date_time_events; //here
 
       $date_time = $this->convert_calendar->shamsi( $this->date_time );
 
