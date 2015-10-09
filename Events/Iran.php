@@ -18,12 +18,10 @@ class Iran extends Events implements iEvents {
 
     public function __construct( $date_time ){
 
-      $this->date_time_events = $date_time; //new variable DateTime return it in line 3 next() function.
-
-      parent::__construct( $date_time );
+      $this->date_time = $date_time; //new variable DateTime return it in line 3 next() function.
 
       return $this;
-    
+
     }
 
 
@@ -118,7 +116,7 @@ class Iran extends Events implements iEvents {
 
       $this->date_religious = $this->next_religious( $date_time );
 
-      return $this->date_time_events; //here
+      return $this->date_time; //here
 
       $date_time = $this->convert_calendar->shamsi( $this->date_time );
 
@@ -139,14 +137,14 @@ class Iran extends Events implements iEvents {
 
         $result = 'weekend';
       }
-        
+
       switch ( $result ) {
-        
+
 
         case 'weekend':
 
           $this->result = $this->date_weekend->format("Y-m-d");
-        
+
           break;
 
         case 'national':
@@ -154,15 +152,15 @@ class Iran extends Events implements iEvents {
           $this->result = $this->date_national->format("Y-m-d");
 
           break;
-        
+
         default:
 
           break;
       }
 
-      return $this->result;    
+      return $this->result;
 
-        }      
+        }
 
    public function last() {
 
@@ -191,7 +189,7 @@ class Iran extends Events implements iEvents {
           if( $value == $this->day_of_week ) {
 
             $days = $key;
-            
+
             while ( $days < 6 ) {
 
               $days += 1;
@@ -199,7 +197,7 @@ class Iran extends Events implements iEvents {
               $weekend += 1;
 
             }
-          
+
           }
 
         }
@@ -213,14 +211,14 @@ class Iran extends Events implements iEvents {
           for ( $i = $this->day; $i < 31; $i++ ) {
 
             $weekend--;
-            
+
           }
 
           $this->day = $weekend;
 
           $this->month += 1;
 
-          
+
         }
 
         if( $this->day > 30 && $this->month < 12 ) {
@@ -230,14 +228,14 @@ class Iran extends Events implements iEvents {
           for ( $i = $this->day; $i < 30; $i++ ) {
 
             $weekend--;
-            
+
           }
 
           $this->day = $weekend;
 
           $this->month += 1;
 
-          
+
         }
 
         if( 12 == $this->month && $this->day > 29 ) {
@@ -246,12 +244,12 @@ class Iran extends Events implements iEvents {
 
           for ( $i = $this->day; $i < 29 ; $i++ ) {
 
-            $weekend--; 
-            
+            $weekend--;
+
           }
 
           $this->day = $weekend;
-          
+
           $this->month = 1;
 
           $this->year += 1;
@@ -274,13 +272,13 @@ class Iran extends Events implements iEvents {
 
       $national = array();
 
-        $date_weekend = $date_national = $date_religious = ""; 
+        $date_weekend = $date_national = $date_religious = "";
 
         foreach ( $this->config['events']['iran']['national'] as $month => $value ) {
 
           if( $this->month <= $month ){
 
-            if( 12 == $month && 29 <= $this->day ){ 
+            if( 12 == $month && 29 <= $this->day ){
 
               $this->year += 1;
 
@@ -301,7 +299,7 @@ class Iran extends Events implements iEvents {
       foreach ( $national as $m => $value ) break;
 
         $this->month = $m;
-        
+
         $this->day = array_pop( $national[$m] );
 
         $this->date_national = date_create( "$this->year/$this->month/$this->day" );
@@ -318,7 +316,7 @@ class Iran extends Events implements iEvents {
 
       $this->year = $r_date->format('Y');
 
-      $religious = array(); 
+      $religious = array();
 
         foreach ( $this->config['events']['iran']['religious'] as $month => $value ) {
 
@@ -343,13 +341,13 @@ class Iran extends Events implements iEvents {
       }
 
       //foreach ( $religious as $m => $value ) break;
-        
+
       //$this->day = $value ;
 
       //return $this->day;
 
       //return $this->month . '/' . $this->day;
-  
+
   }
 
 }

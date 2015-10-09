@@ -275,7 +275,7 @@ class Datium {
     $this->calendar_type = 'gr';
 
     $this->date_time = $this->date_time;
-    
+
     return $this;
 
   }
@@ -288,7 +288,7 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-    if( in_array( $this->calendar_type, $this->config['calendar'] ) ){
+    if( in_array( $this->calendar_type, $this->config[ 'calendar' ] ) ){
 
     return  $this->format( $this->calendar_type, $format );
 

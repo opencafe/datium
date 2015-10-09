@@ -1,52 +1,109 @@
 <?php namespace Datium;
 
 use Datium\Tools\Convert;
-use Datium\Events\Location\Iran;
+use Datium\Tools\DayOf;
 
 class Events {
 
-	protected $config;
+	private $local;
 
-	protected $convert;
+	private $date_time;
 
-	protected $date_time;
+	private $convert;
 
-	protected $year;
-
-	protected $month;
-
-	protected $day_of_week;
-
-	protected $day;
-
-	protected $day_name;
-
-	protected $result;
-
-	protected $convert_calendar;
+	private $days_of_year;
 
 	public function __construct( $date_time ) {
 
-		$this->config = include( 'config.php' );
-
-	    $this->convert_calendar = new Convert();
+		var_dump( $this->days_of_year );exit;
 
 		$this->date_time = $date_time;
 
-		$this->day_of_week = $this->date_time->format( 'l' );
-		
+		$this->convert = new Convert;
+
 		return $this;
 
 	}
 
-	public function iran() {
+	public function get() {
 
-		return new Iran( $this->date_time );
+		return 0;
 
 	}
 
+	/**
+	 * Start of the events from time
+	 */
+	public function start() {
 
+
+	}
+
+	/**
+	 * End of the events to time
+	 */
+	public function end() {
+
+
+	}
+
+	public function local( $country_code = "iran" ) {
+
+		/**
+		 * Capitalize the first character of $country_code according the file
+		 * structure.
+		 */
+		$country_code = ucfirst( strtolower( $country_code ) );
+
+		$this->local = include( 'Localization/' . $country_code . '.php' );
+
+		switch ( $this->local[ 'default_calendar' ] ) {
+
+			case 'shamsi':
+				$this->date_time = $this->convert->shamsi( $this->date_time );
+
+				foreach( $this->local[ 'events' ] as $event ) {
+
+					$date_time = new DateTime();
+
+					// $this->day_of_year[ $set , 'ir' ) ] = 
+
+				}
+
+				break;
+
+			case 'gregorian':
+				break;
+
+			case 'ghamari':
+				$this->date_time = $this->convert->ghamari( $this->date_time );
+				break;
+
+				foreach
+
+		}
+
+		return $this;
+
+	}
+
+	public function weekend() {
+
+		return 0;
+
+	}
+
+	public function general() {
+
+		return 0;
+
+	}
+
+	public function relagious() {
+
+		return 0;
+
+	}
 
 }
-
 ?>

@@ -94,6 +94,15 @@ What the day is current date in current year
 Datium::now()->dayOf()->year();
 // output => 246
 
+// Day of year to Gregorian
+Datium::now()->toGregorian()->dayOf()->year();
+
+// Day of year to Shamsi
+Datium::now()->toShamsi()->dayOf()->year();
+
+// Day of year to Ghamari
+Datium::now()->toGhamari()->dayOf()->year();
+
 ```
 
 ## Day of Week
@@ -101,9 +110,20 @@ What day of week is current day.
 
 ```js
 
-// If current date 'll be 2015-09-09 thursday
-
-Datium::now->dayOf()->week();
+// If current date 'll be 2015-09-09 Thursday
+Datium::now()->dayOf()->week();
 // output => 5
 
+// Day of week to Gregorian
+Datium::now()->toGregorian()->dayOf()->week();
+
+// Day of week to Shamsi
+Datium::now()->toShamsi()->dayOf()->week();
+
+// Day of week to Ghamari
+Datium::now()->toGhamari()->dayOf()->week();
+
 ```
+
+
+## Events
