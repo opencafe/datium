@@ -40,8 +40,8 @@ echo "Change date form gregorian to shamsi with method: ";
 var_dump( Datium\Datium::create( 1989, 10, 28)->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 var_dump( Datium\Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
-// echo "<br>is persian holiday? ";
-// var_dump( Datium\Datium::now()->events()->local( 'iran' ) );
+echo "<br>is persian holiday? ";
+// var_dump( Datium\Datium::now()->events()->local( 'united-states' )->local( 'iran' )->get() );
 
 } catch (Exception $e ) {
 

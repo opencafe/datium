@@ -2,6 +2,7 @@
 
 use Datium\Tools\Convert;
 use Datium\Tools\DayOf;
+use DateTime;
 
 class Events {
 
@@ -15,8 +16,6 @@ class Events {
 
 	public function __construct( $date_time ) {
 
-		var_dump( $this->days_of_year );exit;
-
 		$this->date_time = $date_time;
 
 		$this->convert = new Convert;
@@ -27,7 +26,7 @@ class Events {
 
 	public function get() {
 
-		return 0;
+		return $this->day_of_year;
 
 	}
 
@@ -47,41 +46,41 @@ class Events {
 
 	}
 
-	public function local( $country_code = "iran" ) {
-
-		/**
-		 * Capitalize the first character of $country_code according the file
-		 * structure.
+		/************************************************************
+		 * Return local events - with day start and end as an array
+		 ************************************************************
+		 *
+		 * @since Oct 10, 2015
+		 *
+		 *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 		 */
-		$country_code = ucfirst( strtolower( $country_code ) );
+		public function local( $country_code = "iran" ) {
 
-		$this->local = include( 'Localization/' . $country_code . '.php' );
+				/**
+				 * Capitalize the first character of $country_code according the file
+				 * structure.
+				 */	
+				$country_code = ucfirst( strtolower( $country_code ) );
 
-		switch ( $this->local[ 'default_calendar' ] ) {
+				$this->local = include( 'Localization/' . $country_code . '.php' );
 
-			case 'shamsi':
-				$this->date_time = $this->convert->shamsi( $this->date_time );
+				foreach( $this->local[ 'events' ] as $month => $events ) {
 
-				foreach( $this->local[ 'events' ] as $event ) {
+					foreach( $events as $day => $event ){
 
-					$date_time = new DateTime();
+						$date_time = new DateTime();
 
-					// $this->day_of_year[ $set , 'ir' ) ] = 
+						$date_time->setDate( 2000, $month, $day );
+
+						$date_time = $this->convert->shamsi( $date_time );
+
+						$dayof = new DayOf( $date_time, 'ir' );
+
+						array_push( $this->day_of_year[ $dayof->year() ], $event );
+
+					}
 
 				}
-
-				break;
-
-			case 'gregorian':
-				break;
-
-			case 'ghamari':
-				$this->date_time = $this->convert->ghamari( $this->date_time );
-				break;
-
-				foreach
-
-		}
 
 		return $this;
 

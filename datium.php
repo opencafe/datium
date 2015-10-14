@@ -198,7 +198,7 @@ class Datium {
   public function events() {
 
     $this->events = new Events( $this->date_time );
-
+    
     return $this->events;
 
 
