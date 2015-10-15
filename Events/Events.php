@@ -14,11 +14,21 @@ class Events {
 
 	private $days_of_year;
 
+	private $year;
+
+	private $year_in_persian;
+
+	private $year_in_ghamari;
+
 	public function __construct( $date_time ) {
+
+		$this->convert = new Convert;
 
 		$this->date_time = $date_time;
 
-		$this->convert = new Convert;
+		$this->year = $date_time->format( 'Y' );
+
+		$this->year_in_persian = $this->convert->shamsi( $date_time )->format( 'Y' );
 
 		return $this;
 
@@ -59,7 +69,7 @@ class Events {
 				/**
 				 * Capitalize the first character of $country_code according the file
 				 * structure.
-				 */	
+				 */
 				$country_code = ucfirst( strtolower( $country_code ) );
 
 				$this->local = include( 'Localization/' . $country_code . '.php' );
@@ -68,19 +78,41 @@ class Events {
 
 					foreach( $events as $day => $event ){
 
-						$date_time = new DateTime();
+						switch ( $this->local[ 'default_calendar' ] ) {
 
-						$date_time->setDate( 2000, $month, $day );
+							case 'shamsi':
 
-						$date_time = $this->convert->shamsi( $date_time );
+							$date_time = new DateTime();
 
-						$dayof = new DayOf( $date_time, 'ir' );
+							$date_time->setDate( $this->year_in_persian, $month, $day );
 
-						array_push( $this->day_of_year[ $dayof->year() ], $event );
+							$date_time = $this->convert->gregorian( $date_time );
+
+							$dayof = new DayOf( $date_time, 'gr' );
+
+							$this->day_of_year[ $dayof->year() ][] =  $event;
+
+							break;
+
+							case 'gregorian':
+
+							$date_time = new DateTime();
+
+							$date_time->setDate( $this->year, $month, $day );
+
+							$dayof = new DayOf( $date_time, 'gr' );
+
+							$this->day_of_year[ $dayof->year() ][] =  $event;
+
+							break;
+
+						}
 
 					}
 
 				}
+
+				ksort( $this->day_of_year );
 
 		return $this;
 
