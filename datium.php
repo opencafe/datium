@@ -219,7 +219,7 @@ class Datium {
 
           $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['persian'], $this->date_time );
 
-          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->date_time );
+          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'][$this->geregorian_DayofWeek], $this->date_time );
 
           break;
 
@@ -254,7 +254,7 @@ class Datium {
 
     $this->calendar_type = 'ir';
 
-    $this->date_time = $this->convert_calendar->shamsi( $this->date_time );
+    $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
 
     return $this;
 
@@ -264,17 +264,31 @@ class Datium {
 
     $this->calendar_type = 'gh';
 
-    $this->date_time = $this->convert_calendar->ghamari( $this->date_time );
+    $this->date_time = $this->convert_calendar->gregorianToGhamari( $this->date_time );
 
     return $this;
 
   }
 
-  public function toGregorian() {
+  public function toGregorian( $type = 'gr' ) {
 
-    $this->calendar_type = 'gr';
+    $this->calendar_type = $type;
 
-    $this->date_time = $this->date_time;
+    switch ( $this->calendar_type ) {
+    
+      case 'ir':
+  
+      $this->date_time = $this->convert_calendar->shamsiToGregorian( $this->date_time );
+  
+        break;
+
+        case 'gr':
+
+       $this->date_time = $this->date_time ;
+  
+        break;
+    
+    }
 
     return $this;
 
