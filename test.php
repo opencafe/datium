@@ -43,6 +43,10 @@ var_dump( Datium\Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
 echo "<br>";
 echo "Change date form shamsi to gregorian with method: ";
 var_dump( Datium\Datium::create( 1357, 11, 22 )->toGregorian('ir')->get( 'l jS F Y h:i:s A' ) );
+echo "<br>";
+echo "Change date form ghamari to gregorian with method: ";
+var_dump( Datium\Datium::create( 1437, 1, 1 )->toGregorian('gh')->get( 'l jS F Y h:i:s A' ) );
+
 
 
 //echo "is persian holiday? ";

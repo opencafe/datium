@@ -250,21 +250,48 @@ class Datium {
 
   }
 
-  public function toShamsi() {
+  public function toShamsi( $type = 'gr' ) {
+
+    switch ( $type ) {
+      
+      case 'gr':
+    
+      $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
+    
+        break;
+      
+      case 'gh':
+        
+            $this->date_time = $this->convert_calendar->ghamariToShamsi( $this->date_time );
+
+        break;
+    }
 
     $this->calendar_type = 'ir';
-
-    $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
 
     return $this;
 
   }
 
-  public function toGhamari() {
+  public function toGhamari( $type = 'gr') {
 
-    $this->calendar_type = 'gh';
+switch ( $type  ) {
+  
+  case 'ir':
+    
+        $this->date_time = $this->convert_calendar->shamsiToGhamari( $this->date_time );
+
+    break;
+
+  case 'gr':
 
     $this->date_time = $this->convert_calendar->gregorianToGhamari( $this->date_time );
+
+    break;
+
+}
+
+   $this->calendar_type = 'gh';
 
     return $this;
 
@@ -276,18 +303,21 @@ class Datium {
     
       case 'ir':
   
-      $this->date_time = $this->convert_calendar->shamsiToGregorian( $this->date_time );
+        $this->date_time = $this->convert_calendar->shamsiToGregorian( $this->date_time );
   
         break;
 
-        case 'gr':
+      case 'gh':
 
-       $this->date_time = $this->date_time ;
+        $this->date_time = $this->convert_calendar->ghamariToGregorian( $this->date_time );
+        
+      case 'gr':
+
+        $this->date_time = $this->date_time;
   
         break;
     
     }
-
 
     $this->calendar_type = 'gr';
 
