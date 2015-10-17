@@ -272,9 +272,7 @@ class Datium {
 
   public function toGregorian( $type = 'gr' ) {
 
-    $this->calendar_type = $type;
-
-    switch ( $this->calendar_type ) {
+    switch ( $type ) {
     
       case 'ir':
   
@@ -289,6 +287,9 @@ class Datium {
         break;
     
     }
+
+
+    $this->calendar_type = 'gr';
 
     return $this;
 
@@ -311,4 +312,5 @@ class Datium {
 }
 
 }
+
 ?>
