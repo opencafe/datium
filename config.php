@@ -193,13 +193,14 @@ return array(
                                         ) ),
 
   'week_days_name' => array( 'persian' => array(
-                                          'Shanbe',
                                           'Yekshanbe',
                                           'Doshanbe',
                                           'Seshanbe',
                                           'Chaharshanbe',
                                           'Panjshanbe',
-                                          'Jome'
+                                          'Jome',
+                                          'Shanbe'
+
                                           ),
 
                              'english' => array(

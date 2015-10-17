@@ -369,8 +369,111 @@ public function shamsiToGhamari( $date_time ) {
 
 }
 
+/**
+   *convert ghamari year to shamsi year
+   * @since Oct, 17 2015
+   * @return object
+   */
 public function ghamariToShamsi( $date_time ) {
 
+$this->date_time = $date_time;
+
+$this->year = $this->date_time->format('Y');
+
+$this->month = $this->date_time->format('m');
+
+$this->day = $this->date_time->format('d');
+
+$days_of_year = 0;
+
+foreach ( $this->config['islamic_month_days'] as $month => $value ) {
+
+  if( $this->month > $month ) $days_of_year += $value;
+
+}
+
+$days_of_year += $this->day;
+
+$days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  ); 
+
+$days_of_ghamari_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+
+$days_of_shamsi_years = $days_of_ghamari_years + 179;
+
+$days_of_shamsi_years = $days_of_shamsi_years - intval( ( ( $this->year - 43 ) / 4 ) ); 
+  
+$shamsi_month = ( $days_of_shamsi_years % 365 );
+
+$shamsi_year = intval( $days_of_shamsi_years / 365 ) + 1;
+
+foreach ($this->config['shamsi_month_days'] as $month => $value) {
+
+  if ( $shamsi_month < $value ) break;
+    
+    $shamsi_month -= $value;
+}
+
+  $shamsi_day = $shamsi_month;
+
+  $shamsi_month = $month;
+
+  $this->date_time->setDate( $shamsi_year, $shamsi_month, $shamsi_day );
+
+ return $this->date_time;
+
+}
+
+/**
+   *convert ghamari year to gregorian year
+   * @since Oct, 17 2015
+   * @return object
+   */
+public function ghamariToGregorian( $date_time ) {
+
+$this->date_time = $date_time;
+
+$this->year = $this->date_time->format('Y');
+
+$this->month = $this->date_time->format('m');
+
+$this->day = $this->date_time->format('d');
+
+$days_of_year = 0;
+
+foreach ( $this->config['islamic_month_days'] as $month => $value ) {
+
+  if( $this->month > $month ) $days_of_year += $value;
+
+}
+
+$days_of_year += $this->day;
+
+$days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  ); 
+
+$days_of_ghamari_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+
+$days_of_gregorain_years = $days_of_ghamari_years + 227078;
+
+$days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 578 ) / 4 ) ); 
+
+$gregorian_month = ( $days_of_gregorain_years % 365 );
+
+$gregorian_year = intval( $days_of_gregorain_years / 365 ) + 1;
+
+foreach ($this->config['gregorian_month_days'] as $month => $value) {
+
+  if ( $gregorian_month < $value ) break;
+    
+    $gregorian_month -= $value;
+}
+
+  $gregorian_day = $gregorian_month;
+
+  $gregorian_month = $month;
+
+  $this->date_time->setDate( $gregorian_year, $gregorian_month, $gregorian_day );
+
+ return $this->date_time;
 
 }
 
