@@ -13,9 +13,11 @@ return array(
 
     4 => array( 4 => 'folan' ),
 
-    7 => array( 23 => '23th mehr' ),
+    6 => array( 17 => '17th of june' ),
 
     9 => array( 11 => '9th September' ),
+
+    10 => array( 19 => '19th of october' ),
 
     12 => array( 30 => 'christian day!' ),
 

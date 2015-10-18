@@ -9,7 +9,8 @@ return array(
 
     'events' => array(
       1 => array( 1 => 'nowruz', 2 => 'nowruz', 3 => 'nowruz', 5 => 'nowruz' ),
-      10 => array( 15 => '15th of october' ),
+      3 => array( 27 => '27th of khordad' ),
+      7 => array( 27 => '27th of mehr' ),
       12 => array( 29 => 'Iran oil national day' )
     ),
 

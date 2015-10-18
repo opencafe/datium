@@ -28,7 +28,7 @@ class Events {
 
 		$this->year = $date_time->format( 'Y' );
 
-		$this->year_in_persian = $this->convert->shamsi( $date_time )->format( 'Y' );
+		$this->year_in_persian = $this->convert->gregorianToShamsi( $date_time )->format( 'Y' );
 
 		return $this;
 
@@ -78,35 +78,43 @@ class Events {
 
 					foreach( $events as $day => $event ){
 
+						$date_time = new DateTime();
+
+						$date_time->setDate( $this->year_in_persian, $month, $day );
+
 						switch ( $this->local[ 'default_calendar' ] ) {
 
 							case 'shamsi':
 
-							$date_time = new DateTime();
-
-							$date_time->setDate( $this->year_in_persian, $month, $day );
-
-							$date_time = $this->convert->gregorian( $date_time );
-
-							$dayof = new DayOf( $date_time, 'gr' );
-
-							$this->day_of_year[ $dayof->year() ][] =  $event;
+								$date_time = $this->convert->shamsiToGregorian( $date_time );
 
 							break;
 
 							case 'gregorian':
 
-							$date_time = new DateTime();
+							break;
 
-							$date_time->setDate( $this->year, $month, $day );
+							case 'ghamari':
 
-							$dayof = new DayOf( $date_time, 'gr' );
-
-							$this->day_of_year[ $dayof->year() ][] =  $event;
+								$date_time = $this->convert->ghamariToGregorian( $date_time );
 
 							break;
 
 						}
+
+						$dayof = new DayOf( $date_time, 'gr' );
+
+						$day_of_shamsi = new DayOf( $date_time, 'ir' );
+
+						$day_of_ghamari = new DayOf( $date_time, 'gh' );
+
+						$this->day_of_year[ $dayof->year() ][ 'PersianDay' ][] = $day_of_shamsi->year();
+
+						$this->day_of_year[ $dayof->year() ][ 'GhamariDay' ][] = $day_of_shamsi->year();
+
+						$this->day_of_year[ $dayof->year() ][ 'Event' ][] =  $event;
+
+						$this->day_of_year[ $dayof->year() ][ 'Date' ][] =  $date_time;
 
 					}
 
