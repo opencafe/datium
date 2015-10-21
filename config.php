@@ -4,105 +4,8 @@ return array(
 
   'timezone' => 'Asia/Tehran',
 
-                /**
-                 *
-                 * Here is some other area
-
-                 'Asia/Kabul',
-
-                 'Europe/london',
-
-                */
-
-  'events' =>     array( 'iran' => array( 'national' => array( 1 => array( 1 => 'nowruz',
-                                                                           2 => 'nowruz',
-                                                                           3 => 'nowruz',
-                                                                           4 => 'nowruz',
-                                                                           12 => 'Islamic Republic of Iran national day',
-                                                                           13 => '13 bedar'
-                                                                              ),
-
-                                                               3 => array( 14 => 'Khomeini\'s death',
-                                                                                  15 => 'killing 15 Khordad',
-                                                                                  ),
-
-                                                               11 => array( 22 => 'Victory of Islamic revoloution',
-                                                                                  ),
-
-                                                               12 => array( 29 => 'national day of oil industry',
-                                                                                   ),
-                                                               ),
-
-                                        'religious' => array( 1 => array( 9 => 'day of tasoa',
-                                                                          10 => 'day of ashura'
-                                                                           ),
-
-                                                              2 => array( 20 => 'day of arbaeen',
-                                                                          28 => 'prophet of islam death',
-                                                                          30 => 'killing imam reza'
-                                                                           ),
-
-                                                              3 => array( 17 => 'day of born prophet islam'
-                                                                            ),
-
-                                                              6 => array( 3 => 'prophet of islam dauther\'s fatemeh death'
-                                                                            ),
-
-                                                              7 => array( 13 => 'day of born imam ali',
-                                                                          27 => 'selection day of prophet islam' 
-                                                                          ),
-
-                                                              8 => array( 15 => 'day of born imam mehdi' 
-                                                                            ),
-
-                                                              9 => array( 21 => 'killing imam ali'
-                                                                           ),
-
-                                                              10 => array( 1 => 'eid fetr',
-                                                                           2 => 'eid fetr'
-                                                                           ),
-
-                                                              12 => array( 10 => 'eid ghorban',
-                                                                           18 => 'eid ghadir'
-                                                                           )
-                                                             ),
-
-
-                                        ),
-
-
-
-                  //'islamic' => array( =>  )
-
-                        ),
-
-                  /**
-                   * Array is between 1 and 365 day of year
-
-                   'afghanistan',
-
-                   'tajikestan',
-
-                   'general',
-
-                   */
-
-                    // Persian in Iran (farsi)
 
   'language' =>     'fa',
-
-                    /**
-                     *
-
-                    Persian in Afghanistan (dari)
-
-                    'af',
-
-                    English
-
-                    'en',
-
-                    */
 
 
   'calendar' =>  array(
@@ -114,7 +17,7 @@ return array(
                       'gh',
 
                    //gereogian
-                      'gr'   
+                      'gr'
 
                       ),
 
@@ -122,34 +25,11 @@ return array(
   'default_calendar' => 'ir',
 
 
-                     /**
-                      *
-
-                      afghanistan
-
-                      'af',
-
-                      gregorian
-
-                      'gr',
-
-                      */
-
   'weekend' =>        array( 'iran'  => array( 'friday' ),
 
                             'islamic' => array('friday', 'saturday')
                      ),
 
-
-
-                       /**
-                        *
-
-                        'General'  => array( 'saturday', 'sunday' ),
-
-                        'Manualy' => array(),
-
-                        */
 
   'month' => array( 'persian' => array(  'Farvardin',
                                          'Ordibehesht',
@@ -221,7 +101,7 @@ return array(
                                                'al-Arbi\'a',
                                                'al-Khamees',
                                                'al-Jumu\'ah',
-                                               'as-Sabt',  
+                                               'as-Sabt',
 
                                           )
 

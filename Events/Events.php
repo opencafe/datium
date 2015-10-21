@@ -8,6 +8,8 @@ class Events {
 
 	private $local;
 
+	private $events;
+
 	private $date_time;
 
 	private $convert;
@@ -20,7 +22,19 @@ class Events {
 
 	private $year_in_ghamari;
 
-	public function __construct( $date_time ) {
+	private static $date_start;
+
+	private static $date_end;
+
+	public function __construct( $date_time, $date_end = NULL ) {
+
+		if( $date_end !== NULL ) {
+
+			Events::$date_start = $date_time;
+
+			Events::$date_end = $date_end;
+
+		}
 
 		$this->convert = new Convert;
 
@@ -34,39 +48,51 @@ class Events {
 
 	}
 
+	/************************************************************
+	 * Return Array of Events
+	 ************************************************************
+	 *
+	 * @since Oct 18, 2015
+	 * @return array
+	 *
+	 *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+	 */
 	public function get() {
+
+		foreach( $this->day_of_year as $key => $day ) {
+
+			$temp = new DayOf( self::$date_start, 'gr' );
+
+			$temp2 = new DayOf( self::$date_end, 'gr' );
+
+			/**
+			 * @todo current return is false
+			 */
+			if ( ! ( $key > $temp->year() && $key < $temp2->year() ) ) {
+
+				unset( $this->day_of_year[ $key ] );
+
+			}
+
+		}
 
 		return $this->day_of_year;
 
 	}
 
-	/**
-	 * Start of the events from time
-	 */
-	public function start() {
-
-
-	}
-
-	/**
-	 * End of the events to time
-	 */
-	public function end() {
-
-
-	}
 
 		/************************************************************
 		 * Return local events - with day start and end as an array
 		 ************************************************************
 		 *
 		 * @since Oct 10, 2015
+		 * @param string $country_code
 		 *
 		 *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 		 */
-		public function local( $country_code = "iran" ) {
+		public function local( $country_code = "ir" ) {
 
-				/**
+				/*
 				 * Capitalize the first character of $country_code according the file
 				 * structure.
 				 */
@@ -80,17 +106,15 @@ class Events {
 
 						$date_time = new DateTime();
 
-						$date_time->setDate( $this->year_in_persian, $month, $day );
+						$date_time->setDate( 2015, $month, $day );
 
 						switch ( $this->local[ 'default_calendar' ] ) {
 
 							case 'shamsi':
 
-								$date_time = $this->convert->shamsiToGregorian( $date_time );
+							$date_time->setDate( 1394, $month, $day );
 
-							break;
-
-							case 'gregorian':
+							$date_time = $this->convert->shamsiToGregorian( $date_time );
 
 							break;
 
@@ -103,14 +127,6 @@ class Events {
 						}
 
 						$dayof = new DayOf( $date_time, 'gr' );
-
-						$day_of_shamsi = new DayOf( $date_time, 'ir' );
-
-						$day_of_ghamari = new DayOf( $date_time, 'gh' );
-
-						$this->day_of_year[ $dayof->year() ][ 'PersianDay' ][] = $day_of_shamsi->year();
-
-						$this->day_of_year[ $dayof->year() ][ 'GhamariDay' ][] = $day_of_shamsi->year();
 
 						$this->day_of_year[ $dayof->year() ][ 'Event' ][] =  $event;
 
@@ -141,6 +157,35 @@ class Events {
 	public function relagious() {
 
 		return 0;
+
+	}
+
+	public function international() {
+
+		$this->events = include( 'Global/global.php' );
+
+		foreach( $this->events[ 'events' ] as $month => $events ) {
+
+			foreach( $events as $day => $event ){
+
+				$date_time = new DateTime();
+
+				$date_time->setDate( 2015, $month, $day );
+
+				$dayof = new DayOf( $date_time, 'gr' );
+
+				$this->day_of_year[ $dayof->year() ][ 'Event' ][] =  $event;
+
+				$this->day_of_year[ $dayof->year() ][ 'Date' ][] =  $date_time;
+
+			}
+
+		}
+
+		ksort( $this->day_of_year );
+
+		return $this;
+
 
 	}
 

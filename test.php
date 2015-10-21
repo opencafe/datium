@@ -1,56 +1,59 @@
 <?php
 
+use Datium\Datium as Datium;
+
 try{
 
 require_once( 'bootstrap.php' );
 
 echo 'this year: <br>';
-var_dump( Datium\Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
+var_dump( Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
-var_dump( Datium\Datium::now()->toShamsi()->sub('3 year')->get() );
+var_dump( Datium::now()->toShamsi()->sub('3 year')->get() );
 echo "<br>";
-var_dump( Datium\Datium::now()->toShamsi()->add('3 year')->get() );
+var_dump( Datium::now()->toShamsi()->add('3 year')->get() );
 echo "<br>";
-var_dump( Datium\Datium::now()->toGregorian()->get( 'l jS F Y h:i:s A' ) );
+var_dump( Datium::now()->toGregorian()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>Leap year ";
-var_dump( Datium\Datium::now()->leap()->get() );
+var_dump( Datium::now()->leap()->get() );
 echo "<br>Create new DateTime: ";
-var_dump( Datium\Datium::create(2000, 1, 1, 0, 0, 0)->get() );
+var_dump( Datium::create(2000, 1, 1, 0, 0, 0)->get() );
 echo "<br>";
 echo 'Is next year leap? ';
-var_dump( Datium\Datium::now()->add('1 year')->leap()->get() );
+var_dump( Datium::now()->add('1 year')->leap()->get() );
 echo "<br>";
 echo "Day of Year in gregorian:";
 echo "<br>";
-var_dump( Datium\Datium::now()->toGregorian()->dayOf()->year() );
+var_dump( Datium::now()->toGregorian()->dayOf()->year() );
 echo "<br>";
 echo "Day of Year in shamsi:";
 echo "<br>";
-var_dump( Datium\Datium::now()->toShamsi()->dayOf()->year() );
+var_dump( Datium::now()->toShamsi()->dayOf()->year() );
 echo "<br>";
 echo "Day of Year in ghamari:";
 echo "<br>";
-var_dump( Datium\Datium::now()->toGhamari()->dayOf()->year() );
+var_dump( Datium::now()->toGhamari()->dayOf()->year() );
 echo "<br>";
 echo "Day of Week";
 echo "<br>";
-var_dump( Datium\Datium::now()->dayOf()->week() );
+var_dump( Datium::now()->dayOf()->week() );
 echo "<br>";
 echo "Change date form gregorian to shamsi with method: ";
-var_dump( Datium\Datium::create( 1989, 10, 28)->toShamsi()->get( 'l jS F Y h:i:s A' ) );
+var_dump( Datium::create( 1989, 10, 28)->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
-var_dump( Datium\Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
+var_dump( Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
 echo "<br>";
 echo "Change date form shamsi to gregorian with method: ";
-var_dump( Datium\Datium::create( 1357, 11, 22 )->toGregorian('ir')->get( 'l jS F Y h:i:s A' ) );
+var_dump( Datium::create( 1357, 11, 22 )->toGregorian('ir')->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 echo "Change date form ghamari to gregorian with method: ";
-var_dump( Datium\Datium::create( 1437, 1, 1 )->toGregorian('gh')->get( 'l jS F Y h:i:s A' ) );
-
-
-
-// echo "is persian holiday? ";
-// var_dump( Datium\Datium::now()->events()->local( 'united-states' )->local( 'iran' )->get() );
+var_dump( Datium::create( 1437, 1, 1 )->toGregorian('gh')->get( 'l jS F Y h:i:s A' ) );
+echo "is persian holiday? ";
+var_dump(  Datium::between( Datium::now()->sub('5 month')->object() , Datium::now()->add( '6 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );
+echo 'return international days';
+var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('3 month')->object() )->events()->international()->get() );
+echo 'Date diff';
+var_dump( Datium::diff( Datium::now()->object(), Datium::now()->add('2 month')->object() ) );
 
 } catch (Exception $e ) {
 

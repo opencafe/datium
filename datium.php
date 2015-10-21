@@ -25,6 +25,10 @@ class Datium {
    */
   protected $config;
 
+  protected static $date_start;
+
+  protected static $date_end;
+
   /**
    * return store day number
    * @param integer
@@ -43,7 +47,9 @@ class Datium {
 
   protected static $array_date;
 
-  public function __construct( $type ) {
+  protected static $call_type;
+
+  public function __construct() {
 
     $this->config = include('Config.php');
 
@@ -51,11 +57,13 @@ class Datium {
 
     date_default_timezone_set( $this->config['timezone'] );
 
-    switch( $type ) {
+    switch( Datium::$call_type ) {
 
       case 'now':
 
         $this->date_time = new DateTime( 'now' );
+
+        $this->geregorian_DayofWeek = $this->date_time->format('w');
 
         break;
 
@@ -67,11 +75,11 @@ class Datium {
 
         $this->date_time->setTime( self::$array_date['hour'], self::$array_date['minute'], self::$array_date['second'] );
 
+        $this->geregorian_DayofWeek = $this->date_time->format('w');
+
         break;
 
     }
-
-    $this->geregorian_DayofWeek = $this->date_time->format('w');
 
     $this->convert_calendar = new Convert();
 
@@ -84,7 +92,9 @@ class Datium {
    */
   public static function now() {
 
-    return new Datium( 'now' );
+    self::$call_type = 'now';
+
+    return new Datium();
 
   }
 
@@ -102,7 +112,21 @@ class Datium {
 
       self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
 
-      return new Datium( 'make' );
+      self::$call_type = 'make';
+
+      return new Datium();
+
+  }
+
+  public static function between( $date_start, $date_end ) {
+
+    self::$date_start = $date_start;
+
+    self::$date_end = $date_end;
+
+    self::$call_type = 'between';
+
+    return new Datium();
 
   }
 
@@ -134,8 +158,9 @@ class Datium {
    * @param $start datetime
    * @param $end datetime
    */
-  public function diff( $start, $end ) {
+  public static function diff( $start, $end ) {
 
+    return date_diff( $start, $end );
 
   }
 
@@ -148,7 +173,7 @@ class Datium {
 
     $value = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
 
-    $this->date_time->add( new DateInterval('P' . $value ) );
+    $this->date_time->add( new DateInterval( 'P' . $value ) );
 
     return $this;
 
@@ -197,8 +222,16 @@ class Datium {
    */
   public function events() {
 
-    $this->events = new Events( $this->date_time );
-    
+    if ( Datium::$call_type == 'between' ) {
+
+      $this->events = new Events( Datium::$date_start, Datium::$date_end );
+
+    } else {
+
+      $this->events = new Events( $this->date_time );
+
+    }
+
     return $this->events;
 
 
@@ -207,7 +240,7 @@ class Datium {
   /**
    * @since Aug, 22 2015
    */
-  public function format( $calendar, $format ) {
+  protected function format( $calendar, $format ) {
 
     $this->date_time = $this->date_time->format( $format );
 
@@ -223,16 +256,11 @@ class Datium {
 
           break;
 
-      case 'af':
-
-          break;
-
       case 'gh':
 
           $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['islamic'], $this->date_time );
 
           $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->date_time );
-
 
           break;
 
@@ -253,15 +281,15 @@ class Datium {
   public function toShamsi( $type = 'gr' ) {
 
     switch ( $type ) {
-      
+
       case 'gr':
-    
+
       $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
-    
+
         break;
-      
+
       case 'gh':
-        
+
             $this->date_time = $this->convert_calendar->ghamariToShamsi( $this->date_time );
 
         break;
@@ -276,9 +304,9 @@ class Datium {
   public function toGhamari( $type = 'gr') {
 
 switch ( $type  ) {
-  
+
   case 'ir':
-    
+
         $this->date_time = $this->convert_calendar->shamsiToGhamari( $this->date_time );
 
     break;
@@ -300,28 +328,42 @@ switch ( $type  ) {
   public function toGregorian( $type = 'gr' ) {
 
     switch ( $type ) {
-    
+
       case 'ir':
-  
+
         $this->date_time = $this->convert_calendar->shamsiToGregorian( $this->date_time );
-  
+
         break;
 
       case 'gh':
 
         $this->date_time = $this->convert_calendar->ghamariToGregorian( $this->date_time );
-        
+
       case 'gr':
 
         $this->date_time = $this->date_time;
-  
+
         break;
-    
+
     }
 
     $this->calendar_type = 'gr';
 
     return $this;
+
+  }
+
+  /************************************************************
+   * Return Datetime as a original object
+   ************************************************************
+   *
+   * @since Oct 22, 2015
+   *
+   *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+   */
+  public function object(){
+
+    return $this->date_time;
 
   }
 
@@ -335,9 +377,9 @@ switch ( $type  ) {
 
     if( in_array( $this->calendar_type, $this->config[ 'calendar' ] ) ){
 
-    return  $this->format( $this->calendar_type, $format );
+      return  $this->format( $this->calendar_type, $format );
 
-  }
+    }
 
 }
 

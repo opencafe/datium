@@ -43,7 +43,7 @@ class DayOf {
   public function year() {
 
     switch ( $this->calendar_type ) {
-      
+
       case 'ir':
 
       $this->result = $this->persian_year_of_day();
@@ -57,7 +57,7 @@ class DayOf {
        break;
 
       case 'gr':
-      
+
       $this->result = date( 'z', strtotime( $this->date_time->format('Y-m-d H:i:s') ) ) + 1;
 
        break;
@@ -121,7 +121,7 @@ class DayOf {
   public function week() {
 
     switch ( $this->calendar_type ) {
-      
+
       case 'ir':
 
       $this->result = $this->persian_week_of_day();
@@ -135,7 +135,7 @@ class DayOf {
        break;
 
       case 'gr':
-      
+
       $this->result = date( 'w', strtotime( $this->date_time->format('Y-m-d H:i:s') ) ) + 1;
 
        break;
@@ -154,11 +154,11 @@ class DayOf {
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day);
 
     foreach ( $this->config['week_days_name']['persian'] as $key => $value ) {
-      
+
       if( $value == $this->day ) return $key += 1;
 
     }
-    
+
   }
 
     /**
@@ -170,11 +170,11 @@ class DayOf {
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->day);
 
     foreach ( $this->config['week_days_name']['islamic'] as $key => $value ) {
-      
+
       if( $value == $this->day ) return $key += 1;
-      
+
     }
-    
+
 
   }
 

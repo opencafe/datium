@@ -7,10 +7,13 @@ return array(
      */
     'default_calendar' => 'shamsi',
 
+    /**
+     * Iran Events should typed as a Shamsi calendar dates and set as
+     * as a arraye value
+     */
     'events' => array(
       1 => array( 1 => 'nowruz', 2 => 'nowruz', 3 => 'nowruz', 5 => 'nowruz' ),
-      3 => array( 27 => '27th of khordad' ),
-      7 => array( 27 => '27th of mehr' ),
+      10 => array( 22 => 'Iran revelution day' ),
       12 => array( 29 => 'Iran oil national day' )
     ),
 
