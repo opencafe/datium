@@ -25,6 +25,8 @@ class Datium {
    */
   protected $config;
 
+  protected $date_interval_expression;
+
   protected static $date_start;
 
   protected static $date_end;
@@ -171,9 +173,11 @@ class Datium {
    */
   public function add( $value ) {
 
-    $value = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
+    $this->date_interval_expression = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
 
-    $this->date_time->add( new DateInterval( 'P' . $value ) );
+    $this->date_interval_expression = str_replace( ' ', '', 'P' . $this->date_interval_expression );
+
+    $this->date_time->add( new DateInterval( $this->date_interval_expression ) );
 
     return $this;
 
@@ -186,9 +190,11 @@ class Datium {
    */
   public function sub( $value ) {
 
-    $value = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
+    $this->date_interval_expression = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
 
-    $this->date_time->sub( new DateInterval('P' . $value ) );
+    $this->date_interval_expression = str_replace( ' ', '', 'P' . $this->date_interval_expression );
+
+    $this->date_time->sub( new DateInterval( $this->date_interval_expression ) );
 
     return $this;
 
@@ -200,7 +206,7 @@ class Datium {
    */
   public function leap() {
 
-    $this->leap = new Leap( $this->date_time->format('Y') );
+    $this->leap = new Leap( $this->date_time->format( 'Y' ) );
 
     return $this->leap;
 

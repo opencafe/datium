@@ -4,7 +4,7 @@ use Datium\Datium as Datium;
 
 try{
 
-require_once( 'bootstrap.php' );
+require_once( 'src/autoload.php' );
 
 echo 'this year: <br>';
 var_dump( Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
@@ -53,7 +53,8 @@ var_dump(  Datium::between( Datium::now()->sub('5 month')->object() , Datium::no
 echo 'return international days';
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('3 month')->object() )->events()->international()->get() );
 echo 'Date diff';
-var_dump( Datium::diff( Datium::now()->object(), Datium::now()->add('2 month')->object() ) );
+$diff = Datium::diff( Datium::now()->object(), Datium::now()->add('5 day')->object() );
+var_dump( $diff->days );
 
 } catch (Exception $e ) {
 
