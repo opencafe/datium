@@ -6,12 +6,4 @@ php:
   - hhvm
 
 before_script:
-
-
-script:
-
-
-matrix:
-  allow_failures:
-    - php: hhvm
-  fast_finish: true
+phpunit --bootstrap src/autoload.php tests/DatiumTest
