@@ -1,5 +1,5 @@
 # Datium
-
+[![Build Status](https://travis-ci.org/opencafe/datium.svg?branch=master)](https://travis-ci.org/opencafe/datium)
 
 Hey!! we are still working on this project, this is not finalizing version of datium...
 
