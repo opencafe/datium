@@ -117,7 +117,7 @@ class Convert {
 
         $this->month = ( $this->temp_day / 30 ) + 6;
 
-        $this->day = $this->temp_day % 30;
+        $this->day = 30;
 
         }
 
