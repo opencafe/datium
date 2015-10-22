@@ -46,13 +46,13 @@ class DayOf {
 
       case 'ir':
 
-      $this->result = $this->persian_year_of_day();
+      $this->result = $this->persian_day_of_year();
 
         break;
 
       case 'gh':
 
-      $this->result = $this->islamic_year_of_day();
+      $this->result = $this->islamic_day_of_year();
 
        break;
 
@@ -72,7 +72,7 @@ class DayOf {
    * @since Sept, 14 2015
    * @return integer
    */
-  protected function persian_year_of_day() {
+  protected function persian_day_of_year() {
 
     $this->month = $this->date_time->format('n');
 
@@ -95,7 +95,7 @@ class DayOf {
    * @since Sept, 14 2015
    * @return integer
    */
-  protected function islamic_year_of_day() {
+  protected function islamic_day_of_year() {
 
     $this->month = $this->date_time->format('n');
 
@@ -124,13 +124,13 @@ class DayOf {
 
       case 'ir':
 
-      $this->result = $this->persian_week_of_day();
+      $this->result = $this->persian_day_of_week();
 
         break;
 
       case 'gh':
 
-      $this->result = $this->islamic_week_of_day();
+      $this->result = $this->islamic_day_of_week();
 
        break;
 
@@ -149,7 +149,7 @@ class DayOf {
    * @since Sept, 14 2015
    * @return integer
    */
-  protected function persian_week_of_day() {
+  protected function persian_day_of_week() {
 
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day);
 
@@ -165,7 +165,7 @@ class DayOf {
    * @since Sept, 14 2015
    * @return integer
    */
-  protected function islamic_week_of_day() {
+  protected function islamic_day_of_week() {
 
     $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->day);
 

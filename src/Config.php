@@ -80,7 +80,6 @@ return array(
                                           'Panjshanbe',
                                           'Jome',
                                           'Shanbe'
-
                                           ),
 
                              'english' => array(
@@ -94,15 +93,13 @@ return array(
                                       ),
 
                              'islamic' => array(
-
-                                               'al-Aḥad',
-                                               'al-Ithnayn',
-                                               'ath-Thulatha\'',
-                                               'al-Arbi\'a',
-                                               'al-Khamees',
-                                               'al-Jumu\'ah',
-                                               'as-Sabt',
-
+                                           'al-Aḥad',
+                                           'al-Ithnayn',
+                                           'ath-Thulatha\'',
+                                           'al-Arbi\'a',
+                                           'al-Khamees',
+                                           'al-Jumu\'ah',
+                                           'as-Sabt',
                                           )
 
                       ),
