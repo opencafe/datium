@@ -4,7 +4,7 @@ use Datium\Datium;
 
 class DayOfTest extends PHPUnit_Framework_TestCase {
 
-  public function testAssetDayOfYear(){
+  public function testDayOfYear(){
 
     $this->assertEquals( 1, Datium::create( 2015, 1, 1 )->toGregorian()->dayOf()->year() );
 
@@ -16,7 +16,7 @@ class DayOfTest extends PHPUnit_Framework_TestCase {
 
   }
 
-  public function testAssertDayOfWeek(){
+  public function testDayOfWeek(){
 
     //First january of 2015 is Thursday
     // $this->assertEquals( 4, Datium::create( 2015, 1, 1 )->dayOf()->week() );

@@ -130,4 +130,8 @@ Datium::now()->toGhamari()->dayOf()->week();
 There are multiple types of events on Datium, International events, events by region divisions, religious events or customized events declared by user.
 
 ### International event
-   
+Returned international events, data provided by united nations.
+
+```
+
+```

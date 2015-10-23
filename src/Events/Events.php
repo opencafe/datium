@@ -3,6 +3,8 @@
 use Datium\Tools\Convert;
 use Datium\Tools\DayOf;
 use DateTime;
+use DateInterval;
+use DatePeriod;
 
 class Events {
 
@@ -40,10 +42,6 @@ class Events {
 
 		$this->date_time = $date_time;
 
-		$this->year = $date_time->format( 'Y' );
-
-		$this->year_in_persian = $this->convert->gregorianToShamsi( $date_time )->format( 'Y' );
-
 		return $this;
 
 	}
@@ -59,24 +57,21 @@ class Events {
 	 */
 	public function get() {
 
-		foreach( $this->day_of_year as $key => $day ) {
+		foreach( $this->days_of_year as $key => $day ) {
 
-			$temp = new DayOf( self::$date_start, 'gr' );
+			$temp = Events::$date_start;
 
-			$temp2 = new DayOf( self::$date_end, 'gr' );
+			$temp2 = Events::$date_end;
 
-			/**
-			 * @todo current return is false
-			 */
-			if ( ! ( $key > $temp->year() && $key < $temp2->year() ) ) {
+			if ( ! ( $key > Events::$date_start->format( 'Y-m-d' ) && $key < Events::$date_end->format( 'Y-m-d' ) ) ) {
 
-				unset( $this->day_of_year[ $key ] );
+				unset( $this->days_of_year[ $key ] );
 
 			}
 
 		}
 
-		return $this->day_of_year;
+		return $this->days_of_year;
 
 	}
 
@@ -106,7 +101,7 @@ class Events {
 
 						$date_time = new DateTime();
 
-						$date_time->setDate( 2015, $month, $day );
+						$date_time->setDate( Events::$date_start->format( 'Y' ), $month, $day );
 
 						switch ( $this->local[ 'default_calendar' ] ) {
 
@@ -126,17 +121,13 @@ class Events {
 
 						}
 
-						$dayof = new DayOf( $date_time, 'gr' );
-
-						$this->day_of_year[ $dayof->year() ][ 'Event' ][] =  $event;
-
-						$this->day_of_year[ $dayof->year() ][ 'Date' ][] =  $date_time;
+						$this->days_of_year[ $date_time->format( 'Y-m-d' ) ][] =  $event;
 
 					}
 
 				}
 
-				ksort( $this->day_of_year );
+				ksort( $this->days_of_year );
 
 		return $this;
 
@@ -164,28 +155,23 @@ class Events {
 
 		$this->events = include( 'Global/global.php' );
 
-		foreach( $this->events[ 'events' ] as $month => $events ) {
+		$interval = DateInterval::createFromDateString('1 day');
 
-			foreach( $events as $day => $event ){
+		$period = new DatePeriod( Events::$date_start, $interval, Events::$date_end );
 
-				$date_time = new DateTime();
+		foreach ( $period as $dt ) {
 
-				$date_time->setDate( 2015, $month, $day );
+			if ( isset( $this->events[ 'events' ][ intval( $dt->format('m') ) ][ intval( $dt->format('d') ) ] ) ) {
 
-				$dayof = new DayOf( $date_time, 'gr' );
-
-				$this->day_of_year[ $dayof->year() ][ 'Event' ][] =  $event;
-
-				$this->day_of_year[ $dayof->year() ][ 'Date' ][] =  $date_time;
+				$this->days_of_year[ $dt->format( 'Y-m-d' ) ][] = $this->events[ 'events' ][ intval( $dt->format('m') ) ][ $dt->format('d') ];
 
 			}
 
 		}
 
-		ksort( $this->day_of_year );
+		var_dump( $this->days_of_year );exit;
 
 		return $this;
-
 
 	}
 
