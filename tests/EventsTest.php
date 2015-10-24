@@ -2,7 +2,7 @@
 
 use Datium\Datium;
 
-class LeapTest extends PHPUnit_Framework_TestCase {
+class EventsTest extends PHPUnit_Framework_TestCase {
 
   public function testNextEvent(){
 
@@ -16,9 +16,15 @@ class LeapTest extends PHPUnit_Framework_TestCase {
 
   public function testLocalEvent(){
 
-    
+
 
   }
+
+  // public function testInternationalEvent(){
+  //
+  //     $this->assertEquals( Datium::between( Datium::now()->object() , Datium::now()->add('2 month')->object() )->events()->international()->get() );
+  //
+  // }
 
 }
 ?>
