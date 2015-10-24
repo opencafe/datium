@@ -21,20 +21,20 @@ class LeapTest extends PHPUnit_Framework_TestCase {
     // 2015 is a leap year
     $this->assertEquals( TRUE, Datium::create(2016, 1, 1, 0, 0, 0)->leap()->get() );
 
-    // // 1395 is a leap year
-    // $this->assertEquals( TRUE, Datium::create(2016, 3, 20, 0, 0, 0)->toShamsi('gr')->leap()->get() );
-    //
-    // // 1396 is not a leap year
-    // $this->assertEquals( FALSE, Datium::create(2017, 3, 21, 0, 0, 0)->toShamsi('gr')->leap()->get() );
-    //
-    // // 1397 is not a leap year
-    // $this->assertEquals( FALSE, Datium::create(2018, 3, 21, 0, 0, 0)->toShamsi('gr')->leap()->get() );
-    //
-    // // 1398 is not a leap year
-    // $this->assertEquals( FALSE, Datium::create(2019, 3, 21, 0, 0, 0)->toShamsi('gr')->leap()->get() );
-    //
-    // // 1399 is a leap year
-    // $this->assertEquals( TRUE, Datium::create(2020, 3, 20, 0, 0, 0)->toShamsi('gr')->leap()->get() );
+    // 1395 is a leap year
+    $this->assertEquals( TRUE, Datium::create(2016, 3, 20, 0, 0, 0)->toShamsi('gr')->leap('ir')->get() );
+
+    // 1396 is not a leap year
+    $this->assertEquals( FALSE, Datium::create(2017, 3, 21, 0, 0, 0)->toShamsi('gr')->leap('ir')->get() );
+
+    // 1397 is not a leap year
+    $this->assertEquals( FALSE, Datium::create(2018, 3, 21, 0, 0, 0)->toShamsi('gr')->leap('ir')->get() );
+
+    // 1398 is not a leap year
+    $this->assertEquals( FALSE, Datium::create(2019, 3, 21, 0, 0, 0)->toShamsi('gr')->leap('ir')->get() );
+
+    // 1399 is a leap year
+    $this->assertEquals( TRUE, Datium::create(2020, 3, 20, 0, 0, 0)->toShamsi('gr')->leap('ir')->get() );
 
   }
 
