@@ -204,9 +204,9 @@ class Datium {
    * Check if current year is leap or not
    * @return boolean
    */
-  public function leap() {
+  public function leap( $type = 'gr') {
 
-    $this->leap = new Leap( $this->date_time->format( 'Y' ) );
+    $this->leap = new Leap( $this->date_time->format( 'Y' ), $type );
 
     return $this->leap;
 
