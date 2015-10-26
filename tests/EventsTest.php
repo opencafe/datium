@@ -17,7 +17,6 @@ class EventsTest extends PHPUnit_Framework_TestCase {
   public function testLocalEvent(){
 
 
-
   }
 
   // public function testInternationalEvent(){

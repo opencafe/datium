@@ -16,7 +16,7 @@ class Events {
 
 	private $convert;
 
-	private $days_of_year;
+	private $result;
 
 	private $year;
 
@@ -47,6 +47,34 @@ class Events {
 	}
 
 	/************************************************************
+	 * Fetch Events array from own array file
+	 ************************************************************
+	 *
+	 * @since Oct 25, 2015
+	 *
+	 *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+	 */
+	private function fetch( $path ) {
+
+		$this->events = include( $path );
+
+		$interval = DateInterval::createFromDateString('1 day');
+
+		$period = new DatePeriod( Events::$date_start, $interval, Events::$date_end );
+
+		foreach ( $period as $dt ) {
+
+			if ( isset( $this->events[ 'events' ][ intval( $dt->format('m') ) ][ intval( $dt->format('d') ) ] ) ) {
+
+				$this->result[ $dt->format( 'Y-m-d' ) ][] = $this->events[ 'events' ][ intval( $dt->format('m') ) ][ $dt->format('d') ];
+
+			}
+
+		}
+
+	}
+
+	/************************************************************
 	 * Return Array of Events
 	 ************************************************************
 	 *
@@ -57,7 +85,7 @@ class Events {
 	 */
 	public function get() {
 
-		foreach( $this->days_of_year as $key => $day ) {
+		foreach( $this->result as $key => $day ) {
 
 			$temp = Events::$date_start;
 
@@ -65,16 +93,15 @@ class Events {
 
 			if ( ! ( $key > Events::$date_start->format( 'Y-m-d' ) && $key < Events::$date_end->format( 'Y-m-d' ) ) ) {
 
-				unset( $this->days_of_year[ $key ] );
+				unset( $this->result[ $key ] );
 
 			}
 
 		}
 
-		return $this->days_of_year;
+		return $this->result;
 
 	}
-
 
 		/************************************************************
 		 * Return local events - with day start and end as an array
@@ -121,13 +148,13 @@ class Events {
 
 						}
 
-						$this->days_of_year[ $date_time->format( 'Y-m-d' ) ][] =  $event;
+						$this->result[ $date_time->format( 'Y-m-d' ) ][] =  $event;
 
 					}
 
 				}
 
-				ksort( $this->days_of_year );
+				ksort( $this->result );
 
 		return $this;
 
@@ -153,23 +180,7 @@ class Events {
 
 	public function international() {
 
-		$this->events = include( 'Global/global.php' );
-
-		$interval = DateInterval::createFromDateString('1 day');
-
-		$period = new DatePeriod( Events::$date_start, $interval, Events::$date_end );
-
-		foreach ( $period as $dt ) {
-
-			if ( isset( $this->events[ 'events' ][ intval( $dt->format('m') ) ][ intval( $dt->format('d') ) ] ) ) {
-
-				$this->days_of_year[ $dt->format( 'Y-m-d' ) ][] = $this->events[ 'events' ][ intval( $dt->format('m') ) ][ $dt->format('d') ];
-
-			}
-
-		}
-
-		var_dump( $this->days_of_year );exit;
+		$this->fetch( 'Global/global.php' );
 
 		return $this;
 

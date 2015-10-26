@@ -14,10 +14,18 @@ Under Development
 
 
 # Simple get date
-Get current date time:
+Return the Date and Time
+
+As datium output
 
 ```js
 Datium::now()->get(); // output => 1390-00-00 00:00:00
+```
+
+As php DateTime class object
+
+```js
+Datium::now()->object();
 ```
 
 ## Add Date
