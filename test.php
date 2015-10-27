@@ -1,11 +1,12 @@
 <?php
 
 use Datium\Datium as Datium;
-
+use Datium\Tools\Convert as Covnert;
 try{
 
 require_once( 'src/autoload.php' );
-
+var_dump( Datium::now()->to( 'shamsi' )->get() );
+var_dump( Datium::create( Datium::now()->object() )->get() );
 echo 'this year: <br>';
 var_dump( Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
@@ -52,8 +53,8 @@ echo "is persian holiday? ";
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add( '3 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );
 echo 'return international days';
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('4 month')->object() )->events()->international()->get() );
-echo 'Today\'s events:';
-var_dump( Datium::now()->events()->local( 'ir' )->get() );
+// echo 'Today\'s events:';
+// var_dump( Datium::now()->events()->local( 'ir' )->get() );
 echo 'Date diff';
 $diff = Datium::diff( Datium::now()->object(), Datium::now()->add('5 day')->object() );
 var_dump( $diff->days );

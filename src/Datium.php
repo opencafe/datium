@@ -19,6 +19,8 @@ class Datium {
    */
   protected $date_time;
 
+  protected static $static_date_time;
+
   /**
    * Store config file statements
    * @param array
@@ -81,6 +83,12 @@ class Datium {
 
         break;
 
+      case 'set':
+
+        $this->date_time = Datium::$static_date_time;
+
+        $this->geregorian_DayofWeek = $this->date_time->format('w');
+
     }
 
     $this->convert_calendar = new Convert();
@@ -112,9 +120,22 @@ class Datium {
    */
   public static function create( $year = 2000, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0 ) {
 
-      self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
+      /**
+       * When we want to set a Datetime object to Datium
+       */
+      if( func_num_args() === 1 ) {
 
-      self::$call_type = 'make';
+        self::$static_date_time = func_get_arg(0);
+
+        self::$call_type = 'set';
+
+      } else {
+
+        self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
+
+        self::$call_type = 'make';
+
+      }
 
       return new Datium();
 
@@ -132,17 +153,13 @@ class Datium {
 
   }
 
-  public static function createShamsi() {
+  public function to( $calendar ) {
 
-  }
+    $this->convert = new Convert( $this->date_time );
 
-  public static function createGhamari() {
+    $this->date_time = $this->convert->to( $calendar );
 
-
-  }
-
-  public static function createTimestamp() {
-
+    return $this;
 
   }
 
@@ -231,7 +248,6 @@ class Datium {
     }
 
     return $this->events;
-
 
   }
 

@@ -34,6 +34,10 @@ class Events {
 
 			Events::$date_end = $date_end;
 
+		} else {
+
+			Events::$date_start = $date_time;
+
 		}
 
 		$this->convert = new Convert;
@@ -120,7 +124,7 @@ class Events {
 				 * Capitalize the first character of $country_code according the file
 				 * structure.
 				 */
-				$country_code = ucfirst( strtolower( $country_code ) );
+				$country_code = strtolower( $country_code = 'ir' ) ;
 
 				$this->local = include( 'Localization/' . $country_code . '.php' );
 

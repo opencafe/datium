@@ -1,8 +1,22 @@
 <?php
 
+use Datium\Datium as Datium;
+
 return array (
 
-  'shortland' => 'sh',
+  'convert_to' => function( $date_time ) {
+
+    return Datium::create( $date_time )->sub( '226898 day' )->object();
+
+  },
+
+  'convert_from' => function( $date_time ) {
+
+    return Datium::create( $date_time )->add( '226898 day' )->object();
+
+  },
+
+  'shorthand' => 'sh',
 
   'month' => array (
 

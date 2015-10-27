@@ -1,5 +1,13 @@
 <?php namespace Datium\Tools;
 
+/************************************************************
+ * Convert Calendars types together
+ ************************************************************
+ *
+ * @since Oct 27, 2015
+ *
+ *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+ */
 class Convert {
 
   protected $year;
@@ -18,7 +26,15 @@ class Convert {
 
   protected $date;
 
-  public function __construct() {
+  protected $calendar_file;
+
+  public function __construct( $date_time = NULL ) {
+
+    if ( $date_time !== NULL ) {
+
+        $this->date_time = $date_time;
+
+    }
 
     $this->config = include( 'Config.php' );
 
@@ -36,7 +52,9 @@ class Convert {
    */
   public function to( $calendar ) {
 
+    $this->calendar_file = include( 'CalendarSettings/' . ucfirst( $calendar ) . '.php' );
 
+    return $this->calendar_file[ 'convert_to' ]( $this->date_time );
 
   }
 
