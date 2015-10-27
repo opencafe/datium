@@ -141,14 +141,6 @@ class Datium {
 
   }
 
-  public static function createGregorian() {
-
-    self::$array_date = array( 'year' => $year, 'month' => $month, 'day' => $day, 'hour' => $hour, 'minute' => $minute, 'second' => $second );
-
-    return new Datium( 'make' );
-
-  }
-
   public static function createTimestamp() {
 
 
@@ -391,5 +383,3 @@ switch ( $type  ) {
 }
 
 }
-
-?>

@@ -18,11 +18,9 @@ class Events {
 
 	private $result;
 
-	private $year;
+	private $period;
 
-	private $year_in_persian;
-
-	private $year_in_ghamari;
+	private $interval;
 
 	private static $date_start;
 
@@ -40,7 +38,7 @@ class Events {
 
 		$this->convert = new Convert;
 
-		$this->date_time = $date_time;
+		$this->date_time = new DateTime();
 
 		return $this;
 
@@ -58,15 +56,15 @@ class Events {
 
 		$this->events = include( $path );
 
-		$interval = DateInterval::createFromDateString('1 day');
+		$this->interval = DateInterval::createFromDateString('1 day');
 
-		$period = new DatePeriod( Events::$date_start, $interval, Events::$date_end );
+		$this->period = new DatePeriod( Events::$date_start, $this->interval, Events::$date_end );
 
-		foreach ( $period as $dt ) {
+		foreach ( $this->period as $dt ) {
 
 			if ( isset( $this->events[ 'events' ][ intval( $dt->format('m') ) ][ intval( $dt->format('d') ) ] ) ) {
 
-				$this->result[ $dt->format( 'Y-m-d' ) ][] = $this->events[ 'events' ][ intval( $dt->format('m') ) ][ $dt->format('d') ];
+				$this->result[ $dt->format( 'Y-m-d' ) ][] = $this->events[ 'events' ][ intval( $dt->format('m') ) ][ intval( $dt->format('d') ) ];
 
 			}
 
@@ -85,17 +83,21 @@ class Events {
 	 */
 	public function get() {
 
-		foreach( $this->result as $key => $day ) {
+		if( ! empty( $this->result ) ) {
 
-			$temp = Events::$date_start;
+			foreach( $this->result as $key => $day ) {
 
-			$temp2 = Events::$date_end;
+				if ( ! ( $key > Events::$date_start->format( 'Y-m-d' ) && $key < Events::$date_end->format( 'Y-m-d' ) ) ) {
 
-			if ( ! ( $key > Events::$date_start->format( 'Y-m-d' ) && $key < Events::$date_end->format( 'Y-m-d' ) ) ) {
+					unset( $this->result[ $key ] );
 
-				unset( $this->result[ $key ] );
+				}
 
 			}
+
+		} else {
+
+			$this->result = array();
 
 		}
 
@@ -126,29 +128,29 @@ class Events {
 
 					foreach( $events as $day => $event ){
 
-						$date_time = new DateTime();
+						$this->date_time = new DateTime();
 
-						$date_time->setDate( Events::$date_start->format( 'Y' ), $month, $day );
+						$this->date_time->setDate( Events::$date_start->format( 'Y' ), $month, $day );
 
 						switch ( $this->local[ 'default_calendar' ] ) {
 
 							case 'shamsi':
 
-							$date_time->setDate( 1394, $month, $day );
+							$this->date_time->setDate( 1394, $month, $day );
 
-							$date_time = $this->convert->shamsiToGregorian( $date_time );
+							$this->date_time = $this->convert->shamsiToGregorian( $this->date_time );
 
 							break;
 
 							case 'ghamari':
 
-								$date_time = $this->convert->ghamariToGregorian( $date_time );
+								$this->date_time = $this->convert->ghamariToGregorian( $this->date_time );
 
 							break;
 
 						}
 
-						$this->result[ $date_time->format( 'Y-m-d' ) ][] =  $event;
+						$this->result[ $this->date_time->format( 'Y-m-d' ) ][] =  $event;
 
 					}
 
@@ -161,12 +163,6 @@ class Events {
 	}
 
 	public function weekend() {
-
-		return 0;
-
-	}
-
-	public function general() {
 
 		return 0;
 
@@ -187,4 +183,3 @@ class Events {
 	}
 
 }
-?>

@@ -51,7 +51,9 @@ var_dump( Datium::create( 1437, 1, 1 )->toGregorian('gh')->get( 'l jS F Y h:i:s 
 echo "is persian holiday? ";
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add( '3 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );
 echo 'return international days';
-var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('2 month')->object() )->events()->international()->get() );
+var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('4 month')->object() )->events()->international()->get() );
+echo 'Today\'s events:';
+var_dump( Datium::now()->events()->local( 'ir' )->get() );
 echo 'Date diff';
 $diff = Datium::diff( Datium::now()->object(), Datium::now()->add('5 day')->object() );
 var_dump( $diff->days );
@@ -61,5 +63,3 @@ var_dump( $diff->days );
   var_dump( $e );
 
 }
-
-?>

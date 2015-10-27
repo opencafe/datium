@@ -26,6 +26,20 @@ class Convert {
 
   }
 
+  /************************************************************
+   * Convert to specific calendar
+   ************************************************************
+   *
+   * @since Oct 26, 2015
+   *
+   *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+   */
+  public function to( $calendar ) {
+
+
+
+  }
+
   /**
    * convert gregorian year to shamsi year
    * @since Aug, 13 2015
