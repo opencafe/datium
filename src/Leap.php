@@ -90,7 +90,7 @@ class Leap {
 
    }
 
-    if ( ( $this->result % 4 ) == 0 ) {
+    if ( ( ( $this->result % 4 ) == 0 ) && ( $this->result != 28 ) ) {
 
       return $this->result;
 
