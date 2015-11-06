@@ -2,12 +2,13 @@
 
 use Datium\Datium as Datium;
 use Datium\Tools\Convert as Covnert;
+
 try{
 
 require_once( 'src/autoload.php' );
 var_dump( Datium::now()->to( 'shamsi' )->get() );
 var_dump( Datium::create( Datium::now()->object() )->get() );
-echo 'this year: <br>';
+echo '<br>this year:<br>';
 var_dump( Datium::now()->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 var_dump( Datium::now()->toShamsi()->sub('3 year')->get() );
@@ -40,16 +41,16 @@ echo "<br>";
 var_dump( Datium::now()->dayOf()->week() );
 echo "<br>";
 echo "Change date form gregorian to shamsi with method: ";
-var_dump( Datium::create( 1989, 10, 28)->toShamsi()->get( 'l jS F Y h:i:s A' ) );
+var_dump( Datium::create( 1989, 10, 27 )->toShamsi()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
-var_dump( Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A') );
+var_dump( Datium::now()->toGhamari()->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 echo "Change date form shamsi to gregorian with method: ";
 var_dump( Datium::create( 1357, 11, 22 )->toGregorian('ir')->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
 echo "Change date form ghamari to gregorian with method: ";
 var_dump( Datium::create( 1437, 1, 1 )->toGregorian('gh')->get( 'l jS F Y h:i:s A' ) );
-echo "is persian holiday? ";
+echo "<br>is persian holiday? ";
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add( '3 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );
 echo 'return international days';
 var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add('4 month')->object() )->events()->international()->get() );
