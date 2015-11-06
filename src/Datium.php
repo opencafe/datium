@@ -5,6 +5,7 @@ use DateInterval;
 use Datium\Tools\Convert;
 use Datium\Tools\Leap;
 use Datium\Tools\DayOf;
+use Datium\Tools\Translate;
 
 /**
  *
@@ -43,6 +44,8 @@ class Datium {
 
   protected $events;
 
+  protected $translate;
+
   protected $geregorian_DayofWeek;
 
   protected $convert_calendar;
@@ -54,6 +57,8 @@ class Datium {
   protected static $call_type;
 
   public function __construct() {
+
+
 
     $this->config = include('Config.php');
 
@@ -67,7 +72,9 @@ class Datium {
 
         $this->date_time = new DateTime( 'now' );
 
-        $this->geregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
+
+        $this->calendar_type = 'gr';
 
         break;
 
@@ -79,7 +86,10 @@ class Datium {
 
         $this->date_time->setTime( self::$array_date['hour'], self::$array_date['minute'], self::$array_date['second'] );
 
-        $this->geregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
+
+        $this->calendar_type = 'gr';
+
 
         break;
 
@@ -87,7 +97,9 @@ class Datium {
 
         $this->date_time = Datium::$static_date_time;
 
-        $this->geregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
+
+        $this->calendar_type = 'gr';
 
     }
 
@@ -251,46 +263,54 @@ class Datium {
 
   }
 
+  public function translate( $calendar, $format ) {
+
+  $this->date_time = new Translate( $this->date_time, $calendar, $format, $this->gregorian_DayofWeek );
+
+  return $this->date_time;
+
+  }
+
   /**
    * @since Aug, 22 2015
    */
-  protected function format( $calendar, $format ) {
-
-    $this->date_time = $this->date_time->format( $format );
-
-    if( in_array( $calendar, $this->config['calendar'] ) ) {
-
-    switch( $calendar ){
-
-      case 'ir':
-
-          $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['persian'], $this->date_time );
-
-          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'][$this->geregorian_DayofWeek], $this->date_time );
-
-          break;
-
-      case 'gh':
-
-          $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['islamic'], $this->date_time );
-
-          $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->date_time );
-
-          break;
-
-      case 'gr':
-
-          $this->date_time = $this->date_time;
-
-        break;
-
-    }
-
-  }
-
-    return $this->date_time;
-
-  }
+  // protected function format( $calendar, $format ) {
+  //
+  //   $this->date_time = $this->date_time->format( $format );
+  //
+  //   if( in_array( $calendar, $this->config['calendar'] ) ) {
+  //
+  //   switch( $calendar ){
+  //
+  //     case 'ir':
+  //
+  //         $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['persian'], $this->date_time );
+  //
+  //         $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'][$this->geregorian_DayofWeek], $this->date_time );
+  //
+  //         break;
+  //
+  //     case 'gh':
+  //
+  //         $this->date_time = str_replace( $this->config['month']['english'], $this->config['month']['islamic'], $this->date_time );
+  //
+  //         $this->date_time = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->date_time );
+  //
+  //         break;
+  //
+  //     case 'gr':
+  //
+  //         $this->date_time = $this->date_time;
+  //
+  //       break;
+  //
+  //   }
+  //
+  // }
+  //
+  //   return $this->date_time;
+  //
+  // }
 
   public function toShamsi( $type = 'gr' ) {
 
@@ -298,7 +318,7 @@ class Datium {
 
       case 'gr':
 
-      $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
+           $this->date_time = $this->convert_calendar->gregorianToShamsi( $this->date_time );
 
         break;
 
@@ -392,7 +412,7 @@ switch ( $type  ) {
 
     if( in_array( $this->calendar_type, $this->config[ 'calendar' ] ) ){
 
-      return  $this->format( $this->calendar_type, $format );
+        return $this->translate( $this->calendar_type, $format )->get();
 
     }
 
