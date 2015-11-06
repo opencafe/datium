@@ -54,14 +54,47 @@ class Leap {
    */
   public function shamsiLeapYear() {
 
-    $this->result = $this->year % 33;
+		$shamsi_years = 0;
 
-    if ( ( 1 == $this->result ) || ( 5 == $this->result ) || ( 9 == $this->result ) || ( 13 == $this->result ) || ( 17 == $this->result ) || ( 22 == $this->result ) || ( 26 == $this->result ) || ( 30 == $this->result ) ) {
+    while ( $shamsi_years < ( $this->year - 128 ) ) {
+
+      $shamsi_years += 128;
+
+    }
+
+    //check for leap year after 5 years
+    $this->result = $this->year - 1;
+
+    $this->result -= $shamsi_years;
+
+    if ( $this->result >= 33 ) {
+
+    $this->result = $this->result % 33;
+
+   }
+
+    if ( ( $this->result == 28 ) || ( $this->result == 27 ) ) {
 
       return $this->result;
 
     }
 
+    //check for leap year after 4 years
+    $this->result = $this->year;
+
+    $this->result -= $shamsi_years;
+
+    if ( $this->result >= 33 ) {
+
+    $this->result = $this->result % 33;
+
+   }
+
+    if ( ( ( $this->result % 4 ) == 0 ) && ( $this->result != 28 ) ) {
+
+      return $this->result;
+
+    }
   }
 
   /**
