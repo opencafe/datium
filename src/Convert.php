@@ -10,24 +10,59 @@
  */
 class Convert {
 
+  /**
+   * @var integer
+   */
   protected $year;
 
+  /**
+   * @var integer
+   */
   protected $month;
 
+  /**
+   * @var $day
+   */
   protected $day;
 
+  /**
+   * @var DateTime
+   */
   public $date_time;
 
+  /**
+   * @var array
+   */
   protected $config;
 
+  /**
+   * @var integer
+   */
   protected $leap;
 
+  /**
+   * @var integer
+   */
   protected $temp_day;
 
+  /**
+   * @var DateTime
+   */
   protected $date;
 
+  /**
+   * @var array
+   */
   protected $calendar_file;
 
+  /************************************************************
+   * Convert class constructor
+   ************************************************************
+   *
+   * @since Oct 27, 2015
+   *
+   *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+   */
   public function __construct( $date_time = NULL ) {
 
     if ( $date_time !== NULL ) {
@@ -58,10 +93,15 @@ class Convert {
 
   }
 
-  /**
+  /************************************************************
+   * Gregorian to shamsi convertor
+   ************************************************************
+   *
    * convert gregorian year to shamsi year
    * @since Aug, 13 2015
    * @return object
+   *
+   *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
    */
   public function gregorianToShamsi( $date_time ) {
 

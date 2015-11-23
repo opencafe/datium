@@ -2,9 +2,24 @@
 
 return array(
 
+  /************************************************************
+   *                      Default Time Zone
+   ************************************************************
+   *
+   * Define your default time zone
+   *
+   *\_________________________________________________________/
+   */
   'timezone' => 'Asia/Tehran',
 
-
+  /************************************************************
+   *                     Default Language
+   ************************************************************
+   *
+   * Convert algorith to convert Jalali to Gregorian calerndar
+   *
+   *\_________________________________________________________/
+   */
   'language' =>     'fa',
 
 
@@ -21,56 +36,61 @@ return array(
 
                       ),
 
-
+  /************************************************************
+   *                     Default calendar
+   ************************************************************
+   *
+   * Convert algorith to convert Jalali to Gregorian calerndar
+   *
+   *\_________________________________________________________/
+   */
   'default_calendar' => 'ir',
 
 
-  'weekend' =>        array( 'iran'  => array( 'friday' ),
+  'month' => array(
+    'persian' => array(
+       'Farvardin',
+       'Ordibehesht',
+       'Khordad',
+       'Tir',
+       'Mordad' ,
+       'Shahrivar',
+       'Mehr',
+       'Aban',
+       'Azar',
+       'Dey',
+       'Bahman',
+       'Esfand' ),
 
-                            'islamic' => array('friday', 'saturday')
-                     ),
+    'english' => array(
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+     ),
 
-
-  'month' => array( 'persian' => array(  'Farvardin',
-                                         'Ordibehesht',
-                                         'Khordad',
-                                         'Tir',
-                                         'Mordad' ,
-                                         'Shahrivar',
-                                         'Mehr',
-                                         'Aban',
-                                         'Azar',
-                                         'Dey',
-                                         'Bahman',
-                                         'Esfand' ),
-
-                    'english' => array( 'January',
-                                        'February',
-                                        'March',
-                                        'April',
-                                        'May',
-                                        'June',
-                                        'July',
-                                        'August',
-                                        'September',
-                                        'October',
-                                        'November',
-                                        'December'
-                                       ),
-
-                    'islamic' => array( 1 => 'Muharram',
-                                        2 => 'Safar',
-                                        3 => 'Rabi I',
-                                        4 => 'Rabi II',
-                                        5 => 'Jumada I',
-                                        6 => 'Jumada II',
-                                        7 => 'Rajab',
-                                        8 => 'Shaban',
-                                        9 => 'Ramadan',
-                                        10 => 'Shawwal',
-                                        11 => 'Dhu al_Qadah',
-                                        12 => 'Dhu al_Hijjah'
-                                        ) ),
+  'islamic' =>
+    array(  1 => 'Muharram',
+            2 => 'Safar',
+            3 => 'Rabi I',
+            4 => 'Rabi II',
+            5 => 'Jumada I',
+            6 => 'Jumada II',
+            7 => 'Rajab',
+            8 => 'Shaban',
+            9 => 'Ramadan',
+            10 => 'Shawwal',
+            11 => 'Dhu al_Qadah',
+            12 => 'Dhu al_Hijjah'
+            ) ),
 
   'week_days_name' => array( 'persian' => array(
                                           'Yekshanbe',

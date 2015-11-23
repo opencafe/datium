@@ -1,33 +1,51 @@
 <?php namespace Datium\Tools;
 
-/**
+/************************************************************
  * Lang class tranlate every expresion according to lang
+ ************************************************************
+ *
  * table in lang folder
  * @since Aug, 21 2015
+ *
+ *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
  */
 class Lang {
 
     /**
      * Store language table
+     * @var array
      */
-    protected static $lang_table;
-
-    protected static $config;
+    protected static $langTable;
 
     /**
-     * return value translated value in general file
+     * Language translated words
+     * @var array
+     */
+    protected static $config;
+
+    /************************************************************
+     * Return translated expression
+     ************************************************************
+     *
      * @since Aug, 21 2015
-     * @param $lang string
      * @param text string
      * @return mixed
+     *
+     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
      */
     public static function get( $text ) {
 
+      /**
+       * Fetch translated file to config attribute
+       */
       self::$config = include('Config.php');
 
-      self::$lang_table = include('lang/' . self::$config['language'] . '/general.php');
+      /**
+       * Fetch translated expression to langTable attribute
+       */
+      self::$langTable = include('lang/' . self::$config['language'] . '/general.php');
 
-      foreach( self::$lang_table as $key => $translate ){
+      foreach( self::$langTable as $key => $translate ){
 
         if( $key == $text ) {
 
@@ -43,4 +61,3 @@ class Lang {
 
 
 }
-?>

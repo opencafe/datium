@@ -58,8 +58,6 @@ class Datium {
 
   public function __construct() {
 
-
-
     $this->config = include('Config.php');
 
     $this->calendar_type = $this->config[ 'default_calendar' ];
