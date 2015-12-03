@@ -1,0 +1,19 @@
+{
+    "name": "opencafe/datium",
+    "authors": [
+        {
+            "name": "Mehdi Hoosseini",
+            "email": "mehdi.hosseini.dev@gmail.com"
+        },
+        {
+            "name": "Shahrokh Niakian",
+            "email": ""
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Datium\\": [ "src/", "src/Events/" ],
+            "Datium\\Tools\\": "src/"
+        }
+    }
+}

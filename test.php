@@ -5,7 +5,8 @@ use Datium\Tools\Convert as Covnert;
 
 try{
 
-require_once( 'src/autoload.php' );
+require_once( 'vendor/autoload.php' );
+
 var_dump( Datium::now()->to( 'shamsi' )->get() );
 var_dump( Datium::create( Datium::now()->object() )->get() );
 echo '<br>this year:<br>';
