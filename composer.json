@@ -4,10 +4,6 @@
         {
             "name": "Mehdi Hosseini",
             "email": "mehdi.hosseini.dev@gmail.com"
-        },
-        {
-            "name": "Shahrokh Niakian",
-            "email": ""
         }
     ],
     "autoload": {
