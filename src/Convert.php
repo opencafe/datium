@@ -348,4 +348,3 @@ foreach ($this->config['shamsi_month_days'] as $month => $value) {
   }
 
 }
-?>

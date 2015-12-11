@@ -170,5 +170,3 @@ return array(
     'date_simple' => array( 'day', ' month', ' year', ' hour', ' minute', ' second' ),
 
  );
-
-?>
