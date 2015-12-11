@@ -24,7 +24,7 @@ class Translate {
 
     $this->translate = include( 'lang/fa/general.php' );
 
-    $this->config = include( 'config.php' );
+    $this->config = include( 'Config.php' );
 
     $this->date_time = $date_time;
 
