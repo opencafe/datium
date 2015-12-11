@@ -105,6 +105,33 @@ class Datium {
 
   }
 
+  /************************************************************
+   * return all datetime parts as an object
+   ************************************************************
+   *
+   * @return object
+   *
+   */
+  public function all() {
+
+    return (object) array(
+
+      'second' => $this->date_time->format( 's' ),
+
+      'minute' => $this->date_time->format( 'm' ),
+
+      'hour' => $this->date_time->format( 'H' ),
+
+      'day' => $this->date_time->format( 'd' ),
+
+      'month' => $this->date_time->format( 'm' ),
+
+      'year' => $this->date_time->format( 'Y' )
+
+    );
+
+  }
+
   /**
    * Get current datetime
    * @since Aug 17 2015
@@ -205,7 +232,7 @@ class Datium {
   /**
    * Sub date from current date
    * @param $value
-   * @param return obejct
+   * @return obejct
    */
   public function sub( $value ) {
 
@@ -263,9 +290,9 @@ class Datium {
 
   public function translate( $calendar, $format ) {
 
-  $this->date_time = new Translate( $this->date_time, $calendar, $format, $this->gregorian_DayofWeek );
+    $this->date_time = new Translate( $this->date_time, $calendar, $format, $this->gregorian_DayofWeek );
 
-  return $this->date_time;
+    return $this->date_time;
 
   }
 

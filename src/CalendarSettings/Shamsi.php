@@ -14,7 +14,7 @@ return array (
  */
   'convert_to' => function( $date_time ) {
 
-    return Datium::create( $date_time )->sub( '226898 day' )->object();
+    return Datium::create( $date_time )->sub( '226897 day' )->object();
 
   },
 
@@ -28,7 +28,7 @@ return array (
    */
   'convert_from' => function( $date_time ) {
 
-    return Datium::create( $date_time )->add( '226898 day' )->object();
+    return Datium::create( $date_time )->add( '226897 day' )->object();
 
   },
 
@@ -104,6 +104,19 @@ return array (
     'Jome'
 
   ),
+
+  'month_days_number' => array(      1 => 31,
+                                     2 => 31,
+                                     3 => 31,
+                                     4 => 31,
+                                     5 => 31,
+                                     6 => 31,
+                                     7 => 30,
+                                     8 => 30,
+                                     9 => 30,
+                                     10 => 30,
+                                     11 => 30,
+                                     12 => 29 ),
 
   /************************************************************
    *                       Leap year

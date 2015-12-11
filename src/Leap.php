@@ -35,7 +35,6 @@ class Leap {
 
 	}
 
-
   /**
    * check the gregorian year is leap or not
    * @since Oct, 24 2015
