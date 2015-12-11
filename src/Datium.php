@@ -72,7 +72,7 @@ class Datium {
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-        $this->calendar_type = 'gr';
+        $this->calendar_type = 'gregorian';
 
         break;
 
@@ -86,7 +86,7 @@ class Datium {
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-        $this->calendar_type = 'gr';
+        $this->calendar_type = 'gregorian';
 
 
         break;
@@ -97,7 +97,7 @@ class Datium {
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-        $this->calendar_type = 'gr';
+        $this->calendar_type = 'gregorian';
 
     }
 
@@ -196,6 +196,11 @@ class Datium {
 
     $this->date_time = $this->convert->to( $calendar );
 
+    /**
+     * We need this part for DayOf class
+     */
+    $this->calendar_type = $calendar;
+
     return $this;
 
   }
@@ -250,7 +255,7 @@ class Datium {
    * Check if current year is leap or not
    * @return boolean
    */
-  public function leap( $type = 'gr') {
+  public function leap( $type = 'gregorian') {
 
     $this->leap = new Leap( $this->date_time->format( 'Y' ), $type );
 
@@ -295,7 +300,7 @@ class Datium {
     return $this->date_time;
 
   }
-  
+
   /************************************************************
    * Return Datetime as a original object
    ************************************************************

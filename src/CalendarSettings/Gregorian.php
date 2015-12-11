@@ -118,6 +118,29 @@
                                    11 => 30,
                                    12 => 30 ),
 
+
+   'day_of_year' => function( $date_time ) {
+
+     $result = null;
+
+     $config = include( 'Gregorian.php' );
+
+     $month = $date_time->format('n');
+
+     $day = $date_time->format('d');
+
+     foreach( $config['month_days_number'] as $month => $value ) {
+
+       if ( $_month < $month ) $result += $value;
+
+     }
+
+     $result += $this->day;
+
+     return $result;
+
+   },
+
    /************************************************************
     *                       Leap year
     ************************************************************
@@ -126,7 +149,7 @@
     *
     *\_________________________________________________________/
     */
-   'leap_year_formula' => '',
+   'leap_year' => null,
 
    /************************************************************
     *                        Weekend

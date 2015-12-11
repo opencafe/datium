@@ -25,7 +25,7 @@ class Leap {
    * @param $year integer
    * @since Aug, 21 2015
    */
-	public function __construct( $year, $type = 'gr' ) {
+	public function __construct( $year, $type = 'gregorian' ) {
 
 			$this->year = $year;
 
@@ -122,19 +122,19 @@ class Leap {
 
     switch ( $this->type ) {
 
-      case 'gr':
+      case 'gregorian':
 
       $this->result = $this->gregorinLeapYear();
 
         break;
 
-      case 'ir':
+      case 'shamsi':
 
        $this->result = $this->shamsiLeapYear();
 
        break;
 
-      case 'gh':
+      case 'ghamari':
 
         $this->result = $this->ghamariLeapYear();
 

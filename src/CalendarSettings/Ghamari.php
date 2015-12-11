@@ -237,15 +237,41 @@
                                      11 => 30,
                                      12 => 30 ),
 
-   /************************************************************
-    *                       Leap year
-    ************************************************************
-    *
-    * Leap Year formula on jalali calendar
-    *
-    *\_________________________________________________________/
-    */
-   'leap_year_formula' => '',
+     'day_of_year' => function( $date_time ) {
+
+       $result = null;
+
+       $config = include( 'Ghamari.php' );
+
+       $month = $date_time->format('n');
+
+       $day = $date_time->format('d');
+
+       foreach( $config['month_days_number'] as $_month => $value ) {
+
+         if ( $_month < $month ) {
+
+           $result += $value;
+
+         }
+
+       }
+
+       $result += $day;
+
+       return $result;
+
+     },
+
+     /************************************************************
+      *                       Leap year
+      ************************************************************
+      *
+      * Leap Year formula on jalali calendar
+      *
+      *\_________________________________________________________/
+      */
+     'leap_year' => null,
 
    /************************************************************
     *                        Weekend

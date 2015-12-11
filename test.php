@@ -58,6 +58,8 @@ var_dump( Datium::now()->events()->local( 'ir' )->get() );
 echo 'Date diff';
 $diff = Datium::diff( Datium::now()->object(), Datium::now()->add('5 day')->object() );
 var_dump( $diff->days );
+var_dump( Datium::create( 2015, 11, 9 )->to( 'ghamari' )->get() );
+
 
 } catch (Exception $e ) {
 

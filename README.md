@@ -134,6 +134,18 @@ Datium::now()->toGhamari()->dayOf()->week();
 
 ```
 
+## Generalization
+Datium supports language generalization, you can add customized calendars to Datium and used them as it's own default calendars.
+
+```js
+Datium::create( 2015, 11, 9 )->to( 'shamsi' )->get()
+//Convert Gregorian to Jalali calendar: 1394-08-19 00:00:00
+
+Datium::create( 2015, 11, 9 )->to( 'ghamari' )->get()
+//Convert Gregorian to Hijri calendar: 1437-01-27 00:00:00
+
+```
+
 
 ## Events
 There are multiple types of events on Datium, International events, events by region divisions, religious events or customized events declared by user.

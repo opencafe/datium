@@ -19,7 +19,7 @@ class DayOf {
 
   protected $geregorian_DayofWeek;
 
-  public function __construct( $date_time, $calendar_type = 'ir' ) {
+  public function __construct( $date_time, $calendar_type = 'gregorian' ) {
 
     $this->config = include( 'Config.php' );
 
@@ -42,76 +42,12 @@ class DayOf {
    */
   public function year() {
 
-    switch ( $this->calendar_type ) {
+    $config = include(  'CalendarSettings/' . ucfirst( $this->calendar_type ) . '.php' );
 
-      case 'ir':
-
-      $this->result = $this->persian_day_of_year();
-
-        break;
-
-      case 'gh':
-
-      $this->result = $this->islamic_day_of_year();
-
-       break;
-
-      case 'gr':
-
-      $this->result = date( 'z', strtotime( $this->date_time->format('Y-m-d H:i:s') ) ) + 1;
-
-       break;
-    }
-
-    return $this->result;
-
+    return $config[ 'day_of_year' ]( $this->date_time );
 
   }
 
-    /**
-   * @since Sept, 14 2015
-   * @return integer
-   */
-  protected function persian_day_of_year() {
-
-    $this->month = $this->date_time->format('n');
-
-    $this->day = $this->date_time->format('d');
-
-    foreach( $this->config['shamsi_month_days'] as $month => $value ) {
-
-      if ( $month < $this->month ) $this->result += $value;
-
-    }
-
-    $this->result += $this->day;
-
-    return $this->result;
-
-    }
-
-
-     /**
-   * @since Sept, 14 2015
-   * @return integer
-   */
-  protected function islamic_day_of_year() {
-
-    $this->month = $this->date_time->format('n');
-
-    $this->day = $this->date_time->format('d');
-
-    foreach( $this->config['islamic_month_days'] as $month => $value ) {
-
-      if ( $month < $this->month ) $this->result += $value;
-
-    }
-
-    $this->result += $this->day;
-
-    return $this->result;
-
-  }
 
   /**
    * Which day of week is current day.

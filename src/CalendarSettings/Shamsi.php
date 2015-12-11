@@ -118,6 +118,29 @@ return array (
                                      11 => 30,
                                      12 => 29 ),
 
+
+  'day_of_year' => function( $date_time ) {
+
+    $result = null;
+
+    $config = include( 'Shamsi.php' );
+
+    $month = $date_time->format('n');
+
+    $day = $date_time->format('d');
+
+    foreach( $config['month_days_number'] as $month => $value ) {
+
+      if ( $month < $month ) $result += $value;
+
+    }
+
+    $result += $day;
+
+    return $result;
+
+  },
+
   /************************************************************
    *                       Leap year
    ************************************************************
@@ -126,7 +149,7 @@ return array (
    *
    *\_________________________________________________________/
    */
-  'leap_year_formula' => '',
+  'leap_year' => '',
 
   /************************************************************
    *                        Weekend
