@@ -137,9 +137,9 @@
 
      }
 
-     $result += $this->day;
+     $result += $day;
 
-     return $result + 1;
+     return $result;
 
    },
 
