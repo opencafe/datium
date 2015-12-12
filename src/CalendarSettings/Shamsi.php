@@ -14,7 +14,7 @@ return array (
  */
   'convert_to' => function( $date_time ) {
 
-    return Datium::create( $date_time )->sub( '226897 day' )->object();
+    return Datium::create( $date_time )->sub( '226898 day' )->object();
 
   },
 
@@ -28,7 +28,7 @@ return array (
    */
   'convert_from' => function( $date_time ) {
 
-    return Datium::create( $date_time )->add( '226897 day' )->object();
+    return Datium::create( $date_time )->add( '226898 day' )->object();
 
   },
 
@@ -129,15 +129,15 @@ return array (
 
     $day = $date_time->format('d');
 
-    foreach( $config['month_days_number'] as $month => $value ) {
+    foreach( $config['month_days_number'] as $_month => $value ) {
 
-      if ( $month < $month ) $result += $value;
+      if ( $_month < $month ) $result += $value;
 
     }
 
     $result += $day;
 
-    return $result;
+    return $result + 1;
 
   },
 

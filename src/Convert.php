@@ -73,8 +73,6 @@ class Convert {
 
     $this->config = include( 'Config.php' );
 
-    $this->persian_month = $this->config['month']['persian'];
-
   }
 
   /************************************************************

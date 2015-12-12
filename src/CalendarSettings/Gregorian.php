@@ -50,31 +50,31 @@
     *
     *\_________________________________________________________/
     */
-   'month' => array (
+    'month' => array(
 
-     'Farvardin',
+      'January',
 
-     'Ordibehesht',
+      'February',
 
-     'Khordad',
+      'March',
 
-     'Tir',
+      'April',
 
-     'Mordad',
+      'May',
 
-     'Shahrivar',
+      'June',
 
-     'Mehr',
+      'July',
 
-     'Aban',
+      'August',
 
-     'Azar',
+      'September',
 
-     'Dey',
+      'October',
 
-     'Bahman',
+      'November',
 
-     'Esfand'
+      'December'
 
      ),
 
@@ -89,19 +89,19 @@
     */
    'days_of_week' => array (
 
-     'Shanbe',
+   'Saturday',
 
-     'Yek-Shanbe',
+   'Sunday',
 
-     'Do-Shanbe',
+   'Monday',
 
-     'Se-Shanbe',
+   'Tuesday',
 
-     'Chahar-Shanbe',
+   'Wednesday',
 
-     'Panj-Shanbe',
+   'Thursday',
 
-     'Jome'
+   'Friday'
 
    ),
 
@@ -123,13 +123,15 @@
 
      $result = null;
 
+     $_month = null;
+
      $config = include( 'Gregorian.php' );
 
      $month = $date_time->format('n');
 
      $day = $date_time->format('d');
 
-     foreach( $config['month_days_number'] as $month => $value ) {
+     foreach( $config['month_days_number'] as $_month => $value ) {
 
        if ( $_month < $month ) $result += $value;
 
@@ -137,7 +139,7 @@
 
      $result += $this->day;
 
-     return $result;
+     return $result + 1;
 
    },
 

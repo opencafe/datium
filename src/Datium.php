@@ -34,6 +34,10 @@ class Datium {
 
   protected static $date_end;
 
+  protected $translate_from;
+
+  protected $translate_to;
+
   /**
    * return store day number
    * @param integer
@@ -57,6 +61,10 @@ class Datium {
   protected static $call_type;
 
   public function __construct() {
+
+    $this->translate_from = 'gregorian';
+
+    $this->translate_to = 'gregorian';
 
     $this->config = include('Config.php');
 
@@ -201,6 +209,8 @@ class Datium {
      */
     $this->calendar_type = $calendar;
 
+    $this->translate_to = $calendar;
+
     return $this;
 
   }
@@ -293,14 +303,6 @@ class Datium {
 
   }
 
-  public function translate( $calendar, $format ) {
-
-    $this->date_time = new Translate( $this->date_time, $calendar, $format, $this->gregorian_DayofWeek );
-
-    return $this->date_time;
-
-  }
-
   /************************************************************
    * Return Datetime as a original object
    ************************************************************
@@ -324,12 +326,18 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-    if( in_array( $this->calendar_type, $this->config[ 'calendar' ] ) ){
+      $fromConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_from ) . '.php' );
 
-        return $this->translate( $this->calendar_type, $format )->get();
+      $toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
 
-    }
+      $string_date = $this->date_time->format( $format );
 
-}
+      $string_date = str_replace( $fromConfig['month'], $toConfig['month'],  $string_date );
+
+      $string_date = str_replace( $fromConfig['days_of_week'], $toConfig['days_of_week'],  $string_date );
+
+      return $string_date;
+
+  }
 
 }

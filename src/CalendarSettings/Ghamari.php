@@ -171,29 +171,29 @@
     */
    'month' => array (
 
-     'Farvardin',
+        'Muharram',
 
-     'Ordibehesht',
+        'Safar',
 
-     'Khordad',
+        'Rabi I',
 
-     'Tir',
+        'Rabi II',
 
-     'Mordad',
+        'Jumada I',
 
-     'Shahrivar',
+        'Jumada II',
 
-     'Mehr',
+        'Rajab',
 
-     'Aban',
+        'Shaban',
 
-     'Azar',
+        'Ramadan',
 
-     'Dey',
+        'Shawwal',
 
-     'Bahman',
+        'Dhu al_Qadah',
 
-     'Esfand'
+        'Dhu al_Hijjah'
 
      ),
 
@@ -208,19 +208,19 @@
     */
    'days_of_week' => array (
 
-     'Shanbe',
+     'al-Aḥad',
 
-     'Yek-Shanbe',
+     'al-Ithnayn',
 
-     'Do-Shanbe',
+     'ath-Thulatha\'',
 
-     'Se-Shanbe',
+     'al-Arbi\'a',
 
-     'Chahar-Shanbe',
+     'al-Khamees',
 
-     'Panj-Shanbe',
+     'al-Jumu\'ah',
 
-     'Jome'
+     'as-Sabt',
 
    ),
 
@@ -259,7 +259,7 @@
 
        $result += $day;
 
-       return $result;
+       return $result + 1;
 
      },
 

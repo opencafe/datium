@@ -6,9 +6,9 @@ use Datium\Tools\Convert as Covnert;
 try{
 
 require_once( 'vendor/autoload.php' );
-var_dump( Datium::create( 2020, 07, 11 )->to( 'shamsi' )->get() );
-var_dump( Datium::create( 2020, 07, 11 )->to( 'ghamari' )->get() );
-var_dump( Datium::create( Datium::now()->object() )->get() );
+// var_dump( Datium::create( 2020, 07, 11 )->to( 'shamsi' )->get() );
+// var_dump( Datium::create( 2020, 07, 11 )->to( 'ghamari' )->get() );
+// var_dump( Datium::create( Datium::now()->object() )->get() );
 echo '<br>this year:<br>';
 var_dump( Datium::now()->to( 'shamsi' )->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";

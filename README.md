@@ -104,13 +104,13 @@ Datium::now()->dayOf()->year();
 // output => 246
 
 // Day of year to Gregorian
-Datium::now()->toGregorian()->dayOf()->year();
+Datium::now()->dayOf()->year();
 
 // Day of year to Shamsi
-Datium::now()->toShamsi()->dayOf()->year();
+Datium::now()->to( 'shamsi' )->dayOf()->year();
 
 // Day of year to Ghamari
-Datium::now()->toGhamari()->dayOf()->year();
+Datium::now()->to( 'ghamari' )->dayOf()->year();
 
 ```
 
@@ -124,13 +124,13 @@ Datium::now()->dayOf()->week();
 // output => 5
 
 // Day of week to Gregorian
-Datium::now()->toGregorian()->dayOf()->week();
+Datium::now()->dayOf()->week();
 
 // Day of week to Shamsi
-Datium::now()->toShamsi()->dayOf()->week();
+Datium::now()->to( 'shamsi' )->dayOf()->week();
 
 // Day of week to Ghamari
-Datium::now()->toGhamari()->dayOf()->week();
+Datium::now()->to( 'ghamari' )->dayOf()->week();
 
 ```
 
