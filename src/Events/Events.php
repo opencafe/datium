@@ -142,13 +142,13 @@ class Events {
 
 							$this->date_time->setDate( 1394, $month, $day );
 
-							$this->date_time = $this->convert->shamsiToGregorian( $this->date_time );
+							$this->date_time = Datium::create( $this->date_time )->from( 'shamsi' )->to( 'gregorian' )->object(); //$this->convert->shamsiToGregorian( $this->date_time );
 
 							break;
 
 							case 'ghamari':
 
-								$this->date_time = $this->convert->ghamariToGregorian( $this->date_time );
+								$this->date_time = Datium::create(  $this->date_time )->from( 'ghamari' )->to( 'gregorian' )->object(); // $this->convert->ghamariToGregorian( $this->date_time );
 
 							break;
 

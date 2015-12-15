@@ -1,4 +1,4 @@
-<?php
+``<?php
 
  use Datium\Datium as Datium;
 
@@ -88,20 +88,13 @@
     *\_________________________________________________________/
     */
    'days_of_week' => array (
-
-   'Saturday',
-
-   'Sunday',
-
-   'Monday',
-
-   'Tuesday',
-
-   'Wednesday',
-
-   'Thursday',
-
-   'Friday'
+          'Saturday',
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday'
 
    ),
 
@@ -140,6 +133,12 @@
      $result += $day;
 
      return $result;
+
+   },
+
+  'day_of_week' => function( $date_time ) {
+
+       return date( 'w', strtotime( $date_time->format('Y-m-d H:i:s') ) );
 
    },
 

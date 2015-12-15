@@ -75,6 +75,14 @@ class Convert {
 
   }
 
+  public function from( $calendar ) {
+
+    $this->calendar_file = include( 'CalendarSettings/' . ucfirst( $calendar ) . '.php' );
+
+    return $this->calendar_file[ 'convert_from' ]( $this->date_time );
+
+  }
+
   /************************************************************
    * Convert to specific calendar
    ************************************************************
@@ -98,6 +106,8 @@ class Convert {
    */
 public function shamsiToGregorian( $date_time ) {
 
+$this->config = include( 'Shamsi.php' );
+
 $this->date_time = $date_time;
 
 $this->year = $this->date_time->format('Y');
@@ -108,7 +118,7 @@ $this->day = $this->date_time->format('d');
 
 $days_of_year = 0;
 
-foreach ( $this->config['shamsi_month_days'] as $month => $value ) {
+foreach ( $this->config['month_days_number'] as $month => $value ) {
 
   if( $this->month > $month ) $days_of_year += $value;
 
@@ -138,7 +148,9 @@ $gregorian_month = ( $days_of_gregorain_years % 365 );
 
 $gregorian_year = intval( $days_of_gregorain_years / 365 ) + 1;
 
-foreach ($this->config['gregorian_month_days'] as $month => $value) {
+$this->config = include( 'Gregorian.php' );
+
+foreach ($this->config['month_days_number'] as $month => $value) {
 
   if ( $gregorian_month < $value ) break;
 
@@ -173,9 +185,11 @@ public function shamsiToGhamari( $date_time ) {
 
     $this->temp_day = 0 ;
 
+    $this->config = include( 'Shamsi.php' );
+
     for ( $i = 1 ; $i < $this->month ; $i++ ) {
 
-        $this->temp_day += $this->config['shamsi_month_days'][$i];
+        $this->temp_day += $this->config['month_days_number'][$i];
 
       }
 
@@ -254,7 +268,9 @@ $this->day = $this->date_time->format('d');
 
 $days_of_year = 0;
 
-foreach ( $this->config['islamic_month_days'] as $month => $value ) {
+$this->config = include( 'Ghamari.php' );
+
+foreach ( $this->config['month_days_number'] as $month => $value ) {
 
   if( $this->month > $month ) $days_of_year += $value;
 
@@ -274,7 +290,9 @@ $shamsi_month = ( $days_of_shamsi_years % 365 );
 
 $shamsi_year = intval( $days_of_shamsi_years / 365 ) + 1;
 
-foreach ($this->config['shamsi_month_days'] as $month => $value) {
+$this->config = include( 'Shamsi.php' );
+
+foreach ($this->config['month_days_number'] as $month => $value) {
 
   if ( $shamsi_month < $value ) break;
 
@@ -308,7 +326,9 @@ foreach ($this->config['shamsi_month_days'] as $month => $value) {
 
     $days_of_year = 0;
 
-    foreach ( $this->config['islamic_month_days'] as $month => $value ) {
+    $this->config = include( 'Ghamari.php' );
+
+    foreach ( $this->config['month_days_number'] as $month => $value ) {
 
       if( $this->month > $month ) $days_of_year += $value;
 
@@ -328,7 +348,9 @@ foreach ($this->config['shamsi_month_days'] as $month => $value) {
 
     $gregorian_year = intval( $days_of_gregorain_years / 365 ) + 1;
 
-    foreach ($this->config['gregorian_month_days'] as $month => $value) {
+    $this->config = include( 'Gregorian.php' );
+
+    foreach ($this->config['month_days_number'] as $month => $value) {
 
       if ( $gregorian_month < $value ) break;
 

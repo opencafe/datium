@@ -72,6 +72,8 @@ class Datium {
 
     date_default_timezone_set( $this->config['timezone'] );
 
+    $this->calendar_type = 'gregorian';
+
     switch( Datium::$call_type ) {
 
       case 'now':
@@ -79,8 +81,6 @@ class Datium {
         $this->date_time = new DateTime( 'now' );
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
-
-        $this->calendar_type = 'gregorian';
 
         break;
 
@@ -94,9 +94,6 @@ class Datium {
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-        $this->calendar_type = 'gregorian';
-
-
         break;
 
       case 'set':
@@ -104,8 +101,6 @@ class Datium {
         $this->date_time = Datium::$static_date_time;
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
-
-        $this->calendar_type = 'gregorian';
 
     }
 
@@ -195,6 +190,26 @@ class Datium {
     self::$call_type = 'between';
 
     return new Datium();
+
+  }
+
+  /**
+   * Convert from current calendar, what type is current calendar?
+   */
+  public function from( $calendar ) {
+
+    $this->convert = new Convert( $this->date_time );
+
+    $this->date_time = $this->convert->from( $calendar );
+
+    /**
+     * We need this part for DayOf class
+     */
+    $this->calendar_type = $calendar;
+
+    $this->translate_to = $calendar;
+
+    return $this;
 
   }
 

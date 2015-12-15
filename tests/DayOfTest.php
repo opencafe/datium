@@ -18,12 +18,12 @@ class DayOfTest extends PHPUnit_Framework_TestCase {
 
   public function testDayOfWeek(){
 
-    //First january of 2015 is Thursday
-    // $this->assertEquals( 4, Datium::create( 2015, 1, 1 )->dayOf()->week() );
-    //
-    // $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->toGhamari('gr')->dayOf()->week() );
-    //
-    // $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->toShamsi('gr')->dayOf()->week() );
+    // First january of 2015 is Thursday
+    $this->assertEquals( 4, Datium::create( 2015, 1, 1 )->dayOf()->week() );
+
+    // $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->to('ghamari')->dayOf()->week() );
+
+    $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->to('shamsi')->dayOf()->week() );
 
   }
 

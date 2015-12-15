@@ -207,20 +207,13 @@
     *\_________________________________________________________/
     */
    'days_of_week' => array (
-
-     'al-Aḥad',
-
-     'al-Ithnayn',
-
-     'ath-Thulatha\'',
-
-     'al-Arbi\'a',
-
-     'al-Khamees',
-
-     'al-Jumu\'ah',
-
-     'as-Sabt',
+         'al-Aḥad',
+         'al-Ithnayn',
+         'ath-Thulatha\'',
+         'al-Arbi\'a',
+         'al-Khamees',
+         'al-Jumu\'ah',
+         'as-Sabt',
 
    ),
 
@@ -260,6 +253,28 @@
        $result += $day;
 
        return $result + 1;
+
+     },
+
+     'day_of_week' => function( $date_time ) {
+
+       $configGhamari = include(   'Ghamari.php' );
+
+       $configGregorian = include( 'Gregorian.php' );
+
+       $day = $date_time->format('l');
+
+       $day = str_replace( $configGregorian['days_of_week'], $configGhamari['days_of_week'], $day);
+
+       foreach ( $configGhamari['days_of_week'] as $key => $value ) {
+
+         if( $value == $day ) {
+
+           return $key += 1;
+
+         }
+
+       }
 
      },
 

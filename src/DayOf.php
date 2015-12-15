@@ -27,10 +27,6 @@ class DayOf {
 
     $this->calendar_type = $calendar_type;
 
-    $this->day = $this->date_time->format('l');
-
-    $this->geregorian_DayofWeek = $this->date_time->format('w');
-
     return $this;
 
   }
@@ -42,9 +38,9 @@ class DayOf {
    */
   public function year() {
 
-    $config = include(  'CalendarSettings/' . ucfirst( $this->calendar_type ) . '.php' );
+    $this->config = include(  'CalendarSettings/' . ucfirst( $this->calendar_type ) . '.php' );
 
-    return $config[ 'day_of_year' ]( $this->date_time );
+    return $this->config[ 'day_of_year' ]( $this->date_time );
 
   }
 
@@ -56,64 +52,10 @@ class DayOf {
    */
   public function week() {
 
-    switch ( $this->calendar_type ) {
+    $this->config = include(  'CalendarSettings/' . ucfirst( $this->calendar_type ) . '.php' );
 
-      case 'ir':
-
-      $this->result = $this->persian_day_of_week();
-
-        break;
-
-      case 'gh':
-
-      $this->result = $this->islamic_day_of_week();
-
-       break;
-
-      case 'gr':
-
-      $this->result = date( 'w', strtotime( $this->date_time->format('Y-m-d H:i:s') ) ) + 1;
-
-       break;
-    }
-
-    return $this->result;
+    return $this->config[ 'day_of_week' ]( $this->date_time );
 
   }
-
-  /**
-   * @since Sept, 14 2015
-   * @return integer
-   */
-  protected function persian_day_of_week() {
-
-    $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['persian'], $this->day);
-
-    foreach ( $this->config['week_days_name']['persian'] as $key => $value ) {
-
-      if( $value == $this->day ) return $key += 1;
-
-    }
-
-  }
-
-    /**
-   * @since Sept, 14 2015
-   * @return integer
-   */
-  protected function islamic_day_of_week() {
-
-    $this->day = str_replace( $this->config['week_days_name']['english'], $this->config['week_days_name']['islamic'][$this->geregorian_DayofWeek], $this->day);
-
-    foreach ( $this->config['week_days_name']['islamic'] as $key => $value ) {
-
-      if( $value == $this->day ) return $key += 1;
-
-    }
-
-
-  }
-
 
 }
-?>
