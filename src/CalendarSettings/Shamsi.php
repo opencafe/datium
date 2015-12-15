@@ -149,8 +149,6 @@ return array (
 
           if( $value == $day ) {
 
-            if( $key <= 5 ) {
-
               return $key += 1;
 
             }
