@@ -151,8 +151,6 @@ return array (
 
               return $key += 1;
 
-            }
-
           }
 
         }
