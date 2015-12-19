@@ -264,15 +264,16 @@ return array (
    */
   'days_of_week' => array (
 
+
      'Yekshanbe',
      'Doshanbe',
      'Seshanbe',
      'Chaharshanbe',
      'Panjshanbe',
      'Jome',
-     'Shanbe',
-
+     'Shanbe'
   ),
+
 
   'start_day_of_week' => 'Shanbe',
 
@@ -324,9 +325,9 @@ return array (
 
         foreach ( $configShamsi['days_of_week'] as $key => $value ) {
 
-          if( $value == $day ) {
+          if( $day == $value ) {
 
-              return $key;
+              return $key += 1;
 
           }
 

@@ -99,13 +99,14 @@
     */
    'days_of_week' => array (
 
-       'Saturday',
        'Sunday',
        'Monday',
        'Tuesday',
        'Wednesday',
        'Thursday',
-       'Friday'
+       'Friday',
+       'Saturday'
+
 
    ),
 
