@@ -5,7 +5,7 @@ use DateInterval;
 use Datium\Tools\Convert;
 use Datium\Tools\Leap;
 use Datium\Tools\DayOf;
-use Datium\Tools\Translate;
+use Datium\Tools\Lang;
 
 /**
  *
@@ -37,6 +37,10 @@ class Datium {
   protected $translate_from;
 
   protected $translate_to;
+
+  protected $toConfig;
+
+  protected $fromConfig;
 
   /**
    * return store day number
@@ -202,6 +206,7 @@ class Datium {
 
     $this->date_time = $this->convert->from( $calendar );
 
+
     /**
      * We need this part for DayOf class
      */
@@ -333,6 +338,18 @@ class Datium {
 
   }
 
+  public function lang( $language = 'fa' ){
+
+  $this->result = new Lang();
+
+  $this->result->setConfig( $language );
+
+  $this->toConfig = $this->result->getConfig();
+
+  return $this;
+
+  }
+
   /**
    * Get output
    * @since Aug 17 2015
@@ -341,17 +358,33 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-      $fromConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_from ) . '.php' );
+    if( is_null( $this->fromConfig ) )
+      $this->fromConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_from ) . '.php' );
 
-      $toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
+    if( is_null( $this->toConfig ) )
+        $this->toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
 
       $string_date = $this->date_time->format( $format );
 
-      $string_date = str_replace( $fromConfig['month'], $toConfig['month'],  $string_date );
+      if( $this->translate_to != 'gregorian' ) {
 
-      $string_date = str_replace( $fromConfig['days_of_week'], $toConfig['days_of_week'],  $string_date );
+      $string_date = str_replace( $this->fromConfig['month'], $this->toConfig['month'],  $string_date );
+
+      $string_date = str_replace( $this->fromConfig['days_of_week'], $this->toConfig['days_of_week'][$this->gregorian_DayofWeek],  $string_date );
+
+      $string_date = str_replace( $this->fromConfig['numbers'], $this->toConfig['numbers'], $string_date );
+
+      $string_date = str_replace( $this->fromConfig['day_to_nigh'], $this->toConfig['day_to_nigh'], $string_date );
+
+      $string_date = str_replace( $this->fromConfig['night_to_day'], $this->toConfig['night_to_day'], $string_date );
+
+      $string_date = str_replace( $this->fromConfig['end_of_days_number'], $this->toConfig['end_of_days_number'], $string_date );
+
+
+    }
 
       return $string_date;
+
 
   }
 
