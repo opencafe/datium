@@ -4,6 +4,16 @@
 
  return array (
 
+ 'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
+
+ 'day_to_nigh' => 'AM',
+
+ 'night_to_day' => 'PM',
+
+ 'end_of_days_number' => 'th',
+
+
+
  /************************************************************
   *                        Convert to
   ************************************************************
@@ -88,13 +98,14 @@
     *\_________________________________________________________/
     */
    'days_of_week' => array (
-          'Saturday',
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday'
+
+       'Saturday',
+       'Sunday',
+       'Monday',
+       'Tuesday',
+       'Wednesday',
+       'Thursday',
+       'Friday'
 
    ),
 

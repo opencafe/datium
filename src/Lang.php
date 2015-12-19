@@ -23,6 +23,8 @@ class Lang {
      */
     protected static $config;
 
+    protected static $obj;
+
     /************************************************************
      * Return translated expression
      ************************************************************
@@ -33,31 +35,33 @@ class Lang {
      *
      *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
      */
-    public static function get( $text ) {
+    public static function setConfig( $language ) {
 
       /**
        * Fetch translated file to config attribute
        */
-      self::$config = include('Config.php');
+       self::$config = include('src/CalendarSettings/Shamsi.php');
 
-      /**
-       * Fetch translated expression to langTable attribute
-       */
-      self::$langTable = include('lang/' . self::$config['language'] . '/general.php');
+       /**
+        * Fetch translated expression to langTable attribute
+        */
+       self::$langTable = include('lang/' . $language . '/general.php');
 
-      foreach( self::$langTable as $key => $translate ){
+       foreach( self::$langTable as $key => $translate ){
 
-        if( $key == $text ) {
+         if(  self::$config[ $key ] ) {
 
-          return $translate;
+           self::$config[ $key ] = $translate;
 
-        }
-
-      }
-
-      return FALSE;
+         }
+       }
 
     }
 
+    public static function getConfig() {
+
+      return self::$config;
+
+    }
 
 }
