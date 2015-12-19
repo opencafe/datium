@@ -308,7 +308,7 @@ return array (
 
     $result += $day;
 
-    return $result + 1;
+    return $result;
 
   },
 
@@ -326,7 +326,7 @@ return array (
 
           if( $value == $day ) {
 
-              return $key += 1;
+              return $key;
 
           }
 
