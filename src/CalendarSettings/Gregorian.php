@@ -99,16 +99,15 @@
     */
    'days_of_week' => array (
 
-       'Sunday',
        'Monday',
        'Tuesday',
        'Wednesday',
        'Thursday',
        'Friday',
-       'Saturday'
-
-
+       'Saturday',
+       'Sunday',
    ),
+
 
    'month_days_number' => array(   1 => 31,
                                    2 => 28,
@@ -150,7 +149,15 @@
 
   'day_of_week' => function( $date_time ) {
 
-       return date( 'w', strtotime( $date_time->format('Y-m-d H:i:s') ) );
+    $config = include( 'Gregorian.php' );
+
+    $day = $date_time->format('l');
+
+    foreach ($config['days_of_week'] as $key => $value) {
+
+      if ( $value == $day ) return $key += 1;
+
+    }
 
    },
 

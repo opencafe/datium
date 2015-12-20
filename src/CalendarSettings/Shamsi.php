@@ -262,8 +262,9 @@ return array (
    *
    *\_________________________________________________________/
    */
-  'days_of_week' => array (
 
+
+  'days_of_week' => array (
 
      'Yekshanbe',
      'Doshanbe',
@@ -271,9 +272,9 @@ return array (
      'Chaharshanbe',
      'Panjshanbe',
      'Jome',
-     'Shanbe'
-  ),
+     'Shanbe',
 
+  ),
 
   'start_day_of_week' => 'Shanbe',
 
@@ -315,22 +316,23 @@ return array (
 
   'day_of_week' => function( $date_time ) {
 
+        $days = array( 1 => 'Shanbe',  2 => 'Yekshanbe', 3 => 'Doshanbe', 4 => 'Seshanbe', 5 => 'Chaharshanbe', 6 => 'Panjshanbe', 7 => 'Jome' );
+
         $configShamsi = include(  'Shamsi.php' );
 
         $configGregorian = include( 'Gregorian.php' );
 
         $day = $date_time->format('l');
 
-        $day = str_replace( $configGregorian['days_of_week'], $configShamsi['days_of_week'], $day );
+        $day = str_replace( $configGregorian['days_of_week'],$configShamsi['days_of_week'], $day );
 
-        foreach ( $configShamsi['days_of_week'] as $key => $value ) {
+        foreach ( $days as $key => $value ) {
 
           if( $day == $value ) {
 
-              return $key += 1;
+              return $key;
 
           }
-
         }
 
   },
