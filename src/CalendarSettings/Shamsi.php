@@ -13,11 +13,11 @@ return array (
 
   'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
-  'day_to_nigh' => 'AM',
+  'am_time' => 'AM',
 
-  'night_to_day' => 'PM',
+  'pm_time' => 'PM',
 
-  'end_of_days_number' => 'th',
+  'end_of_days' => array( 'th', 'st', 'nd', 'rd' ),
 
 
 
@@ -291,7 +291,14 @@ return array (
                                      11 => 30,
                                      12 => 29 ),
 
-
+  /************************************************************
+  *                      Day of year
+  ************************************************************
+  *
+  *  Return days of year on ghamari cleander
+  *
+  *\_________________________________________________________/
+  */
   'day_of_year' => function( $date_time ) {
 
     $result = null;
@@ -314,6 +321,14 @@ return array (
 
   },
 
+  /************************************************************
+   *                       Day of Week
+   ************************************************************
+   *
+   *  Return day of week on shamsi cleander
+   *  example : Yekshanbe = result is 2
+   *\_________________________________________________________/
+  */
   'day_of_week' => function( $date_time ) {
 
         $days = array( 1 => 'Shanbe',  2 => 'Yekshanbe', 3 => 'Doshanbe', 4 => 'Seshanbe', 5 => 'Chaharshanbe', 6 => 'Panjshanbe', 7 => 'Jome' );
@@ -331,8 +346,8 @@ return array (
           if( $day == $value ) {
 
               return $key;
-
           }
+
         }
 
   },
@@ -341,7 +356,7 @@ return array (
    *                       Leap year
    ************************************************************
    *
-   * Leap Year formula on jalali calendar
+   * Leap Year formula on shamsi calendar
    *
    *\_________________________________________________________/
    */

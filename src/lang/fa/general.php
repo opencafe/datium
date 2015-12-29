@@ -36,11 +36,11 @@
 
         'start_day_of_week' => 'شنبه',
 
-        'day_to_nigh' => 'ق.ظ',
+        'am_time' => 'ق.ظ',
 
-        'night_to_day' => 'ب.ظ',
+        'pm_time' => 'ب.ظ',
 
-        'end_of_days_number' => 'ام',
+        'end_of_days' => array( "" ),
 
         'numbers' => array( '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'),
 

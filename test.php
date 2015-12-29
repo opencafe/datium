@@ -54,6 +54,7 @@ var_dump( Datium::create( 1989, 10, 27 )->to( 'shamsi' )->get( 'l jS F Y h:i:s A
 echo "<br>";
 var_dump( Datium::now()->to( 'ghamari' )->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
+var_dump( Datium::now()->to( 'ghamari' )->lang( 'ar' )->get( 'h:i:s Y l jS F' ) );
 echo "<br>";
 echo "<br>is persian holiday? ";
 // var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add( '3 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );

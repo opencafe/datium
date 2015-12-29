@@ -358,28 +358,27 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-    if( is_null( $this->fromConfig ) )
+    if ( is_null( $this->fromConfig ) )
       $this->fromConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_from ) . '.php' );
 
-    if( is_null( $this->toConfig ) )
+    if ( is_null( $this->toConfig ) )
         $this->toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
 
       $string_date = $this->date_time->format( $format );
 
-      if( $this->translate_to != 'gregorian' ) {
+      if ( $this->translate_to != 'gregorian' ) {
 
       $string_date = str_replace( $this->fromConfig['month'], $this->toConfig['month'],  $string_date );
 
-      $string_date = str_replace( $this->fromConfig['days_of_week'], $this->toConfig['days_of_week'][$this->gregorian_DayofWeek],  $string_date );
+      $string_date = str_replace( $this->fromConfig['days_of_week'], $this->toConfig['days_of_week'][$this->gregorian_DayofWeek], $string_date );
 
       $string_date = str_replace( $this->fromConfig['numbers'], $this->toConfig['numbers'], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['day_to_nigh'], $this->toConfig['day_to_nigh'], $string_date );
+      $string_date = str_replace( $this->fromConfig['am_time'], $this->toConfig['am_time'], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['night_to_day'], $this->toConfig['night_to_day'], $string_date );
+      $string_date = str_replace( $this->fromConfig['pm_time'], $this->toConfig['pm_time'], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['end_of_days_number'], $this->toConfig['end_of_days_number'], $string_date );
-
+      $string_date = str_replace( $this->fromConfig['end_of_days'], $this->toConfig['end_of_days'], $string_date );
 
     }
 

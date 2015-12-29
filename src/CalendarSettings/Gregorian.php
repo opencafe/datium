@@ -6,11 +6,11 @@
 
  'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
- 'day_to_nigh' => 'AM',
+ 'am_time' => 'AM',
 
- 'night_to_day' => 'PM',
+ 'pm_time' => 'PM',
 
- 'end_of_days_number' => 'th',
+ 'end_of_days' => array( 'th', 'st', 'nd', 'rd' ),
 
 
 
@@ -179,6 +179,6 @@
     *
     *\_________________________________________________________/
     */
-   'weekend' => array( 'friday' )
+   'weekend' => array( 'saturday', 'sunday' ),
 
   );

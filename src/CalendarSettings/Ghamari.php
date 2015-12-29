@@ -219,11 +219,11 @@
 
    'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
-   'day_to_nigh' => 'AM',
+   'am_time' => 'AM',
 
-   'night_to_day' => 'PM',
+   'pm_time' => 'PM',
 
-   'end_of_days_number' => 'th',
+   'end_of_days' => array( 'th', 'st', 'nd', 'rd' ),
 
 
 
@@ -240,7 +240,14 @@
                                      10 => 29,
                                      11 => 30,
                                      12 => 30 ),
-
+    /************************************************************
+    *                      Day of year
+    ************************************************************
+    *
+    *  Return days of year on ghamari cleander
+    *
+    *\_________________________________________________________/
+    */
      'day_of_year' => function( $date_time ) {
 
        $result = null;
@@ -267,6 +274,14 @@
 
      },
 
+     /************************************************************
+      *                      Day of week
+      ************************************************************
+      *
+      *  Return day of week on ghamari cleander
+      *  example : al-Aḥad = result is 1
+      *\_________________________________________________________/
+      */
      'day_of_week' => function( $date_time ) {
 
        $configGhamari = include(   'Ghamari.php' );
@@ -293,7 +308,7 @@
       *                       Leap year
       ************************************************************
       *
-      * Leap Year formula on jalali calendar
+      * Leap Year formula on ghamari calendar
       *
       *\_________________________________________________________/
       */
@@ -303,10 +318,10 @@
     *                        Weekend
     ************************************************************
     *
-    * Jalali weekend
+    * weekend in arabic countries and some islamic countries
     *
     *\_________________________________________________________/
     */
-   'weekend' => array( 'friday' )
+   'weekend' => array( 'friday', 'saturday' ),
 
   );
