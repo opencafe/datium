@@ -156,3 +156,7 @@ Returned international events, data provided by united nations.
 ```
 
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/opencafe/datium/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
