@@ -4,7 +4,7 @@ use Datium\Datium as Datium;
 use Datium\Tools\Convert as Covnert;
 
 try{
-
+	
 require_once( 'vendor/autoload.php' );
 var_dump( Datium::create( 1394, 9, 24 )->from( 'shamsi' )->get() );
 var_dump( Datium::create( 2020, 07, 11 )->to( 'shamsi' )->get() );
@@ -39,13 +39,19 @@ echo "Day of Year in ghamari:";
 echo "<br>";
 var_dump( Datium::now()->to( 'ghamari' )->dayOf()->year() );
 echo "<br>";
-echo "Day of Week";
+echo "Day of Week : gregorian";
 echo "<br>";
 var_dump( Datium::now()->dayOf()->week() );
 echo "<br>";
+echo "Day of Week in Date(2015, 1, 1)";
+echo "<br>";
 var_dump( Datium::create( 2015, 1, 1 )->dayOf()->week() );
 echo "<br>";
+echo "Day of Week : shamsi";
+echo "<br>";
 var_dump( Datium::now()->to('shamsi')->dayOf()->week() );
+echo "<br>";
+echo "Day of Week in Date(2015, 1, 1)";
 echo "<br>";
 var_dump( Datium::create( 2015, 1, 1 )->to('shamsi')->dayOf()->week() );
 echo "<br>";
@@ -54,7 +60,7 @@ var_dump( Datium::create( 1989, 10, 27 )->to( 'shamsi' )->get( 'l jS F Y h:i:s A
 echo "<br>";
 var_dump( Datium::now()->to( 'ghamari' )->get( 'l jS F Y h:i:s A' ) );
 echo "<br>";
-var_dump( Datium::now()->to( 'ghamari' )->lang( 'ar' )->get( 'h:i:s Y l jS F' ) );
+var_dump( Datium::now()->to( 'ghamari' )->lang( 'ar' )->get( 'h:i:s Y jS l F' ) );
 echo "<br>";
 echo "<br>is persian holiday? ";
 // var_dump(  Datium::between( Datium::now()->object() , Datium::now()->add( '3 month' )->object() )->events()->local( 'us' )->local( 'ir' )->get() );
