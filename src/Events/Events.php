@@ -138,17 +138,17 @@ class Events {
 
 						switch ( $this->local[ 'default_calendar' ] ) {
 
-							case 'shamsi':
+							case 'jalali':
 
 							$this->date_time->setDate( 1394, $month, $day );
 
-							$this->date_time = Datium::create( $this->date_time )->from( 'shamsi' )->to( 'gregorian' )->object(); //$this->convert->shamsiToGregorian( $this->date_time );
+							$this->date_time = Datium::create( $this->date_time )->from( 'jalali' )->to( 'gregorian' )->object(); //$this->convert->jalaliToGregorian( $this->date_time );
 
 							break;
 
-							case 'ghamari':
+							case 'hijri':
 
-								$this->date_time = Datium::create(  $this->date_time )->from( 'ghamari' )->to( 'gregorian' )->object(); // $this->convert->ghamariToGregorian( $this->date_time );
+								$this->date_time = Datium::create(  $this->date_time )->from( 'hijri' )->to( 'gregorian' )->object(); // $this->convert->hijriToGregorian( $this->date_time );
 
 							break;
 

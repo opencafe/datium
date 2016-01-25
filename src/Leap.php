@@ -47,24 +47,24 @@ class Leap {
   }
 
   /**
-   * check the shamsi year is leap or not
+   * check the jalali year is leap or not
    * @since Oct, 24 2015
    * @return boolean
    */
-  public function shamsiLeapYear() {
+  public function jalaliLeapYear() {
 
-		$shamsi_years = 0;
+		$jalali_years = 0;
 
-    while ( $shamsi_years < ( $this->year - 128 ) ) {
+    while ( $jalali_years < ( $this->year - 128 ) ) {
 
-      $shamsi_years += 128;
+      $jalali_years += 128;
 
     }
 
     //check for leap year after 5 years
     $this->result = $this->year - 1;
 
-    $this->result -= $shamsi_years;
+    $this->result -= $jalali_years;
 
     if ( $this->result >= 33 ) {
 
@@ -81,7 +81,7 @@ class Leap {
     //check for leap year after 4 years
     $this->result = $this->year;
 
-    $this->result -= $shamsi_years;
+    $this->result -= $jalali_years;
 
     if ( $this->result >= 33 ) {
 
@@ -97,11 +97,11 @@ class Leap {
   }
 
   /**
-   * check the ghamari year is leap or not
+   * check the hijri year is leap or not
    * @since Oct, 24 2015
    * @return boolean
    */
-  public function ghamariLeapYear() {
+  public function hijriLeapYear() {
 
     $this->result = $this->year % 30;
 
@@ -128,15 +128,15 @@ class Leap {
 
         break;
 
-      case 'shamsi':
+      case 'jalali':
 
-       $this->result = $this->shamsiLeapYear();
+       $this->result = $this->jalaliLeapYear();
 
        break;
 
-      case 'ghamari':
+      case 'hijri':
 
-        $this->result = $this->ghamariLeapYear();
+        $this->result = $this->hijriLeapYear();
 
         break;
     }

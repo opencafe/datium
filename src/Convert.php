@@ -100,13 +100,13 @@ class Convert {
   }
 
 /**
-   *convert shamsi year to gregorian year
+   *convert jalali year to gregorian year
    * @since Oct, 16 2015
    * @return object
    */
-public function shamsiToGregorian( $date_time ) {
+public function jalaliToGregorian( $date_time ) {
 
-$this->config = include( 'Shamsi.php' );
+$this->config = include( 'Jalali.php' );
 
 $this->date_time = $date_time;
 
@@ -128,9 +128,9 @@ $days_of_year += $this->day;
 
 $days_of_leap_years =  intval( ( ( $this->year - 1 ) / 4 )  );
 
-$days_of_shamsi_years = ( ( ( $this->year - 1 ) * 365 ) + $days_of_year + $days_of_leap_years );
+$days_of_jalali_years = ( ( ( $this->year - 1 ) * 365 ) + $days_of_year + $days_of_leap_years );
 
-$days_of_gregorain_years = $days_of_shamsi_years + 226899;
+$days_of_gregorain_years = $days_of_jalali_years + 226899;
 
 if ( $this->month < 10 )  {
 
@@ -169,11 +169,11 @@ foreach ($this->config['month_days_number'] as $month => $value) {
 }
 
 /**
-   *convert shamsi year to ghamari year
+   *convert jalali year to hijri year
    * @since Oct, 17 2015
    * @return object
    */
-public function shamsiToGhamari( $date_time ) {
+public function jalaliToHijri( $date_time ) {
 
     $this->date_time = $date_time;
 
@@ -185,7 +185,7 @@ public function shamsiToGhamari( $date_time ) {
 
     $this->temp_day = 0 ;
 
-    $this->config = include( 'Shamsi.php' );
+    $this->config = include( 'Jalali.php' );
 
     for ( $i = 1 ; $i < $this->month ; $i++ ) {
 
@@ -252,11 +252,11 @@ public function shamsiToGhamari( $date_time ) {
 }
 
 /**
-   *convert ghamari year to shamsi year
+   *convert hijri year to jalali year
    * @since Oct, 17 2015
    * @return object
    */
-public function ghamariToShamsi( $date_time ) {
+public function hijriToJalali( $date_time ) {
 
 $this->date_time = $date_time;
 
@@ -268,7 +268,7 @@ $this->day = $this->date_time->format('d');
 
 $days_of_year = 0;
 
-$this->config = include( 'Ghamari.php' );
+$this->config = include( 'Hijri.php' );
 
 foreach ( $this->config['month_days_number'] as $month => $value ) {
 
@@ -280,41 +280,41 @@ $days_of_year += $this->day;
 
 $days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  );
 
-$days_of_ghamari_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+$days_of_hijri_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
 
-$days_of_shamsi_years = $days_of_ghamari_years + 179;
+$days_of_jalali_years = $days_of_hijri_years + 179;
 
-$days_of_shamsi_years = $days_of_shamsi_years - intval( ( ( $this->year - 43 ) / 4 ) );
+$days_of_jalali_years = $days_of_jalali_years - intval( ( ( $this->year - 43 ) / 4 ) );
 
-$shamsi_month = ( $days_of_shamsi_years % 365 );
+$jalali_month = ( $days_of_jalali_years % 365 );
 
-$shamsi_year = intval( $days_of_shamsi_years / 365 ) + 1;
+$jalali_year = intval( $days_of_jalali_years / 365 ) + 1;
 
-$this->config = include( 'Shamsi.php' );
+$this->config = include( 'Jalali.php' );
 
 foreach ($this->config['month_days_number'] as $month => $value) {
 
-  if ( $shamsi_month < $value ) break;
+  if ( $jalali_month < $value ) break;
 
-    $shamsi_month -= $value;
+    $jalali_month -= $value;
 }
 
-  $shamsi_day = $shamsi_month;
+  $jalali_day = $jalali_month;
 
-  $shamsi_month = $month;
+  $jalali_month = $month;
 
-  $this->date_time->setDate( $shamsi_year, $shamsi_month, $shamsi_day );
+  $this->date_time->setDate( $jalali_year, $jalali_month, $jalali_day );
 
  return $this->date_time;
 
 }
 
   /**
-    * convert ghamari year to gregorian year
+    * convert hijri year to gregorian year
     * @since Oct, 17 2015
     * @return object
     */
-  public function ghamariToGregorian( $date_time ) {
+  public function hijriToGregorian( $date_time ) {
 
     $this->date_time = $date_time;
 
@@ -326,7 +326,7 @@ foreach ($this->config['month_days_number'] as $month => $value) {
 
     $days_of_year = 0;
 
-    $this->config = include( 'Ghamari.php' );
+    $this->config = include( 'Hijri.php' );
 
     foreach ( $this->config['month_days_number'] as $month => $value ) {
 
@@ -338,9 +338,9 @@ foreach ($this->config['month_days_number'] as $month => $value) {
 
     $days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  );
 
-    $days_of_ghamari_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+    $days_of_hijri_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
 
-    $days_of_gregorain_years = $days_of_ghamari_years + 227078;
+    $days_of_gregorain_years = $days_of_hijri_years + 227078;
 
     $days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 578 ) / 4 ) );
 

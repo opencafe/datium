@@ -106,11 +106,11 @@ Datium::now()->dayOf()->year();
 // Day of year to Gregorian
 Datium::now()->dayOf()->year();
 
-// Day of year to Shamsi
-Datium::now()->to( 'shamsi' )->dayOf()->year();
+// Day of year to Jalali
+Datium::now()->to( 'jalali' )->dayOf()->year();
 
-// Day of year to Ghamari
-Datium::now()->to( 'ghamari' )->dayOf()->year();
+// Day of year to Hijri
+Datium::now()->to( 'hijri' )->dayOf()->year();
 
 ```
 
@@ -126,11 +126,11 @@ Datium::now()->dayOf()->week();
 // Day of week to Gregorian
 Datium::now()->dayOf()->week();
 
-// Day of week to Shamsi
-Datium::now()->to( 'shamsi' )->dayOf()->week();
+// Day of week to Jalali
+Datium::now()->to( 'jalali' )->dayOf()->week();
 
-// Day of week to Ghamari
-Datium::now()->to( 'ghamari' )->dayOf()->week();
+// Day of week to Hijri
+Datium::now()->to( 'hijri' )->dayOf()->week();
 
 ```
 
@@ -138,10 +138,10 @@ Datium::now()->to( 'ghamari' )->dayOf()->week();
 Datium supports language generalization, you can add customized calendars to Datium and used them as it's own default calendars.
 
 ```js
-Datium::create( 2015, 11, 9 )->to( 'shamsi' )->get()
+Datium::create( 2015, 11, 9 )->to( 'jalali' )->get()
 //Convert Gregorian to Jalali calendar: 1394-08-19 00:00:00
 
-Datium::create( 2015, 11, 9 )->to( 'ghamari' )->get()
+Datium::create( 2015, 11, 9 )->to( 'hijri' )->get()
 //Convert Gregorian to Hijri calendar: 1437-01-27 00:00:00
 
 ```

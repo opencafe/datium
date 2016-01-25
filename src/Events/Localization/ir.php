@@ -5,10 +5,10 @@ return array(
     /**
      * Refer to default region calendar
      */
-    'default_calendar' => 'shamsi',
+    'default_calendar' => 'jalali',
 
     /**
-     * Iran Events should typed as a Shamsi calendar dates and set as
+     * Iran Events should typed as a Jalali calendar dates and set as
      * as a arraye value
      */
     'events' => array(

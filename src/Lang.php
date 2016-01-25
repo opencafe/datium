@@ -40,7 +40,7 @@ class Lang {
       /**
        * Fetch translated file to config attribute
        */
-       self::$config = include('src/CalendarSettings/Shamsi.php');
+       self::$config = include('src/CalendarSettings/Jalali.php');
 
        /**
         * Fetch translated expression to langTable attribute
