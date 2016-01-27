@@ -106,56 +106,56 @@ class Convert {
    */
 public function jalaliToGregorian( $date_time ) {
 
-$this->config = include( 'Jalali.php' );
+  $this->config = include( 'Jalali.php' );
 
-$this->date_time = $date_time;
+  $this->date_time = $date_time;
 
-$this->year = $this->date_time->format('Y');
+  $this->year = $this->date_time->format('Y');
 
-$this->month = $this->date_time->format('m');
+  $this->month = $this->date_time->format('m');
 
-$this->day = $this->date_time->format('d');
+  $this->day = $this->date_time->format('d');
 
-$days_of_year = 0;
+  $days_of_year = 0;
 
-foreach ( $this->config['month_days_number'] as $month => $value ) {
+  foreach ( $this->config['month_days_number'] as $month => $value ) {
 
-  if( $this->month > $month ) $days_of_year += $value;
+    if( $this->month > $month ) $days_of_year += $value;
 
-}
+  }
 
-$days_of_year += $this->day;
+  $days_of_year += $this->day;
 
-$days_of_leap_years =  intval( ( ( $this->year - 1 ) / 4 )  );
+  $days_of_leap_years =  intval( ( ( $this->year - 1 ) / 4 )  );
 
-$days_of_jalali_years = ( ( ( $this->year - 1 ) * 365 ) + $days_of_year + $days_of_leap_years );
+  $days_of_jalali_years = ( ( ( $this->year - 1 ) * 365 ) + $days_of_year + $days_of_leap_years );
 
-$days_of_gregorain_years = $days_of_jalali_years + 226899;
+  $days_of_gregorain_years = $days_of_jalali_years + 226899;
 
-if ( $this->month < 10 )  {
+    if ( $this->month < 10 )  {
 
-$days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 621 ) / 4 ) );
+      $days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 621 ) / 4 ) );
 
-}
+    }
 
-elseif ( ( ( 10 == $this->month ) && ( $this->day > 10 ) ) || ( $this->month > 10 ) ) {
+    elseif ( ( ( 10 == $this->month ) && ( $this->day > 10 ) ) || ( $this->month > 10 ) ) {
 
-$days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 622 ) / 4 ) );
+      $days_of_gregorain_years = $days_of_gregorain_years - intval( ( ( $this->year + 622 ) / 4 ) );
 
-}
+    }
 
-$gregorian_month = ( $days_of_gregorain_years % 365 );
+    $gregorian_month = ( $days_of_gregorain_years % 365 );
 
-$gregorian_year = intval( $days_of_gregorain_years / 365 ) + 1;
+    $gregorian_year = intval( $days_of_gregorain_years / 365 ) + 1;
 
-$this->config = include( 'Gregorian.php' );
+    $this->config = include( 'Gregorian.php' );
 
-foreach ($this->config['month_days_number'] as $month => $value) {
+    foreach ($this->config['month_days_number'] as $month => $value) {
 
-  if ( $gregorian_month < $value ) break;
+      if ( $gregorian_month < $value ) break;
 
-    $gregorian_month -= $value;
-}
+      $gregorian_month -= $value;
+    }
 
   $gregorian_day = $gregorian_month;
 
@@ -258,46 +258,46 @@ public function jalaliToHijri( $date_time ) {
    */
 public function hijriToJalali( $date_time ) {
 
-$this->date_time = $date_time;
+  $this->date_time = $date_time;
 
-$this->year = $this->date_time->format('Y');
+  $this->year = $this->date_time->format('Y');
 
-$this->month = $this->date_time->format('m');
+  $this->month = $this->date_time->format('m');
 
-$this->day = $this->date_time->format('d');
+  $this->day = $this->date_time->format('d');
 
-$days_of_year = 0;
+  $days_of_year = 0;
 
-$this->config = include( 'Hijri.php' );
+  $this->config = include( 'Hijri.php' );
 
-foreach ( $this->config['month_days_number'] as $month => $value ) {
+  foreach ( $this->config['month_days_number'] as $month => $value ) {
 
-  if( $this->month > $month ) $days_of_year += $value;
+    if( $this->month > $month ) $days_of_year += $value;
 
-}
+  }
 
-$days_of_year += $this->day;
+  $days_of_year += $this->day;
 
-$days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  );
+  $days_of_leap_years =  intval( ( ( $this->year - 1 ) / 3 )  );
 
-$days_of_hijri_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+  $days_of_hijri_years = ( ( ( $this->year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
 
-$days_of_jalali_years = $days_of_hijri_years + 179;
+  $days_of_jalali_years = $days_of_hijri_years + 179;
 
-$days_of_jalali_years = $days_of_jalali_years - intval( ( ( $this->year - 43 ) / 4 ) );
+  $days_of_jalali_years = $days_of_jalali_years - intval( ( ( $this->year - 43 ) / 4 ) );
 
-$jalali_month = ( $days_of_jalali_years % 365 );
+  $jalali_month = ( $days_of_jalali_years % 365 );
 
-$jalali_year = intval( $days_of_jalali_years / 365 ) + 1;
+  $jalali_year = intval( $days_of_jalali_years / 365 ) + 1;
 
-$this->config = include( 'Jalali.php' );
+  $this->config = include( 'Jalali.php' );
 
-foreach ($this->config['month_days_number'] as $month => $value) {
+  foreach ($this->config['month_days_number'] as $month => $value) {
 
-  if ( $jalali_month < $value ) break;
+    if ( $jalali_month < $value ) break;
 
-    $jalali_month -= $value;
-}
+      $jalali_month -= $value;
+  }
 
   $jalali_day = $jalali_month;
 
