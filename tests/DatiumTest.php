@@ -24,6 +24,14 @@ class DatiumTest extends PHPUnit_Framework_TestCase {
 
     $this->assertEquals( 5, $diff->days );
 
+    $diff = Datium::diff( Datium::now()->object(), Datium::now()->add('100 day')->object() );
+
+    $this->assertEquals( 100, $diff->days );
+
+    $diff = Datium::diff( Datium::now()->object(), Datium::now()->add('5000 day')->object() );
+
+    $this->assertEquals( 5000, $diff->days );
+
   }
 
   public function testJalaliCalendar() {
@@ -49,5 +57,6 @@ class DatiumTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals( 'Saturday 25th June 2016 12:00:00 PM', $gregorian );
 
   }
+
 
 }

@@ -49,11 +49,16 @@ class Lang {
 
        foreach( self::$langTable as $key => $translate ){
 
-         if(  self::$config[ $key ] ) {
+         if ( isset( self::$config[ $key ] ) ) {
 
-           self::$config[ $key ] = $translate;
+           if ( self::$config[ $key ] ) {
+
+             self::$config[ $key ] = $translate;
+
+           }
 
          }
+
        }
 
     }

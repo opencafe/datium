@@ -64,7 +64,15 @@ class Datium {
 
   protected static $call_type;
 
+  protected $translate_from_file;
+
+  protected $translate_to_file;
+
+  protected $language;
+
   public function __construct() {
+
+    $this->language = 'en';
 
     $this->translate_from = 'gregorian';
 
@@ -340,13 +348,15 @@ class Datium {
 
   public function lang( $language = 'fa' ){
 
-  $this->result = new Lang();
+    $this->language = $language;
 
-  $this->result->setConfig( $language );
+    $this->result = new Lang();
 
-  $this->toConfig = $this->result->getConfig();
+    $this->result->setConfig( $this->language );
 
-  return $this;
+    $this->toConfig = $this->result->getConfig();
+
+    return $this;
 
   }
 
@@ -358,11 +368,22 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-    if ( is_null( $this->fromConfig ) )
+    $this->translate_from_file = include( 'Lang/en/general.php' );
+
+    $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
+
+    if ( is_null( $this->fromConfig ) ) {
+
       $this->fromConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_from ) . '.php' );
 
-    if ( is_null( $this->toConfig ) )
-        $this->toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
+    }
+
+
+    if ( is_null( $this->toConfig ) ) {
+
+      $this->toConfig = include( 'CalendarSettings/' . ucfirst( $this->translate_to ) . '.php' );
+
+    }
 
       $string_date = $this->date_time->format( $format );
 
@@ -382,8 +403,13 @@ class Datium {
 
     }
 
-      return $string_date;
+    foreach( $this->translate_to_file as $key => $value ) {
 
+      $string_date = str_replace( $this->translate_from_file[ $key ], $this->translate_to_file[ $key ], $string_date );
+
+    }
+
+    return $string_date;
 
   }
 
