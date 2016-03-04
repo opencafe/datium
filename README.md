@@ -12,6 +12,7 @@ Under Development
 
 
 ..................................................................................................................................
+
 The most flexible DateTime management package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
 * Simplicity in code and logic
@@ -60,7 +61,7 @@ Or return it as simple date and time string:
 Datium::now()->get();
 ```
 
-And even with custom y, m, d format:
+And even with custom PHP YMD [format](http://php.net/manual/en/function.date.php):
 
 ```js
 Datium::now()->get( 'l jS F Y h:i:s A' );
@@ -92,8 +93,11 @@ Datium::now()->add('1 month')->get()
 Datium::now()->add('1 year')
              ->add('3 month')
              ->add('2 day')
+             ->add('1 hour')
+             ->add('2 minute')
+             ->add('3 second')
              ->get();
-// output => 2017-04-03 00:00:00
+// output => 2017-04-03 01:02:03
 
 ```
 
