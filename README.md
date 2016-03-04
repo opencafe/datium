@@ -12,43 +12,88 @@ Under Development
 
 
 ..................................................................................................................................
+The most flexible DateTime management package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
+* Simplicity in code and logic
+* Expandable in every part
 
-# Simple get date
-Return the Date and Time
+# Installation
+
+## Via Composer
+
+## Manual
+Just require ```Datium.php``` in your project and use Datium namespace as following example:
+
+```js
+require_once 'src/Datium.php';
+
+use OpenCafe\Datium;
+
+echo Datium::now()->get();
+```
+
+# Usage
+Simply get what you want:
 
 As datium output
 
 ```js
-Datium::now()->get(); // output => 1390-00-00 00:00:00
+Datium::now()->get(); // ex: 2016-01-01 00:00:00
+```
+Or working with date as simple as you need:
+
+```js
+Datium::now()->add('1 day')->get(); // ex: 2016-01-02 00:00:00
 ```
 
-As php DateTime class object
+## Get
+
+Get Datium as DateTime PHP object:
 
 ```js
 Datium::now()->object();
+```
+
+Or return it as simple date and time string:
+
+```js
+Datium::now()->get();
+```
+
+And even with custom y, m, d format:
+
+```js
+Datium::now()->get( 'l jS F Y h:i:s A' );
+```
+
+
+## Create
+You can also simply create new time:
+
+```js
+Datium::create( 2016, 1, 1, 12, 56, 13 )->get(); //ex: 2016-01-01 12:56:13
 ```
 
 ## Add Date
 This method allow you add some year, month, day, hour, minute and second to current date.
 
 ```js
-// If current date is 1390-01-01 00:00:00 then:
+// If current date is 2016-01-01 00:00:00 then:
 
 // Add 3 years
 Datium::now()->add('3 year')->get();
-// output => 1393-01-01 00:00:00
+// output => 2019-01-01 00:00:00
 
 // Add one month
 Datium::now()->add('1 month')->get()
-// output => 1390-02-01 00:00:00
+// output => 2016-02-01 00:00:00
 
 // Add 1 year, 3 month and 2 days
 Datium::now()->add('1 year')
              ->add('3 month')
              ->add('2 day')
              ->get();
-// output => 1391-04-03 00:00:00
+// output => 2017-04-03 00:00:00
 
 ```
 
@@ -56,49 +101,51 @@ Datium::now()->add('1 year')
 Sub some year, month, day, hour, minute and second from current date.
 
 ```js
-// If current date is 1390-01-01 00:00:00 then:
+// If current date is 2016-01-01 00:00:00 then:
 
 
 // Sub 3 years
 Datium::now()->sub('3 year')->get();
-// output => 1387-01-01 00:00:00
+// output => 2013-01-01 00:00:00
 
 // Sub one month
 Datium::now()->sub('1 month')->get()
-// output => 1389-12-01 00:00:00
+// output => 2015-12-01 00:00:00
 
 // Sub 1 year, 3 month and 2 days
 Datium::now()->sub('1 year')
              ->sub('3 month')
              ->sub('2 day')
              ->get();
-// output => 1388-09-29 00:00:00
+// output => 2014-09-29 00:00:00
 ```
 
 ## Leap year
-Define leap year
+Define leap year of current year with generalization support.
 
 
 ```js
-// If current date is 1394
+// If current date was 2016
 
-// Is 1394 a leap year?
+// Is 2016 a leap year?
 Datium::now()->leap()->get();
 // output => FALSE
 
-// Is 1395 a leap year?
+// Is 2017 a leap year?
 Datium::now()->add('1 year')->leap()->get();
 // output => TRUE
+
+Datium::now()->to('hijri')->leap()->get();
 ```
 
 ## Get day of date
-
+This method returns day of week or day of year with generalization support, you can add this feature to your custom calendars like other supported calendars in Datium.
 
 ## Day of Year
-What the day is current date in current year
+What the day is in current year:
 
 ```js
-// If current date 'll be 2015-09-03
+// If current date was 2015-09-03
 
 Datium::now()->dayOf()->year();
 // output => 246
@@ -115,7 +162,7 @@ Datium::now()->to( 'hijri' )->dayOf()->year();
 ```
 
 ## Day of Week
-What day of week is current day.
+What day of week is current day:
 
 ```js
 
@@ -135,7 +182,9 @@ Datium::now()->to( 'hijri' )->dayOf()->week();
 ```
 
 ## Generalization
-Datium supports language generalization, you can add customized calendars to Datium and used them as it's own default calendars.
+
+### Calendar generalization
+Datium supports calendar generalization, you can add customized calendars to Datium and used them as it's own default calendars.
 
 ```js
 Datium::create( 2015, 11, 9 )->to( 'jalali' )->get()
@@ -146,13 +195,19 @@ Datium::create( 2015, 11, 9 )->to( 'hijri' )->get()
 
 ```
 
+Convert all calendars which supported on Datium or event your customized calendars as simple as possible:
 
-## Events
-There are multiple types of events on Datium, International events, events by region divisions, religious events or customized events declared by user.
+```js
+Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'gregorian' )->get();
 
-### International event
-Returned international events, data provided by united nations.
-
+Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'hijri' )->get();
 ```
+
+### Translation Generalization
+Generalization in translation is another Datium generalization support.
+
+```js
+Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->lang( 'fa' )->get('l jS F Y h:i:s A');
+// ex: شنبه ۵ تیر ۱۳۹۵ ۱۲:۰۰:۰۰ ب.ظ
 
 ```

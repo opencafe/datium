@@ -1,4 +1,4 @@
-<?php namespace Datium;
+<?php namespace OpenCafe;
 
 use DateTime;
 use DateInterval;

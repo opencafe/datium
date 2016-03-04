@@ -1,5 +1,5 @@
 <?php
-use Datium\Datium as Datium;
+use OpenCafe\Datium as Datium;
 use Datium\Tools\Convert as Covnert;
 try{
 require_once( 'vendor/autoload.php' );
