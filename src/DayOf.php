@@ -1,4 +1,4 @@
-<?php namespace Datium\Tools;
+<?php namespace OpenCafe\Tools;
 
 /**
  * Define Day of current date.

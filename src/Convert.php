@@ -1,4 +1,4 @@
-<?php namespace Datium\Tools;
+<?php namespace OpenCafe\Tools;
 
 /************************************************************
  * Convert Calendars types together
@@ -110,17 +110,17 @@ public function jalaliToGregorian( $date_time ) {
 
   $this->date_time = $date_time;
 
-  $this->year = $this->date_time->format('Y');
+  $this->year = $this->date_time->format( 'Y' );
 
-  $this->month = $this->date_time->format('m');
+  $this->month = $this->date_time->format( 'm' );
 
-  $this->day = $this->date_time->format('d');
+  $this->day = $this->date_time->format( 'd' );
 
   $days_of_year = 0;
 
-  foreach ( $this->config['month_days_number'] as $month => $value ) {
+  foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
 
-    if( $this->month > $month ) $days_of_year += $value;
+    if ( $this->month > $month ) $days_of_year += $value;
 
   }
 
@@ -150,7 +150,7 @@ public function jalaliToGregorian( $date_time ) {
 
     $this->config = include( 'Gregorian.php' );
 
-    foreach ($this->config['month_days_number'] as $month => $value) {
+    foreach ($this->config[ 'month_days_number' ] as $month => $value) {
 
       if ( $gregorian_month < $value ) break;
 
@@ -197,7 +197,7 @@ public function jalaliToHijri( $date_time ) {
 
      $this->leap = new Leap( $this->year );
 
-    if( $this->leap->get() && $this->month > 11 ) $this->temp_day++;
+    if ( $this->leap->get() && $this->month > 11 ) $this->temp_day++;
 
     $_year = ( ( ( ( ( $this->year - 1 ) * 365.2422 ) + $this->temp_day ) - 119) / 354.3670 ) + 1;
 
@@ -260,19 +260,19 @@ public function hijriToJalali( $date_time ) {
 
   $this->date_time = $date_time;
 
-  $this->year = $this->date_time->format('Y');
+  $this->year = $this->date_time->format( 'Y' );
 
-  $this->month = $this->date_time->format('m');
+  $this->month = $this->date_time->format( 'm' );
 
-  $this->day = $this->date_time->format('d');
+  $this->day = $this->date_time->format( 'd' );
 
   $days_of_year = 0;
 
   $this->config = include( 'Hijri.php' );
 
-  foreach ( $this->config['month_days_number'] as $month => $value ) {
+  foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
 
-    if( $this->month > $month ) $days_of_year += $value;
+    if ( $this->month > $month ) $days_of_year += $value;
 
   }
 
@@ -292,7 +292,7 @@ public function hijriToJalali( $date_time ) {
 
   $this->config = include( 'Jalali.php' );
 
-  foreach ($this->config['month_days_number'] as $month => $value) {
+  foreach ($this->config[ 'month_days_number' ] as $month => $value) {
 
     if ( $jalali_month < $value ) break;
 
@@ -318,19 +318,19 @@ public function hijriToJalali( $date_time ) {
 
     $this->date_time = $date_time;
 
-    $this->year = $this->date_time->format('Y');
+    $this->year = $this->date_time->format( 'Y' );
 
-    $this->month = $this->date_time->format('m');
+    $this->month = $this->date_time->format( 'm' );
 
-    $this->day = $this->date_time->format('d');
+    $this->day = $this->date_time->format( 'd' );
 
     $days_of_year = 0;
 
     $this->config = include( 'Hijri.php' );
 
-    foreach ( $this->config['month_days_number'] as $month => $value ) {
+    foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
 
-      if( $this->month > $month ) $days_of_year += $value;
+      if ( $this->month > $month ) $days_of_year += $value;
 
     }
 
@@ -350,7 +350,7 @@ public function hijriToJalali( $date_time ) {
 
     $this->config = include( 'Gregorian.php' );
 
-    foreach ($this->config['month_days_number'] as $month => $value) {
+    foreach ($this->config[ 'month_days_number' ] as $month => $value) {
 
       if ( $gregorian_month < $value ) break;
 

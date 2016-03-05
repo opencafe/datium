@@ -1,4 +1,4 @@
-<?php namespace Datium\Tools;
+<?php namespace OpenCafe\Tools;
 
 /**
  * @since Aug, 21 2015

@@ -1,4 +1,4 @@
-<?php namespace Datium\Tools;
+<?php namespace OpenCafe\Tools;
 
 /************************************************************
  * Lang class tranlate every expresion according to lang
@@ -40,12 +40,12 @@ class Lang {
       /**
        * Fetch translated file to config attribute
        */
-       self::$config = include('src/CalendarSettings/Jalali.php');
+       self::$config = include( 'src/CalendarSettings/Jalali.php' );
 
        /**
         * Fetch translated expression to langTable attribute
         */
-       self::$langTable = include('lang/' . $language . '/general.php');
+       self::$langTable = include( 'lang/' . $language . '/general.php' );
 
        foreach( self::$langTable as $key => $translate ){
 

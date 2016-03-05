@@ -1,7 +1,7 @@
 <?php
 
-use Datium\Datium as Datium;
-use Datium\Tools\Leap as Leap;
+use OpenCafe\Datium as Datium;
+use OpenCafe\Tools\Leap as Leap;
 
 return array (
 
@@ -43,7 +43,7 @@ return array (
 
          for ( $i = 1 ; $i < $month ; $i++ ) {
 
-           $temp_day += $config['month_days_number'][$i];
+           $temp_day += $config[ 'month_days_number' ][ $i ];
 
          }
 
@@ -51,11 +51,11 @@ return array (
 
          $leap = new Leap( $year );
 
-         if( $leap->get() && $month > 2 ) $temp_day++;
+         if ( $leap->get() && $month > 2 ) $temp_day++;
 
          if ( $temp_day <= 79 ) {
 
-          if( ( $year - 1 ) % 4 == 0 )
+          if ( ( $year - 1 ) % 4 == 0 )
 
             $temp_day = $temp_day + 11;
 
@@ -65,7 +65,7 @@ return array (
 
           $year = $year - 622;
 
-          if($temp_day % 30 == 0) {
+          if ($temp_day % 30 == 0) {
 
             $month = ( $temp_day / 30 ) + 9;
 
@@ -89,9 +89,9 @@ return array (
 
           $temp_day = $temp_day - 79;
 
-          if( $temp_day <= 186 ) {
+          if ( $temp_day <= 186 ) {
 
-            if( $temp_day % 31 == 0 ) {
+            if ( $temp_day % 31 == 0 ) {
 
               $month = ( $temp_day / 31 );
 
@@ -111,7 +111,7 @@ return array (
 
             $temp_day = $temp_day - 186;
 
-            if( $temp_day % 30 == 0 ) {
+            if ( $temp_day % 30 == 0 ) {
 
             $month = ( $temp_day / 30 ) + 6;
 
@@ -149,17 +149,17 @@ return array (
 
     $config = include( 'Jalali.php' );
 
-    $year = $date_time->format('Y');
+    $year = $date_time->format( 'Y' );
 
-    $month = $date_time->format('m');
+    $month = $date_time->format( 'm' );
 
-    $day = $date_time->format('d');
+    $day = $date_time->format( 'd' );
 
     $days_of_year = 0;
 
-    foreach ( $config['month_days_number'] as $mon => $value ) {
+    foreach ( $config[ 'month_days_number' ] as $mon => $value ) {
 
-      if( $month > $mon ) $days_of_year += $value;
+      if ( $month > $mon ) $days_of_year += $value;
 
     }
 
@@ -189,7 +189,7 @@ return array (
 
     $config = include( 'Gregorian.php' );
 
-    foreach ( $config['month_days_number'] as $month => $value ) {
+    foreach ( $config[ 'month_days_number' ] as $month => $value ) {
 
       if ( $gregorian_month < $value ) break;
 
@@ -305,11 +305,11 @@ return array (
 
     $config = include( 'Jalali.php' );
 
-    $month = $date_time->format('n');
+    $month = $date_time->format( 'n' );
 
-    $day = $date_time->format('d');
+    $day = $date_time->format( 'd' );
 
-    foreach( $config['month_days_number'] as $_month => $value ) {
+    foreach( $config[ 'month_days_number' ] as $_month => $value ) {
 
       if ( $_month < $month ) $result += $value;
 
@@ -337,13 +337,13 @@ return array (
 
         $configGregorian = include( 'Gregorian.php' );
 
-        $day = $date_time->format('l');
+        $day = $date_time->format( 'l' );
 
-        $day = str_replace( $configGregorian['days_of_week'],$configShamsi['days_of_week'], $day );
+        $day = str_replace( $configGregorian[ 'days_of_week' ], $configShamsi[ 'days_of_week' ], $day );
 
         foreach ( $days as $key => $value ) {
 
-          if( $day == $value ) {
+          if ( $day == $value ) {
 
               return $key;
           }

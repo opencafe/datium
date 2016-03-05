@@ -1,6 +1,6 @@
 <?php
 
-use OpenCafe\Datium;
+use OpenCafe\Datium as Datium;
 
 class DatiumTest extends PHPUnit_Framework_TestCase {
 

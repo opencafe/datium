@@ -8,8 +8,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Datium\\": [ "src/", "src/Events/" ],
-            "Datium\\Tools\\": "src/"
+            "OpenCafe\\": [ "src/", "src/Events/" ],
+            "OpenCafe\\Tools\\": "src/"
         }
     }
 }

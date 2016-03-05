@@ -1,6 +1,6 @@
 ``<?php
 
- use Datium\Datium as Datium;
+ use OpenCafe\Datium as Datium;
 
  return array (
 

@@ -1,6 +1,6 @@
 <?php
 
-use Datium\Datium;
+use OpenCafe\Datium as Datium;
 
 class ConvertTest extends PHPUnit_Framework_TestCase {
 

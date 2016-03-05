@@ -1,5 +1,8 @@
 <?php
 
+use OpenCafe\Datium as Datium;
+use OpenCafe\Tools\Leap as Leap;
+
  return array (
 
  /************************************************************
@@ -14,7 +17,7 @@
 
      $config = include( 'Jalali.php' );
 
-     $date_time = Datium\Datium::create( $date_time )->to( 'jalali' )->object();
+     $date_time = Datium::create( $date_time )->to( 'jalali' )->object();
 
      $year = $date_time->format('Y');
 
@@ -32,7 +35,7 @@
 
       $temp_day += $day;
 
-      $leap = new Datium\Tools\Leap( $year );
+      $leap = new Leap( $year );
 
      if( $leap->get() && $month > 11 ) $temp_day++;
 

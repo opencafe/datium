@@ -3,7 +3,7 @@ use OpenCafe\Datium as Datium;
 use Datium\Tools\Convert as Covnert;
 try{
 require_once( 'vendor/autoload.php' );
-var_dump( "-----------------------[ Test Start ]-------------------------\n\r" );
+var_dump( "-----------------------[ Test Start ]-------------------------<br/>" );
 // echo '<br>this year:<br>';
 // var_dump( Datium::create( 2016, 1, 25, 12, 0, 0 )->to( 'hijri' )->lang( 'ar' )->get('l jS F Y h:i:s A'), "\n\r" );
 // var_dump( Datium::now()->to( 'jalali' )->get('l jS F Y h:i:s A'), "\n\r"  );
@@ -12,7 +12,7 @@ var_dump( "-----------------------[ Test Start ]-------------------------\n\r" )
 // echo 'Is next year leap? ';
 // var_dump( Datium::now()->add('1 year')->leap()->get(), "\n\r"  );
 echo "Day of Year in gregorian:";
-var_dump( Datium::now()->dayOf()->year() , "\n\r" );
+var_dump( Datium::now()->dayOf()->year() , "<br/>" );
 // echo "Day of Year in jalali:";
 // var_dump( Datium::now()->to('jalali')->dayOf()->year(), "\n\r"  );
 // echo "Day of Year in hijri:";
@@ -38,7 +38,7 @@ var_dump( Datium::now()->dayOf()->year() , "\n\r" );
 // var_dump( Datium::now()->events()->local( 'ir' )->get() );
 // echo 'Persian calendar:';
 // var_dump( Datium::now()->lang('fa')->get( 'l jS F Y h:i:s A' ) );
-var_dump( "-----------------------[ Test End ]-------------------------\n\r" );
+var_dump( "-----------------------[ Test End ]-------------------------<br/>" );
 } catch (Exception $e ) {
   var_dump( $e );
 }

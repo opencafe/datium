@@ -2,10 +2,10 @@
 
 use DateTime;
 use DateInterval;
-use Datium\Tools\Convert;
-use Datium\Tools\Leap;
-use Datium\Tools\DayOf;
-use Datium\Tools\Lang;
+use OpenCafe\Tools\Convert;
+use OpenCafe\Tools\Leap;
+use OpenCafe\Tools\DayOf;
+use OpenCafe\Tools\Lang;
 
 /**
  *
@@ -78,11 +78,11 @@ class Datium {
 
     $this->translate_to = 'gregorian';
 
-    $this->config = include('Config.php');
+    $this->config = include( 'Config.php' );
 
     $this->calendar_type = $this->config[ 'default_calendar' ];
 
-    date_default_timezone_set( $this->config['timezone'] );
+    date_default_timezone_set( $this->config[ 'timezone' ] );
 
     $this->calendar_type = 'gregorian';
 
@@ -92,7 +92,7 @@ class Datium {
 
         $this->date_time = new DateTime( 'now' );
 
-        $this->gregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format( 'w' );
 
         break;
 
@@ -100,11 +100,11 @@ class Datium {
 
         $this->date_time = new DateTime( 'now' );
 
-        $this->date_time->setDate( self::$array_date['year'], self::$array_date['month'], self::$array_date['day'] );
+        $this->date_time->setDate( self::$array_date[ 'year' ], self::$array_date[ 'month' ], self::$array_date[ 'day' ] );
 
-        $this->date_time->setTime( self::$array_date['hour'], self::$array_date['minute'], self::$array_date['second'] );
+        $this->date_time->setTime( self::$array_date[ 'hour' ], self::$array_date[ 'minute' ], self::$array_date[ 'second' ] );
 
-        $this->gregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format( 'w' );
 
         break;
 
@@ -112,7 +112,7 @@ class Datium {
 
         $this->date_time = Datium::$static_date_time;
 
-        $this->gregorian_DayofWeek = $this->date_time->format('w');
+        $this->gregorian_DayofWeek = $this->date_time->format( 'w' );
 
     }
 
@@ -129,7 +129,7 @@ class Datium {
    */
   public function all() {
 
-    return (object) array(
+    return ( object ) array(
 
       'second' => $this->date_time->format( 's' ),
 
@@ -177,7 +177,7 @@ class Datium {
        */
       if( func_num_args() === 1 ) {
 
-        self::$static_date_time = func_get_arg(0);
+        self::$static_date_time = func_get_arg( 0 );
 
         self::$call_type = 'set';
 
@@ -262,7 +262,7 @@ class Datium {
    */
   public function add( $value ) {
 
-    $this->date_interval_expression = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
+    $this->date_interval_expression = str_replace( $this->config[ 'date_simple' ], $this->config[ 'date_interval' ], $value );
 
     $this->date_interval_expression = str_replace( ' ', '', 'P' . $this->date_interval_expression );
 
@@ -279,7 +279,7 @@ class Datium {
    */
   public function sub( $value ) {
 
-    $this->date_interval_expression = str_replace( $this->config['date_simple'], $this->config['date_interval'], $value );
+    $this->date_interval_expression = str_replace( $this->config[ 'date_simple' ], $this->config[ 'date_interval' ], $value );
 
     $this->date_interval_expression = str_replace( ' ', '', 'P' . $this->date_interval_expression );
 
@@ -293,7 +293,7 @@ class Datium {
    * Check if current year is leap or not
    * @return boolean
    */
-  public function leap( $type = 'gregorian') {
+  public function leap( $type = 'gregorian' ) {
 
     $this->leap = new Leap( $this->date_time->format( 'Y' ), $type );
 
@@ -368,9 +368,9 @@ class Datium {
    */
   public function get( $format = 'Y-m-d H:i:s' ) {
 
-    $this->translate_from_file = include( 'Lang/en/general.php' );
-
-    $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
+    // $this->translate_from_file = include( 'Lang/en/general.php' );
+    //
+    // $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
 
     if ( is_null( $this->fromConfig ) ) {
 
@@ -389,25 +389,25 @@ class Datium {
 
       if ( $this->translate_to != 'gregorian' ) {
 
-      $string_date = str_replace( $this->fromConfig['month'], $this->toConfig['month'],  $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'month' ], $this->toConfig[ 'month' ],  $string_date );
 
-      $string_date = str_replace( $this->fromConfig['days_of_week'], $this->toConfig['days_of_week'][$this->gregorian_DayofWeek], $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'days_of_week' ], $this->toConfig[ 'days_of_week' ][ $this->gregorian_DayofWeek ], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['numbers'], $this->toConfig['numbers'], $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'numbers' ], $this->toConfig[ 'numbers' ], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['am_time'], $this->toConfig['am_time'], $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'am_time' ], $this->toConfig[ 'am_time' ], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['pm_time'], $this->toConfig['pm_time'], $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'pm_time' ], $this->toConfig[ 'pm_time' ], $string_date );
 
-      $string_date = str_replace( $this->fromConfig['end_of_days'], $this->toConfig['end_of_days'], $string_date );
-
-    }
-
-    foreach( $this->translate_to_file as $key => $value ) {
-
-      $string_date = str_replace( $this->translate_from_file[ $key ], $this->translate_to_file[ $key ], $string_date );
+      $string_date = str_replace( $this->fromConfig[ 'end_of_days' ], $this->toConfig[ 'end_of_days' ], $string_date );
 
     }
+
+    // foreach( $this->translate_to_file as $key => $value ) {
+    //
+    //   $string_date = str_replace( $this->translate_from_file[ $key ], $this->translate_to_file[ $key ], $string_date );
+    //
+    // }
 
     return $string_date;
 

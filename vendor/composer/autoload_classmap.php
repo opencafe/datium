@@ -6,11 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Datium\\Datium' => $baseDir . '/src/Datium.php',
-    'Datium\\Events' => $baseDir . '/src/Events/Events.php',
-    'Datium\\Face\\iEvents' => $baseDir . '/src/Events/iEvents.php',
-    'Datium\\Tools\\Convert' => $baseDir . '/src/Convert.php',
-    'Datium\\Tools\\DayOf' => $baseDir . '/src/DayOf.php',
-    'Datium\\Tools\\Lang' => $baseDir . '/src/Lang.php',
-    'Datium\\Tools\\Leap' => $baseDir . '/src/Leap.php',
+    'OpenCafe\\Datium' => $baseDir . '/src/Datium.php',
+    'OpenCafe\\Events' => $baseDir . '/src/Events/Events.php',
+    'OpenCafe\\Face\\iEvents' => $baseDir . '/src/Events/iEvents.php',
+    'OpenCafe\\Tools\\Convert' => $baseDir . '/src/Convert.php',
+    'OpenCafe\\Tools\\DayOf' => $baseDir . '/src/DayOf.php',
+    'OpenCafe\\Tools\\Lang' => $baseDir . '/src/Lang.php',
+    'OpenCafe\\Tools\\Leap' => $baseDir . '/src/Leap.php',
 );

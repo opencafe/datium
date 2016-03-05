@@ -1,6 +1,6 @@
 <?php
 
-use Datium\Datium;
+use OpenCafe\Datium as Datium;
 
 class EventsTest extends PHPUnit_Framework_TestCase {
 
