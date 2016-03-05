@@ -1,6 +1,6 @@
 <?php
 
-use Datium\Datium;
+use OpenCafe\Datium as Datium;
 
 class DayOfTest extends PHPUnit_Framework_TestCase {
 
@@ -21,9 +21,9 @@ class DayOfTest extends PHPUnit_Framework_TestCase {
     // First january of 2015 is Thursday
     $this->assertEquals( 4, Datium::create( 2015, 1, 1 )->dayOf()->week() );
 
-    $this->assertEquals( 3, Datium::create( 2015, 1, 1 )->to('hijri')->dayOf()->week() );
+    $this->assertEquals( 3, Datium::create( 2015, 1, 1 )->to( 'hijri' )->dayOf()->week() );
 
-    $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->to('jalali')->dayOf()->week() );
+    $this->assertEquals( 6, Datium::create( 2015, 1, 1 )->to( 'jalali' )->dayOf()->week() );
 
   }
 
