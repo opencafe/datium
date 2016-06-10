@@ -10,6 +10,7 @@ return array(
     /**
      * International days should typed as a Gregorian calendar dates and set as
      * as a arraye value, data provided by united nations website
+     *
      * @link http://www.un.org/en/sections/observances/international-days/
      */
     'events' => array(

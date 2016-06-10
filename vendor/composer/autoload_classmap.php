@@ -7,8 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'OpenCafe\\Datium' => $baseDir . '/src/Datium.php',
-    'OpenCafe\\Events' => $baseDir . '/src/Events/Events.php',
-    'OpenCafe\\Face\\iEvents' => $baseDir . '/src/Events/iEvents.php',
     'OpenCafe\\Tools\\Convert' => $baseDir . '/src/Convert.php',
     'OpenCafe\\Tools\\DayOf' => $baseDir . '/src/DayOf.php',
     'OpenCafe\\Tools\\Lang' => $baseDir . '/src/Lang.php',

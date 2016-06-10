@@ -22,13 +22,13 @@
   *
   *\_________________________________________________________/
   */
-   'convert_to' => function( $date_time ) {
+   'convert_to' => function ( $date_time ) {
 
      return null;
 
    },
 
-   /************************************************************
+    /************************************************************
     *                        Convert From
     ************************************************************
     *
@@ -36,13 +36,13 @@
     *
     *\_________________________________________________________/
     */
-   'convert_from' => function( $date_time ) {
+    'convert_from' => function ( $date_time ) {
 
-     return null;
+        return null;
 
-   },
+    },
 
-   /************************************************************
+    /************************************************************
     *               Shorthand for jalali calendar
     ************************************************************
     *
@@ -50,9 +50,9 @@
     *
     *\_________________________________________________________/
     */
-   'shorthand' => 'gr',
+    'shorthand' => 'gr',
 
-   /************************************************************
+    /************************************************************
     *                        Month's name
     ************************************************************
     *
@@ -88,7 +88,7 @@
 
      ),
 
-   /************************************************************
+    /************************************************************
     *                        Days of Week
     ************************************************************
     *
@@ -97,7 +97,7 @@
     *
     *\_________________________________________________________/
     */
-   'days_of_week' => array (
+    'days_of_week' => array (
 
        'Monday',
        'Tuesday',
@@ -106,10 +106,10 @@
        'Friday',
        'Saturday',
        'Sunday',
-   ),
+    ),
 
 
-   'month_days_number' => array(   1 => 31,
+    'month_days_number' => array(   1 => 31,
                                    2 => 28,
                                    3 => 31,
                                    4 => 30,
@@ -123,45 +123,47 @@
                                    12 => 30 ),
 
 
-   'day_of_year' => function( $date_time ) {
+    'day_of_year' => function ( $date_time ) {
 
-     $result = null;
+        $result = null;
 
-     $_month = null;
+        $_month = null;
 
-     $config = include( 'Gregorian.php' );
+        $config = include 'Gregorian.php';
 
-     $month = $date_time->format('n');
+        $month = $date_time->format('n');
 
-     $day = $date_time->format('d');
+        $day = $date_time->format('d');
 
-     foreach( $config['month_days_number'] as $_month => $value ) {
+        foreach( $config['month_days_number'] as $_month => $value ) {
 
-       if ( $_month < $month ) $result += $value;
+            if ($_month < $month ) { $result += $value; 
+            }
 
-     }
+        }
 
-     $result += $day;
+        $result += $day;
 
-     return $result;
+        return $result;
 
-   },
+    },
 
-  'day_of_week' => function( $date_time ) {
+    'day_of_week' => function ( $date_time ) {
 
-    $config = include( 'Gregorian.php' );
+        $config = include 'Gregorian.php';
 
-    $day = $date_time->format('l');
+        $day = $date_time->format('l');
 
-    foreach ($config['days_of_week'] as $key => $value) {
+        foreach ($config['days_of_week'] as $key => $value) {
 
-      if ( $value == $day ) return $key += 1;
+            if ($value == $day ) { return $key += 1; 
+            }
 
-    }
+        }
 
-   },
+    },
 
-   /************************************************************
+    /************************************************************
     *                       Leap year
     ************************************************************
     *
@@ -169,9 +171,9 @@
     *
     *\_________________________________________________________/
     */
-   'leap_year' => null,
+    'leap_year' => null,
 
-   /************************************************************
+    /************************************************************
     *                        Weekend
     ************************************************************
     *
@@ -179,6 +181,6 @@
     *
     *\_________________________________________________________/
     */
-   'weekend' => array( 'saturday', 'sunday' ),
+    'weekend' => array( 'saturday', 'sunday' ),
 
   );

@@ -1,12 +1,13 @@
 <?php namespace Datium\Face;
 
-interface iEvents {
+interface iEvents
+{
 
-  public function validate();
+    public function validate();
 
-  public function next();
+    public function next();
 
-  public function last();
+    public function last();
 
 }
 ?>

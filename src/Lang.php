@@ -9,16 +9,19 @@
  *
  *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
  */
-class Lang {
+class Lang
+{
 
     /**
      * Store language table
+     *
      * @var array
      */
     protected static $langTable;
 
     /**
      * Language translated words
+     *
      * @var array
      */
     protected static $config;
@@ -35,37 +38,39 @@ class Lang {
      *
      *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
      */
-    public static function setConfig( $language ) {
+    public static function setConfig( $language ) 
+    {
 
-      /**
+        /**
        * Fetch translated file to config attribute
        */
-       self::$config = include( 'src/CalendarSettings/Jalali.php' );
+        self::$config = include 'src/CalendarSettings/Jalali.php';
 
-       /**
+        /**
         * Fetch translated expression to langTable attribute
         */
-       self::$langTable = include( 'lang/' . $language . '/general.php' );
+        self::$langTable = include 'lang/' . $language . '/general.php';
 
-       foreach( self::$langTable as $key => $translate ){
+        foreach( self::$langTable as $key => $translate ){
 
-         if ( isset( self::$config[ $key ] ) ) {
+            if (isset(self::$config[ $key ]) ) {
 
-           if ( self::$config[ $key ] ) {
+                if (self::$config[ $key ] ) {
 
-             self::$config[ $key ] = $translate;
+                    self::$config[ $key ] = $translate;
 
-           }
+                }
 
-         }
+            }
 
-       }
+        }
 
     }
 
-    public static function getConfig() {
+    public static function getConfig() 
+    {
 
-      return self::$config;
+        return self::$config;
 
     }
 
