@@ -75,7 +75,7 @@ class Datium
 
     protected $translate;
 
-    protected $geregorian_DayofWeek;
+    protected $gregorian_DayofWeek;
 
     protected $convert_calendar;
 

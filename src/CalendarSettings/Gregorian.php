@@ -1,8 +1,8 @@
-``<?php
+<?php
 
  use OpenCafe\Datium as Datium;
 
- return array (
+ return [
 
  'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
 
@@ -137,7 +137,7 @@
 
         foreach( $config['month_days_number'] as $_month => $value ) {
 
-            if ($_month < $month ) { $result += $value; 
+            if ($_month < $month ) { $result += $value;
             }
 
         }
@@ -156,7 +156,7 @@
 
         foreach ($config['days_of_week'] as $key => $value) {
 
-            if ($value == $day ) { return $key += 1; 
+            if ($value == $day ) { return $key += 1;
             }
 
         }
@@ -183,4 +183,4 @@
     */
     'weekend' => array( 'saturday', 'sunday' ),
 
-  );
+  ];
