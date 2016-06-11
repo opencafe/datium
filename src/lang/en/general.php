@@ -37,5 +37,3 @@
         'Shanbe' => 'Shanbe',
         'Tir' => 'Tir'
   ];
-
-?>

@@ -1,7 +1,8 @@
 <?php
 use OpenCafe\Datium as Datium;
 use OpenCafe\Tools\Convert as Covnert;
-try{
+
+try {
     include_once 'vendor/autoload.php';
     var_dump("-----------------------[ Test Start ]-------------------------<br/>");
     // echo '<br>this year:<br>';
@@ -39,6 +40,6 @@ try{
     // echo 'Persian calendar:';
     // var_dump( Datium::now()->lang('fa')->get( 'l jS F Y h:i:s A' ) );
     var_dump("-----------------------[ Test End ]-------------------------<br/>");
-} catch (Exception $e ) {
+} catch (Exception $e) {
     var_dump($e);
 }

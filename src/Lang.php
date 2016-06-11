@@ -38,7 +38,7 @@ class Lang
      *
      *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
      */
-    public static function setConfig( $language ) 
+    public static function setConfig($language)
     {
 
         /**
@@ -51,27 +51,20 @@ class Lang
         */
         self::$langTable = include 'lang/' . $language . '/general.php';
 
-        foreach( self::$langTable as $key => $translate ){
-
-            if (isset(self::$config[ $key ]) ) {
-
-                if (self::$config[ $key ] ) {
-
+        foreach (self::$langTable as $key => $translate) {
+            if (isset(self::$config[ $key ])) {
+                if (self::$config[ $key ]) {
                     self::$config[ $key ] = $translate;
-
                 }
-
             }
-
         }
 
     }
 
-    public static function getConfig() 
+    public static function getConfig()
     {
 
         return self::$config;
 
     }
-
 }

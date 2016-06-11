@@ -22,7 +22,7 @@
   *
   *\_________________________________________________________/
   */
-   'convert_to' => function ( $date_time ) {
+   'convert_to' => function ($date_time) {
 
      return null;
 
@@ -36,7 +36,7 @@
     *
     *\_________________________________________________________/
     */
-    'convert_from' => function ( $date_time ) {
+    'convert_from' => function ($date_time) {
 
         return null;
 
@@ -123,7 +123,7 @@
                                    12 => 30 ),
 
 
-    'day_of_year' => function ( $date_time ) {
+    'day_of_year' => function ($date_time) {
 
         $result = null;
 
@@ -135,11 +135,10 @@
 
         $day = $date_time->format('d');
 
-        foreach( $config['month_days_number'] as $_month => $value ) {
-
-            if ($_month < $month ) { $result += $value;
+        foreach ($config['month_days_number'] as $_month => $value) {
+            if ($_month < $month) {
+                $result += $value;
             }
-
         }
 
         $result += $day;
@@ -148,17 +147,16 @@
 
     },
 
-    'day_of_week' => function ( $date_time ) {
+    'day_of_week' => function ($date_time) {
 
         $config = include 'Gregorian.php';
 
         $day = $date_time->format('l');
 
         foreach ($config['days_of_week'] as $key => $value) {
-
-            if ($value == $day ) { return $key += 1;
+            if ($value == $day) {
+                return $key += 1;
             }
-
         }
 
     },

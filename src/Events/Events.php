@@ -27,19 +27,15 @@ class Events
 
     private static $date_end;
 
-    public function __construct( $date_time, $date_end = null ) 
+    public function __construct($date_time, $date_end = null)
     {
 
-        if($date_end !== null ) {
-
+        if ($date_end !== null) {
             Events::$date_start = $date_time;
 
             Events::$date_end = $date_end;
-
         } else {
-
             Events::$date_start = $date_time;
-
         }
 
         $this->convert = new Convert;
@@ -58,7 +54,7 @@ class Events
     *
     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
     */
-    private function fetch( $path ) 
+    private function fetch($path)
     {
 
         $this->events = include $path;
@@ -67,14 +63,10 @@ class Events
 
         $this->period = new DatePeriod(Events::$date_start, $this->interval, Events::$date_end);
 
-        foreach ( $this->period as $dt ) {
-
-            if (isset($this->events[ 'events' ][ intval($dt->format('m')) ][ intval($dt->format('d')) ]) ) {
-
+        foreach ($this->period as $dt) {
+            if (isset($this->events[ 'events' ][ intval($dt->format('m')) ][ intval($dt->format('d')) ])) {
                 $this->result[ $dt->format('Y-m-d') ][] = $this->events[ 'events' ][ intval($dt->format('m')) ][ intval($dt->format('d')) ];
-
             }
-
         }
 
     }
@@ -88,25 +80,17 @@ class Events
     *
     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
     */
-    public function get() 
+    public function get()
     {
 
-        if(! empty($this->result) ) {
-
-            foreach( $this->result as $key => $day ) {
-
-                if (! ( $key > Events::$date_start->format('Y-m-d') && $key < Events::$date_end->format('Y-m-d') ) ) {
-
+        if (! empty($this->result)) {
+            foreach ($this->result as $key => $day) {
+                if (! ( $key > Events::$date_start->format('Y-m-d') && $key < Events::$date_end->format('Y-m-d') )) {
                     unset($this->result[ $key ]);
-
                 }
-
             }
-
         } else {
-
             $this->result = array();
-
         }
 
         return $this->result;
@@ -122,7 +106,7 @@ class Events
     *
     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
     */
-    public function local( $country_code = "ir" ) 
+    public function local($country_code = "ir")
     {
 
         /*
@@ -133,36 +117,28 @@ class Events
 
         $this->local = include 'Localization/' . $country_code . '.php';
 
-        foreach( $this->local[ 'events' ] as $month => $events ) {
-
-            foreach( $events as $day => $event ){
-
+        foreach ($this->local[ 'events' ] as $month => $events) {
+            foreach ($events as $day => $event) {
                 $this->date_time = new DateTime();
 
                 $this->date_time->setDate(Events::$date_start->format('Y'), $month, $day);
 
-                switch ( $this->local[ 'default_calendar' ] ) {
+                switch ($this->local[ 'default_calendar' ]) {
+                    case 'jalali':
+                        $this->date_time->setDate(1394, $month, $day);
 
-                case 'jalali':
+                        $this->date_time = Datium::create($this->date_time)->from('jalali')->to('gregorian')->object(); //$this->convert->jalaliToGregorian( $this->date_time );
 
-                    $this->date_time->setDate(1394, $month, $day);
+                        break;
 
-                    $this->date_time = Datium::create($this->date_time)->from('jalali')->to('gregorian')->object(); //$this->convert->jalaliToGregorian( $this->date_time );
+                    case 'hijri':
+                        $this->date_time = Datium::create($this->date_time)->from('hijri')->to('gregorian')->object(); // $this->convert->hijriToGregorian( $this->date_time );
 
-                    break;
-
-                case 'hijri':
-
-                    $this->date_time = Datium::create($this->date_time)->from('hijri')->to('gregorian')->object(); // $this->convert->hijriToGregorian( $this->date_time );
-
-                    break;
-
+                        break;
                 }
 
                 $this->result[ $this->date_time->format('Y-m-d') ][] =  $event;
-
             }
-
         }
 
         ksort($this->result);
@@ -171,21 +147,21 @@ class Events
 
     }
 
-    public function weekend() 
+    public function weekend()
     {
 
         return 0;
 
     }
 
-    public function relagious() 
+    public function relagious()
     {
 
         return 0;
 
     }
 
-    public function international() 
+    public function international()
     {
 
         $this->fetch('Global/global.php');
@@ -193,5 +169,4 @@ class Events
         return $this;
 
     }
-
 }

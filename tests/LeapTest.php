@@ -5,7 +5,7 @@ use OpenCafe\Datium as Datium;
 class LeapTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testAssertLeapYear() 
+    public function testAssertLeapYear()
     {
 
         // 2012 is a leap year
@@ -39,5 +39,4 @@ class LeapTest extends PHPUnit_Framework_TestCase
         // $this->assertEquals( TRUE, Datium::create(2020, 3, 20, 0, 0, 0)->to('jalali')->leap('ir')->get() );
 
     }
-
 }

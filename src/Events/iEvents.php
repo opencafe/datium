@@ -8,6 +8,4 @@ interface iEvents
     public function next();
 
     public function last();
-
 }
-?>

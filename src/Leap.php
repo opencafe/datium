@@ -26,7 +26,7 @@ class Leap
    * @param $year integer
    * @since Aug, 21 2015
    */
-    public function __construct( $year, $type = 'gregorian' ) 
+    public function __construct($year, $type = 'gregorian')
     {
 
          $this->year = $year;
@@ -43,7 +43,7 @@ class Leap
    * @since  Oct, 24 2015
    * @return boolean
    */
-    public function gregorinLeapYear() 
+    public function gregorinLeapYear()
     {
 
         return ( ( ( $this->year % 4 ) == 0 ) && ( ( ( $this->year % 100 ) != 0 ) || ( ( $this->year % 400 ) == 0 ) ) );
@@ -56,15 +56,13 @@ class Leap
    * @since  Oct, 24 2015
    * @return boolean
    */
-    public function jalaliLeapYear() 
+    public function jalaliLeapYear()
     {
 
         $jalali_years = 0;
 
-        while ( $jalali_years < ( $this->year - 128 ) ) {
-
+        while ($jalali_years < ( $this->year - 128 )) {
             $jalali_years += 128;
-
         }
 
         //check for leap year after 5 years
@@ -72,16 +70,12 @@ class Leap
 
         $this->result -= $jalali_years;
 
-        if ($this->result >= 33 ) {
-
+        if ($this->result >= 33) {
             $this->result = $this->result % 33;
-
         }
 
-        if (( $this->result == 28 ) || ( $this->result == 27 ) ) {
-
+        if (( $this->result == 28 ) || ( $this->result == 27 )) {
             return $this->result;
-
         }
 
         //check for leap year after 4 years
@@ -89,16 +83,12 @@ class Leap
 
         $this->result -= $jalali_years;
 
-        if ($this->result >= 33 ) {
-
+        if ($this->result >= 33) {
             $this->result = $this->result % 33;
-
         }
 
-        if (( ( $this->result % 4 ) == 0 ) && ( $this->result != 28 ) ) {
-
+        if (( ( $this->result % 4 ) == 0 ) && ( $this->result != 28 )) {
             return $this->result;
-
         }
     }
 
@@ -108,15 +98,13 @@ class Leap
    * @since  Oct, 24 2015
    * @return boolean
    */
-    public function hijriLeapYear() 
+    public function hijriLeapYear()
     {
 
         $this->result = $this->year % 30;
 
-        if (( 2 == $this->result ) || ( 5 == $this->result ) || ( 7 == $this->result ) || ( 10 == $this->result ) || ( 13 == $this->result ) || ( 16 == $this->result ) || ( 18 == $this->result ) || ( 21 == $this->result ) || ( 24 == $this->year ) || ( 26 == $this->result ) || ( 29 == $this->result ) ) {
-
+        if (( 2 == $this->result ) || ( 5 == $this->result ) || ( 7 == $this->result ) || ( 10 == $this->result ) || ( 13 == $this->result ) || ( 16 == $this->result ) || ( 18 == $this->result ) || ( 21 == $this->result ) || ( 24 == $this->year ) || ( 26 == $this->result ) || ( 29 == $this->result )) {
             return $this->result;
-
         }
 
     }
@@ -127,32 +115,27 @@ class Leap
    * @since  Aug, 21 2015
    * @return boolean
    */
-    public function get() 
+    public function get()
     {
 
-        switch ( $this->type ) {
+        switch ($this->type) {
+            case 'gregorian':
+                $this->result = $this->gregorinLeapYear();
 
-        case 'gregorian':
+                break;
 
-            $this->result = $this->gregorinLeapYear();
+            case 'jalali':
+                $this->result = $this->jalaliLeapYear();
 
-            break;
+                break;
 
-        case 'jalali':
+            case 'hijri':
+                $this->result = $this->hijriLeapYear();
 
-            $this->result = $this->jalaliLeapYear();
-
-            break;
-
-        case 'hijri':
-
-            $this->result = $this->hijriLeapYear();
-
-            break;
+                break;
         }
 
         return $this->result;
 
     }
-
 }

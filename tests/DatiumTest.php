@@ -5,7 +5,7 @@ use OpenCafe\Datium as Datium;
 class DatiumTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testCreateDateTime() 
+    public function testCreateDateTime()
     {
 
         date_default_timezone_set('Asia/Tehran');
@@ -16,11 +16,11 @@ class DatiumTest extends PHPUnit_Framework_TestCase
 
         $current_date_time->setTime(0, 0, 0);
 
-        $this->assertEquals($current_date_time->format('Y-m-d H:i:s'),  Datium::create(2015, 1, 1)->get());
+        $this->assertEquals($current_date_time->format('Y-m-d H:i:s'), Datium::create(2015, 1, 1)->get());
 
     }
 
-    public function testDateDifference() 
+    public function testDateDifference()
     {
 
         $diff = Datium::diff(Datium::now()->object(), Datium::now()->add('5 day')->object());
@@ -37,7 +37,7 @@ class DatiumTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function testJalaliCalendar() 
+    public function testJalaliCalendar()
     {
 
         $jalali =  Datium::create(2016, 6, 25, 12, 0, 0)->to('jalali')->lang('fa')->get('l jS F Y h:i:s A');
@@ -46,7 +46,7 @@ class DatiumTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function testHijriCalendar() 
+    public function testHijriCalendar()
     {
 
         $hijri =  Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
@@ -55,7 +55,7 @@ class DatiumTest extends PHPUnit_Framework_TestCase
 
     }
 
-    public function testGregorianCalendar() 
+    public function testGregorianCalendar()
     {
 
         $gregorian =  Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
@@ -63,6 +63,4 @@ class DatiumTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Saturday 25th June 2016 12:00:00 PM', $gregorian);
 
     }
-
-
 }

@@ -28,6 +28,4 @@ class EventsTest extends PHPUnit_Framework_TestCase
     //     $this->assertEquals( Datium::between( Datium::now()->object() , Datium::now()->add('2 month')->object() )->events()->international()->get() );
     //
     // }
-
 }
-?>

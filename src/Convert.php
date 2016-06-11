@@ -64,20 +64,18 @@ class Convert
     *
     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
     */
-    public function __construct( $date_time = null ) 
+    public function __construct($date_time = null)
     {
 
-        if ($date_time !== null ) {
-
+        if ($date_time !== null) {
             $this->date_time = $date_time;
-
         }
 
         $this->config = include 'Config.php';
 
     }
 
-    public function from( $calendar ) 
+    public function from($calendar)
     {
 
         $this->calendar_file = include 'CalendarSettings/' . ucfirst($calendar) . '.php';
@@ -94,7 +92,7 @@ class Convert
     *
     *\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
     */
-    public function to( $calendar ) 
+    public function to($calendar)
     {
 
         $this->calendar_file = include 'CalendarSettings/' . ucfirst($calendar) . '.php';
@@ -109,7 +107,7 @@ class Convert
    * @since  Oct, 16 2015
    * @return object
    */
-    public function jalaliToGregorian( $date_time ) 
+    public function jalaliToGregorian($date_time)
     {
 
           $this->config = include 'Jalali.php';
@@ -124,11 +122,10 @@ class Convert
 
           $days_of_year = 0;
 
-        foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
-
-            if ($this->month > $month ) { $days_of_year += $value; 
+        foreach ($this->config[ 'month_days_number' ] as $month => $value) {
+            if ($this->month > $month) {
+                $days_of_year += $value;
             }
-
         }
 
           $days_of_year += $this->day;
@@ -139,16 +136,10 @@ class Convert
 
           $days_of_gregorain_years = $days_of_jalali_years + 226899;
 
-        if ($this->month < 10 ) {
-
+        if ($this->month < 10) {
             $days_of_gregorain_years = $days_of_gregorain_years - intval(( ( $this->year + 621 ) / 4 ));
-
-        }
-
-        elseif (( ( 10 == $this->month ) && ( $this->day > 10 ) ) || ( $this->month > 10 ) ) {
-
+        } elseif (( ( 10 == $this->month ) && ( $this->day > 10 ) ) || ( $this->month > 10 )) {
             $days_of_gregorain_years = $days_of_gregorain_years - intval(( ( $this->year + 622 ) / 4 ));
-
         }
 
             $gregorian_month = ( $days_of_gregorain_years % 365 );
@@ -158,8 +149,8 @@ class Convert
             $this->config = include 'Gregorian.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
-
-            if ($gregorian_month < $value ) { break; 
+            if ($gregorian_month < $value) {
+                break;
             }
 
             $gregorian_month -= $value;
@@ -182,7 +173,7 @@ class Convert
    * @since  Oct, 17 2015
    * @return object
    */
-    public function jalaliToHijri( $date_time ) 
+    public function jalaliToHijri($date_time)
     {
 
         $this->date_time = $date_time;
@@ -197,17 +188,16 @@ class Convert
 
         $this->config = include 'Jalali.php';
 
-        for ( $i = 1 ; $i < $this->month ; $i++ ) {
-
+        for ($i = 1; $i < $this->month; $i++) {
             $this->temp_day += $this->config['month_days_number'][$i];
-
         }
 
          $this->temp_day += $this->day;
 
          $this->leap = new Leap($this->year);
 
-        if ($this->leap->get() && $this->month > 11 ) { $this->temp_day++; 
+        if ($this->leap->get() && $this->month > 11) {
+            $this->temp_day++;
         }
 
         $_year = ( ( ( ( ( $this->year - 1 ) * 365.2422 ) + $this->temp_day ) - 119) / 354.3670 ) + 1;
@@ -220,10 +210,8 @@ class Convert
 
          $var_temp = '0.0';
 
-        for ( $i = strlen($_month); $i > 2; $i-- ) {
-
+        for ($i = strlen($_month); $i > 2; $i--) {
             $var_temp .= '0';
-
         }
 
          $var_temp .= '1';
@@ -240,10 +228,8 @@ class Convert
 
         $var_temp = '0.0';
 
-        for ( $i = strlen($_day);  $i > 2;  $i-- ) {
-
+        for ($i = strlen($_day); $i > 2; $i--) {
             $var_temp .= '0' ;
-
         }
 
         $var_temp .= '1';
@@ -268,7 +254,7 @@ class Convert
    * @since  Oct, 17 2015
    * @return object
    */
-    public function hijriToJalali( $date_time ) 
+    public function hijriToJalali($date_time)
     {
 
           $this->date_time = $date_time;
@@ -283,11 +269,10 @@ class Convert
 
           $this->config = include 'Hijri.php';
 
-        foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
-
-            if ($this->month > $month ) { $days_of_year += $value; 
+        foreach ($this->config[ 'month_days_number' ] as $month => $value) {
+            if ($this->month > $month) {
+                $days_of_year += $value;
             }
-
         }
 
           $days_of_year += $this->day;
@@ -307,8 +292,8 @@ class Convert
           $this->config = include 'Jalali.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
-
-            if ($jalali_month < $value ) { break; 
+            if ($jalali_month < $value) {
+                break;
             }
 
               $jalali_month -= $value;
@@ -330,7 +315,7 @@ class Convert
     * @since  Oct, 17 2015
     * @return object
     */
-    public function hijriToGregorian( $date_time ) 
+    public function hijriToGregorian($date_time)
     {
 
         $this->date_time = $date_time;
@@ -345,11 +330,10 @@ class Convert
 
         $this->config = include 'Hijri.php';
 
-        foreach ( $this->config[ 'month_days_number' ] as $month => $value ) {
-
-            if ($this->month > $month ) { $days_of_year += $value; 
+        foreach ($this->config[ 'month_days_number' ] as $month => $value) {
+            if ($this->month > $month) {
+                $days_of_year += $value;
             }
-
         }
 
         $days_of_year += $this->day;
@@ -369,8 +353,8 @@ class Convert
         $this->config = include 'Gregorian.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
-
-            if ($gregorian_month < $value ) { break; 
+            if ($gregorian_month < $value) {
+                break;
             }
 
             $gregorian_month -= $value;
@@ -385,5 +369,4 @@ class Convert
          return $this->date_time;
 
     }
-
 }

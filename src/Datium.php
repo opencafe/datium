@@ -111,42 +111,37 @@ class Datium
 
         $this->calendar_type = 'gregorian';
 
-        switch( Datium::$call_type ) {
+        switch (Datium::$call_type) {
+            case 'now':
+                $this->date_time = new DateTime('now');
 
-        case 'now':
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-            $this->date_time = new DateTime('now');
+                break;
 
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
+            case 'make':
+                $this->date_time = new DateTime('now');
 
-            break;
+                $this->date_time->setDate(
+                    self::$array_date[ 'year' ],
+                    self::$array_date[ 'month' ],
+                    self::$array_date[ 'day' ]
+                );
 
-        case 'make':
+                $this->date_time->setTime(
+                    self::$array_date[ 'hour' ],
+                    self::$array_date[ 'minute' ],
+                    self::$array_date[ 'second' ]
+                );
 
-            $this->date_time = new DateTime('now');
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-            $this->date_time->setDate(
-                self::$array_date[ 'year' ],
-                self::$array_date[ 'month' ],
-                self::$array_date[ 'day' ]
-            );
+                break;
 
-            $this->date_time->setTime(
-                self::$array_date[ 'hour' ],
-                self::$array_date[ 'minute' ],
-                self::$array_date[ 'second' ]
-            );
+            case 'set':
+                $this->date_time = Datium::$static_date_time;
 
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
-
-            break;
-
-        case 'set':
-
-            $this->date_time = Datium::$static_date_time;
-
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
-
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
         }
 
         $this->convert_calendar = new Convert();
@@ -206,20 +201,17 @@ class Datium
    *
    * @return object
    */
-    public static function create( $year = 2000, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0 )
+    public static function create($year = 2000, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0)
     {
 
         /**
        * When we want to set a Datetime object to Datium
        */
-        if(func_num_args() === 1 ) {
-
+        if (func_num_args() === 1) {
             self::$static_date_time = func_get_arg(0);
 
             self::$call_type = 'set';
-
         } else {
-
             self::$array_date = array(
               'year' => $year,
               'month' => $month,
@@ -230,7 +222,6 @@ class Datium
             );
 
             self::$call_type = 'make';
-
         }
 
           return new Datium();
@@ -245,7 +236,7 @@ class Datium
     *
     * @return object
     */
-    public static function between( $date_start, $date_end )
+    public static function between($date_start, $date_end)
     {
 
         self::$date_start = $date_start;
@@ -265,7 +256,7 @@ class Datium
    *
    * @return $object
    */
-    public function from( $calendar )
+    public function from($calendar)
     {
 
         $this->convert = new Convert($this->date_time);
@@ -291,7 +282,7 @@ class Datium
     *
     * @return object
     */
-    public function to( $calendar )
+    public function to($calendar)
     {
 
         $this->convert = new Convert($this->date_time);
@@ -318,7 +309,7 @@ class Datium
    *
    * @return object
    */
-    public static function diff( $start, $end )
+    public static function diff($start, $end)
     {
 
         return date_diff($start, $end);
@@ -332,7 +323,7 @@ class Datium
    *
    * @return object
    */
-    public function add( $value )
+    public function add($value)
     {
 
         $this->date_interval_expression = str_replace(
@@ -362,7 +353,7 @@ class Datium
    *
    * @return obejct
    */
-    public function sub( $value )
+    public function sub($value)
     {
 
         $this->date_interval_expression = str_replace(
@@ -392,7 +383,7 @@ class Datium
    *
    * @return boolean
    */
-    public function leap( $type = 'gregorian' )
+    public function leap($type = 'gregorian')
     {
 
         $this->leap = new Leap($this->date_time->format('Y'), $type);
@@ -455,7 +446,7 @@ class Datium
     *
     * @return object
     */
-    public function lang( $language = 'fa' )
+    public function lang($language = 'fa')
     {
 
         $this->language = $language;
@@ -479,32 +470,27 @@ class Datium
    *
    * @return string
    */
-    public function get( $format = 'Y-m-d H:i:s' )
+    public function get($format = 'Y-m-d H:i:s')
     {
 
         // $this->translate_from_file = include( 'Lang/en/general.php' );
         //
         // $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
 
-        if (is_null($this->fromConfig) ) {
-
+        if (is_null($this->fromConfig)) {
             $this->fromConfig = include 'CalendarSettings/' .
                                 ucfirst($this->translate_from) . '.php';
-
         }
 
 
-        if (is_null($this->toConfig) ) {
-
+        if (is_null($this->toConfig)) {
             $this->toConfig = include 'CalendarSettings/' .
                                        ucfirst($this->translate_to) . '.php';
-
         }
 
         $string_date = $this->date_time->format($format);
 
-        if ($this->translate_to != 'gregorian' ) {
-
+        if ($this->translate_to != 'gregorian') {
             $string_date = str_replace(
                 $this->fromConfig[ 'month' ],
                 $this->toConfig[ 'month' ],
@@ -540,7 +526,6 @@ class Datium
                 $this->toConfig[ 'end_of_days' ],
                 $string_date
             );
-
         }
 
         // foreach( $this->translate_to_file as $key => $value ) {
@@ -556,5 +541,4 @@ class Datium
         return $string_date;
 
     }
-
 }

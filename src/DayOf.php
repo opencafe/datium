@@ -20,7 +20,7 @@ class DayOf
 
     protected $geregorian_DayofWeek;
 
-    public function __construct( $date_time, $calendar_type = 'gregorian' ) 
+    public function __construct($date_time, $calendar_type = 'gregorian')
     {
 
         $this->config = include 'Config.php';
@@ -39,7 +39,7 @@ class DayOf
    * @since  Aug, 03 2015
    * @return integer
    */
-    public function year() 
+    public function year()
     {
 
         $this->config = include 'CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
@@ -55,7 +55,7 @@ class DayOf
    * @since  Aug, 09 2015
    * @return integer
    */
-    public function week() 
+    public function week()
     {
 
         $this->config = include 'CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
@@ -63,5 +63,4 @@ class DayOf
         return $this->config[ 'day_of_week' ]( $this->date_time );
 
     }
-
 }

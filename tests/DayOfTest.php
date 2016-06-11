@@ -29,5 +29,4 @@ class DayOfTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(6, Datium::create(2015, 1, 1)->to('jalali')->dayOf()->week());
 
     }
-
 }

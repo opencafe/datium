@@ -13,7 +13,7 @@ use OpenCafe\Tools\Leap as Leap;
   *
   *\_________________________________________________________/
   */
-   'convert_to' => function ( $date_time ) {
+   'convert_to' => function ($date_time) {
 
      $config = include 'Jalali.php';
 
@@ -27,17 +27,16 @@ use OpenCafe\Tools\Leap as Leap;
 
      $temp_day = 0 ;
 
-    for ( $i = 1 ; $i < $month ; $i++ ) {
-
+    for ($i = 1; $i < $month; $i++) {
         $temp_day += $config[ 'month_days_number' ][ $i ];
-
     }
 
       $temp_day += $day;
 
       $leap = new Leap($year);
 
-    if($leap->get() && $month > 11 ) { $temp_day++; 
+    if ($leap->get() && $month > 11) {
+        $temp_day++;
     }
 
      $_year = ( ( ( ( ( $year - 1 ) * 365.2422 ) + $temp_day ) - 119) / 354.3670 ) + 1;
@@ -50,10 +49,8 @@ use OpenCafe\Tools\Leap as Leap;
 
       $var_temp = '0.0';
 
-    for ( $i = strlen($_month); $i > 2; $i-- ) {
-
+    for ($i = strlen($_month); $i > 2; $i--) {
         $var_temp .= '0';
-
     }
 
       $var_temp .= '1';
@@ -70,10 +67,8 @@ use OpenCafe\Tools\Leap as Leap;
 
      $var_temp = '0.0';
 
-    for ( $i = strlen($_day);  $i > 2;  $i-- ) {
-
+    for ($i = strlen($_day); $i > 2; $i--) {
         $var_temp .= '0' ;
-
     }
 
      $var_temp .= '1';
@@ -100,7 +95,7 @@ use OpenCafe\Tools\Leap as Leap;
     *
     *\_________________________________________________________/
     */
-    'convert_from' => function ( $date_time ) {
+    'convert_from' => function ($date_time) {
 
         $config = include 'Hijri.php';
 
@@ -112,11 +107,10 @@ use OpenCafe\Tools\Leap as Leap;
 
         $days_of_year = 0;
 
-        foreach ( $config['month_days_number'] as $month => $value ) {
-
-            if($month > $month ) { $days_of_year += $value; 
+        foreach ($config['month_days_number'] as $month => $value) {
+            if ($month > $month) {
+                $days_of_year += $value;
             }
-
         }
 
         $days_of_year += $day;
@@ -136,9 +130,7 @@ use OpenCafe\Tools\Leap as Leap;
         $config = include 'Gregorian.php';
 
         foreach ($config [ 'month_days_number' ] as $month => $value) {
-
-            if ($gregorian_month < $value ) {
-
+            if ($gregorian_month < $value) {
                 break;
             }
 
@@ -253,7 +245,7 @@ use OpenCafe\Tools\Leap as Leap;
     *
     *\_________________________________________________________/
     */
-     'day_of_year' => function ( $date_time ) {
+     'day_of_year' => function ($date_time) {
 
         $result = null;
 
@@ -263,14 +255,10 @@ use OpenCafe\Tools\Leap as Leap;
 
         $day = $date_time->format('d');
 
-        foreach( $config['month_days_number'] as $_month => $value ) {
-
-            if ($_month < $month ) {
-
+        foreach ($config['month_days_number'] as $_month => $value) {
+            if ($_month < $month) {
                 $result += $value;
-
             }
-
         }
 
         $result += $day;
@@ -287,7 +275,7 @@ use OpenCafe\Tools\Leap as Leap;
       *  example : al-Aḥad = result is 1
       *\_________________________________________________________/
       */
-     'day_of_week' => function ( $date_time ) {
+     'day_of_week' => function ($date_time) {
 
         $configGhamari = include 'Hijri.php';
 
@@ -297,14 +285,10 @@ use OpenCafe\Tools\Leap as Leap;
 
         $day = str_replace($configGregorian['days_of_week'], $configGhamari['days_of_week'], $day);
 
-        foreach ( $configGhamari['days_of_week'] as $key => $value ) {
-
-            if($value == $day ) {
-
+        foreach ($configGhamari['days_of_week'] as $key => $value) {
+            if ($value == $day) {
                 return $key += 1;
-
             }
-
         }
 
      },
