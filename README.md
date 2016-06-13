@@ -6,6 +6,7 @@ Awsome DateTime package ever written in PHP, with clean design pattern and gener
 
 * Simplicity in code and logic
 * Expandable in every part
+* Hijri and Jalali Calendars support
 
 # Installation
 
@@ -206,5 +207,13 @@ Generalization in translation is another Datium generalization support.
 ```js
 Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->lang( 'fa' )->get('l jS F Y h:i:s A');
 // ex: شنبه ۵ تیر ۱۳۹۵ ۱۲:۰۰:۰۰ ب.ظ
+
+Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
+// ex: as-Sabt 19th Ramadan 1437 12:00:00 PM
+
+Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
+// ex: Saturday 25th June 2016 12:00:00 PM
+
+
 
 ```

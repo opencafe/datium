@@ -1,6 +1,8 @@
 {
     "name": "opencafe/datium",
     "license": "MIT",
+    "description" : "The most flexible DataTime Package ever written in PHP",
+    "keywords": [ "hijri", "jalali", "DateTime", "convert" ],
     "authors": [
         {
             "name": "Mehdi Hosseini",
