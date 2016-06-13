@@ -3,6 +3,8 @@
 [![Join the chat at https://gitter.im/opencafe/datium](https://badges.gitter.im/opencafe/datium.svg)](https://gitter.im/opencafe/datium?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/opencafe/datium.svg?branch=master)](https://travis-ci.org/opencafe/datium)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/opencafe/datium/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/opencafe/datium/?branch=master)
+[![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
+[![packagist](https://img.shields.io/badge/status-beta-orange.svg)]()
 
 Awsome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
