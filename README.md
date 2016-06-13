@@ -2,18 +2,7 @@
 [![Build Status](https://travis-ci.org/opencafe/datium.svg?branch=master)](https://travis-ci.org/opencafe/datium)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/opencafe/datium/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/opencafe/datium/?branch=master)
 
-Hey!! we are still working on this project, this is not finalizing version of datium...
-
-
-..................................................................................................................................
-
-
-Under Development
-
-
-..................................................................................................................................
-
-The most flexible DateTime management package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
+Awsome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
 * Simplicity in code and logic
 * Expandable in every part

@@ -3,7 +3,7 @@
 use OpenCafe\Datium as Datium;
 use OpenCafe\Tools\Leap as Leap;
 
- return array (
+return array (
 
  /************************************************************
   *                        Convert to
@@ -105,43 +105,18 @@ use OpenCafe\Tools\Leap as Leap;
 
         $day = $date_time->format('d');
 
-        $days_of_year = 0;
+        $jd = (int)((11 * $year + 3) / 30) + 354 * $year +
+              30 * $month -(int)(($month - 1) / 2) + $day + 1948440 - 385;
 
-        foreach ($config['month_days_number'] as $month => $value) {
-            if ($month > $month) {
-                $days_of_year += $value;
-            }
-        }
+        $result = explode( '/', jdtogregorian($jd));
 
-        $days_of_year += $day;
+        $month = $result[0];
 
-        $days_of_leap_years =  intval(( ( $year - 1 ) / 3 ));
+        $day = $result[1];
 
-        $days_of_ghamari_years = ( ( ( $year - 1 ) * 354 ) + $days_of_year + $days_of_leap_years );
+        $year = $result[2];
 
-        $days_of_gregorain_years = $days_of_ghamari_years + 227078;
-
-        $days_of_gregorain_years = $days_of_gregorain_years - intval(( ( $year + 578 ) / 4 ));
-
-        $gregorian_month = ( $days_of_gregorain_years % 365 );
-
-        $gregorian_year = intval($days_of_gregorain_years / 365) + 1;
-
-        $config = include 'Gregorian.php';
-
-        foreach ($config [ 'month_days_number' ] as $month => $value) {
-            if ($gregorian_month < $value) {
-                break;
-            }
-
-            $gregorian_month -= $value;
-        }
-
-        $gregorian_day = $gregorian_month;
-
-        $gregorian_month = $month;
-
-        $date_time->setDate($gregorian_year, $gregorian_month, $gregorian_day);
+        $date_time->setDate($year, $month, $day);
 
         return $date_time;
 
@@ -301,7 +276,23 @@ use OpenCafe\Tools\Leap as Leap;
       *
       *\_________________________________________________________/
       */
-     'leap_year' => null,
+     'leap_year' => function($year){
+       $result = $this->year % 30;
+
+       if (( 2 == $result ) ||
+           ( 5 == $result ) ||
+           ( 7 == $result ) ||
+           ( 10 == $result ) ||
+           ( 13 == $result ) ||
+           ( 16 == $result ) ||
+           ( 18 == $result ) ||
+           ( 21 == $result ) ||
+           ( 24 == $year ) ||
+           ( 26 == $result ) ||
+           ( 29 == $result )) {
+           return $result;
+       }
+     },
 
     /************************************************************
     *                        Weekend

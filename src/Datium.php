@@ -201,7 +201,13 @@ class Datium
    *
    * @return object
    */
-    public static function create($year = 2000, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0)
+    public static function create(
+      $year = 2000,
+      $month = 1,
+      $day = 1,
+      $hour = 0, 
+      $minute = 0,
+      $second = 0)
     {
 
         /**
@@ -383,10 +389,10 @@ class Datium
    *
    * @return boolean
    */
-    public function leap($type = 'gregorian')
+    public function leap()
     {
 
-        $this->leap = new Leap($this->date_time->format('Y'), $type);
+        $this->leap = new Leap($this->date_time->format('Y'), $this->calendar_type);
 
         return $this->leap;
 
