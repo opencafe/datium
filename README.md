@@ -11,6 +11,10 @@ Awsome DateTime package ever written in PHP, with clean design pattern and gener
 
 ## Via Composer
 
+```
+composer require opencafe/datium
+```
+
 ## Manual
 Just require ```Datium.php``` in your project and use Datium namespace as following example:
 

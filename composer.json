@@ -1,5 +1,6 @@
 {
     "name": "opencafe/datium",
+    "license": "MIT",
     "authors": [
         {
             "name": "Mehdi Hosseini",
