@@ -38,6 +38,8 @@ As datium output
 
 ```js
 Datium::now()->get(); // ex: 2016-01-01 00:00:00
+
+Datium::now()->timestamp(); ex: 1420057800
 ```
 Or working with date as simple as you need:
 
@@ -211,6 +213,10 @@ Generalization in translation is another Datium generalization support.
 ```js
 Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->lang( 'fa' )->get('l jS F Y h:i:s A');
 // ex: شنبه ۵ تیر ۱۳۹۵ ۱۲:۰۰:۰۰ ب.ظ
+
+Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->get('l jS F Y h:i:s A');
+// ex: Shanbe 5th Tir 1395 12:00:00 PM
+
 
 Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
 // ex: as-Sabt 19th Ramadan 1437 12:00:00 PM

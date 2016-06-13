@@ -108,7 +108,7 @@ return array (
         $jd = (int)((11 * $year + 3) / 30) + 354 * $year +
               30 * $month -(int)(($month - 1) / 2) + $day + 1948440 - 385;
 
-        $result = explode( '/', jdtogregorian($jd));
+        $result = explode('/', jdtogregorian($jd));
 
         $month = $result[0];
 
@@ -276,22 +276,23 @@ return array (
       *
       *\_________________________________________________________/
       */
-     'leap_year' => function($year){
-       $result = $this->year % 30;
+     'leap_year' => function ($year) {
+        $result = $this->year % 30;
 
-       if (( 2 == $result ) ||
-           ( 5 == $result ) ||
-           ( 7 == $result ) ||
-           ( 10 == $result ) ||
-           ( 13 == $result ) ||
-           ( 16 == $result ) ||
-           ( 18 == $result ) ||
-           ( 21 == $result ) ||
-           ( 24 == $year ) ||
-           ( 26 == $result ) ||
-           ( 29 == $result )) {
-           return $result;
-       }
+        if (( 2 == $result ) 
+            || ( 5 == $result ) 
+            || ( 7 == $result ) 
+            || ( 10 == $result ) 
+            || ( 13 == $result ) 
+            || ( 16 == $result ) 
+            || ( 18 == $result ) 
+            || ( 21 == $result ) 
+            || ( 24 == $year ) 
+            || ( 26 == $result ) 
+            || ( 29 == $result )
+        ) {
+            return $result;
+        }
      },
 
     /************************************************************

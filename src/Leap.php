@@ -47,9 +47,9 @@ class Leap
     public function get()
     {
 
-      $this->result = include('CalendarSettings/' . ucfirst($this->type) . '.php');
+        $this->result = include 'CalendarSettings/' . ucfirst($this->type) . '.php';
 
-      return $this->result['leap_year']($this->year);
+        return $this->result['leap_year']($this->year);
 
     }
 }

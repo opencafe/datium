@@ -19,7 +19,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
 
         $date = Datium::create(2016, 6, 13)->to('hijri')->get();
 
-        $this->assertEquals( '1437-09-07 00:00:00', $date );
+        $this->assertEquals('1437-09-07 00:00:00', $date);
 
     }
 
@@ -28,7 +28,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
 
         $date = Datium::create(1395, 3, 24)->from('jalali')->get();
 
-        $this->assertEquals( '2016-06-13 00:00:00', $date );
+        $this->assertEquals('2016-06-13 00:00:00', $date);
 
     }
 
@@ -37,7 +37,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
 
         $date = Datium::create(1437, 9, 7)->from('hijri')->get();
 
-        $this->assertEquals( '2016-06-13 00:00:00', $date );
+        $this->assertEquals('2016-06-13 00:00:00', $date);
 
     }
 
@@ -46,7 +46,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
 
         $date = Datium::create(1395, 3, 24)->from('jalali')->to('hijri')->get();
 
-        $this->assertEquals( '1437-09-07 00:00:00', $date );
+        $this->assertEquals('1437-09-07 00:00:00', $date);
 
     }
 
@@ -55,7 +55,7 @@ class ConvertTest extends PHPUnit_Framework_TestCase
 
         $date = Datium::create(1437, 9, 7)->from('hijri')->to('jalali')->get();
 
-        $this->assertEquals( '1395-03-24 00:00:00', $date );
+        $this->assertEquals('1395-03-24 00:00:00', $date);
 
     }
 }

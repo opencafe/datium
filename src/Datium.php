@@ -112,36 +112,36 @@ class Datium
         $this->calendar_type = 'gregorian';
 
         switch (Datium::$call_type) {
-            case 'now':
-                $this->date_time = new DateTime('now');
+        case 'now':
+            $this->date_time = new DateTime('now');
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
+            $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-                break;
+            break;
 
-            case 'make':
-                $this->date_time = new DateTime('now');
+        case 'make':
+            $this->date_time = new DateTime('now');
 
-                $this->date_time->setDate(
-                    self::$array_date[ 'year' ],
-                    self::$array_date[ 'month' ],
-                    self::$array_date[ 'day' ]
-                );
+            $this->date_time->setDate(
+                self::$array_date[ 'year' ],
+                self::$array_date[ 'month' ],
+                self::$array_date[ 'day' ]
+            );
 
-                $this->date_time->setTime(
-                    self::$array_date[ 'hour' ],
-                    self::$array_date[ 'minute' ],
-                    self::$array_date[ 'second' ]
-                );
+            $this->date_time->setTime(
+                self::$array_date[ 'hour' ],
+                self::$array_date[ 'minute' ],
+                self::$array_date[ 'second' ]
+            );
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
+            $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-                break;
+            break;
 
-            case 'set':
-                $this->date_time = Datium::$static_date_time;
+        case 'set':
+            $this->date_time = Datium::$static_date_time;
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
+            $this->gregorian_DayofWeek = $this->date_time->format('w');
         }
 
         $this->convert_calendar = new Convert();
@@ -202,13 +202,14 @@ class Datium
    * @return object
    */
     public static function create(
-      $year = 2000,
-      $month = 1,
-      $day = 1,
-      $hour = 0, 
-      $minute = 0,
-      $second = 0)
-    {
+        $year = 2000,
+        $month = 1,
+        $day = 1,
+        $hour = 0,
+        $minute = 0,
+        $second = 0
+    ) {
+
 
         /**
        * When we want to set a Datetime object to Datium
@@ -464,6 +465,18 @@ class Datium
         $this->toConfig = $this->result->getConfig();
 
         return $this;
+
+    }
+
+    /**
+    * Return object as timestamp
+    *
+    * @return timestamp
+    */
+    public function timestamp()
+    {
+
+        return strtotime($this->date_time->format('Y-m-d H:i:s'));
 
     }
 

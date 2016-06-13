@@ -124,17 +124,17 @@ class Events
                 $this->date_time->setDate(Events::$date_start->format('Y'), $month, $day);
 
                 switch ($this->local[ 'default_calendar' ]) {
-                    case 'jalali':
-                        $this->date_time->setDate(1394, $month, $day);
+                case 'jalali':
+                    $this->date_time->setDate(1394, $month, $day);
 
-                        $this->date_time = Datium::create($this->date_time)->from('jalali')->to('gregorian')->object(); //$this->convert->jalaliToGregorian( $this->date_time );
+                    $this->date_time = Datium::create($this->date_time)->from('jalali')->to('gregorian')->object(); //$this->convert->jalaliToGregorian( $this->date_time );
 
-                        break;
+                    break;
 
-                    case 'hijri':
-                        $this->date_time = Datium::create($this->date_time)->from('hijri')->to('gregorian')->object(); // $this->convert->hijriToGregorian( $this->date_time );
+                case 'hijri':
+                    $this->date_time = Datium::create($this->date_time)->from('hijri')->to('gregorian')->object(); // $this->convert->hijriToGregorian( $this->date_time );
 
-                        break;
+                    break;
                 }
 
                 $this->result[ $this->date_time->format('Y-m-d') ][] =  $event;
