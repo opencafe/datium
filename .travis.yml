@@ -9,3 +9,7 @@ script:
   - composer update
   - composer dump-autoload 
   - phpunit
+  
+matrix:
+  allow_failures:
+    - php: hhvm
