@@ -42,7 +42,7 @@ class DatiumTest extends PHPUnit_Framework_TestCase
 
         $jalali =  Datium::create(2016, 6, 25, 12, 0, 0)->to('jalali')->get('l jS F Y h:i:s A');
 
-        $this->assertEquals('شنبه ۵ تیر ۱۳۹۵ ۱۲:۰۰:۰۰ ب.ظ', $jalali);
+        $this->assertEquals('Shanbe 5th Tir 1395 12:00:00 PM', $jalali);
 
         $jalali =  Datium::create(2016, 6, 25, 12, 0, 0)->to('jalali')->lang('fa')->get('l jS F Y h:i:s A');
 
