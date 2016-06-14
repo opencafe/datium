@@ -10,6 +10,7 @@ script:
   - composer update
   - composer dump-autoload
   - phpunit
+  - composer require opencafe/datium
 
 matrix:
   allow_failures:
