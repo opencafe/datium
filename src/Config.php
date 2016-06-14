@@ -35,7 +35,7 @@ return array(
   'default_calendar' => 'gregorian',
 
 
-  'date_interval' => array( 'D', 'M', 'Y', 'H', 'm', 'S' ),
+  'date_interval' => array( 'D', 'M', 'Y', 'HT', 'MT', 'ST' ),
 
 
   'date_simple' => array( 'day', ' month', ' year', ' hour', ' minute', ' second' ),

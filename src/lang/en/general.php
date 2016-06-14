@@ -35,5 +35,19 @@
         'PM' => 'PM',
         'Jumada I' => 'Jumada I',
         'Shanbe' => 'Shanbe',
-        'Tir' => 'Tir'
+        'Tir' => 'Tir',
+        'ago' => 'ago',
+        'just-now' => 'just now',
+        'one-minute' => 'one minute',
+        'minutes' => 'minutes',
+        'an-hour' => 'an hour',
+        'hours' => 'hours',
+        'yesterday' => 'yesterday',
+        'days' => 'days',
+        'a-week' => 'a week',
+        'weeks' => 'weeks',
+        'a-month' => 'a month',
+        'months' => 'months',
+        'one-year' => 'one year',
+        'years' => 'years'
   ];

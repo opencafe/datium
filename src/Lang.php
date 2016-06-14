@@ -67,4 +67,12 @@ class Lang
         return self::$config;
 
     }
+
+    public static function get( $lang, $value ) {
+
+      $file = include( 'lang/' . $lang . '/general.php' );
+
+      return $file[$value];
+
+    }
 }

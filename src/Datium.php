@@ -18,6 +18,7 @@ use OpenCafe\Tools\Convert;
 use OpenCafe\Tools\Leap;
 use OpenCafe\Tools\DayOf;
 use OpenCafe\Tools\Lang;
+use OpenCafe\Tools\TimeAgo;
 
 use OpenCafe\Datium;
 
@@ -90,6 +91,13 @@ class Datium
     protected $translate_to_file;
 
     protected $language;
+
+    /**
+    * Timeago
+    *
+    * @param integer
+    */
+    protected $ago;
 
     /**
     * Datium class constructure
@@ -307,7 +315,6 @@ class Datium
 
     }
 
-
     /**
    * Difference between two time
    *
@@ -339,10 +346,24 @@ class Datium
             $value
         );
 
+        $unit = 'P';
+
+        if( strpos($this->date_interval_expression, 'T') ) {
+
+          $this->date_interval_expression= str_replace(
+            'T',
+            '',
+            $this->date_interval_expression
+          );
+
+          $unit = 'PT';
+
+        }
+
         $this->date_interval_expression = str_replace(
             ' ',
             '',
-            'P' . $this->date_interval_expression
+            $unit . $this->date_interval_expression
         );
 
         $this->date_time->add(
@@ -369,10 +390,24 @@ class Datium
             $value
         );
 
+        $unit = 'P';
+
+        if( strpos($this->date_interval_expression, 'T') ) {
+
+          $this->date_interval_expression= str_replace(
+            'T',
+            '',
+            $this->date_interval_expression
+          );
+
+          $unit = 'PT';
+
+        }
+
         $this->date_interval_expression = str_replace(
             ' ',
             '',
-            'P' . $this->date_interval_expression
+            $unit . $this->date_interval_expression
         );
 
         $this->date_time->sub(
@@ -396,6 +431,20 @@ class Datium
         $this->leap = new Leap($this->date_time->format('Y'), $this->calendar_type);
 
         return $this->leap;
+
+    }
+
+    /**
+    * Calculate how many time ago datetime happens
+    *
+    * @return string
+    */
+    public function ago()
+    {
+
+      $this->ago = new TimeAgo( $this->date_time, $this->language );
+
+      return $this->ago->get();
 
     }
 
