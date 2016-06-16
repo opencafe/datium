@@ -1,8 +1,10 @@
 <?php
 
-use OpenCafe\Datium as Datium;
+namespace OpenCafe\Datium\Test;
 
-class ConvertTest extends PHPUnit_Framework_TestCase
+use OpenCafe\Datium;
+
+class ConvertTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testGregorianToJalali()

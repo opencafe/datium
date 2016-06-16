@@ -1,8 +1,10 @@
 <?php
 
+namespace OpenCafe\Datium\Test;
+
 use OpenCafe\Datium as Datium;
 
-class LeapTest extends PHPUnit_Framework_TestCase
+class LeapTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testAssertLeapYear()

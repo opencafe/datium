@@ -1,8 +1,10 @@
 <?php
 
+namespace OpenCafe\Datium\Test;
+
 use OpenCafe\Datium as Datium;
 
-class DayOfTest extends PHPUnit_Framework_TestCase
+class DayOfTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testDayOfYear()

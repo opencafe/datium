@@ -279,16 +279,16 @@ return array (
      'leap_year' => function ($year) {
         $result = $this->year % 30;
 
-        if (( 2 == $result ) 
-            || ( 5 == $result ) 
-            || ( 7 == $result ) 
-            || ( 10 == $result ) 
-            || ( 13 == $result ) 
-            || ( 16 == $result ) 
-            || ( 18 == $result ) 
-            || ( 21 == $result ) 
-            || ( 24 == $year ) 
-            || ( 26 == $result ) 
+        if (( 2 == $result )
+            || ( 5 == $result )
+            || ( 7 == $result )
+            || ( 10 == $result )
+            || ( 13 == $result )
+            || ( 16 == $result )
+            || ( 18 == $result )
+            || ( 21 == $result )
+            || ( 24 == $year )
+            || ( 26 == $result )
             || ( 29 == $result )
         ) {
             return $result;

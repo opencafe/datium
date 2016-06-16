@@ -5,7 +5,7 @@
  * @category Core
  * @package  OpenCafe\Datium
  * @author   Mehdi Hosseini <mehdi.hosseini.dev@gmail.com>
- * @license  icense https://opensource.org/licenses/MIT
+ * @license  License https://opensource.org/licenses/MIT
  * @link     https://github.com/opencafe/datium
  * @since    Aug 17, 2015
  */
@@ -19,8 +19,6 @@ use OpenCafe\Tools\Leap;
 use OpenCafe\Tools\DayOf;
 use OpenCafe\Tools\Lang;
 use OpenCafe\Tools\TimeAgo;
-
-use OpenCafe\Datium;
 
 /**
  * Main Datium class
@@ -120,36 +118,36 @@ class Datium
         $this->calendar_type = 'gregorian';
 
         switch (Datium::$call_type) {
-        case 'now':
-            $this->date_time = new DateTime('now');
+            case 'now':
+                $this->date_time = new DateTime('now');
 
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-            break;
+                break;
 
-        case 'make':
-            $this->date_time = new DateTime('now');
+            case 'make':
+                $this->date_time = new DateTime('now');
 
-            $this->date_time->setDate(
-                self::$array_date[ 'year' ],
-                self::$array_date[ 'month' ],
-                self::$array_date[ 'day' ]
-            );
+                $this->date_time->setDate(
+                    self::$array_date[ 'year' ],
+                    self::$array_date[ 'month' ],
+                    self::$array_date[ 'day' ]
+                );
 
-            $this->date_time->setTime(
-                self::$array_date[ 'hour' ],
-                self::$array_date[ 'minute' ],
-                self::$array_date[ 'second' ]
-            );
+                $this->date_time->setTime(
+                    self::$array_date[ 'hour' ],
+                    self::$array_date[ 'minute' ],
+                    self::$array_date[ 'second' ]
+                );
 
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
 
-            break;
+                break;
 
-        case 'set':
-            $this->date_time = Datium::$static_date_time;
+            case 'set':
+                $this->date_time = Datium::$static_date_time;
 
-            $this->gregorian_DayofWeek = $this->date_time->format('w');
+                $this->gregorian_DayofWeek = $this->date_time->format('w');
         }
 
         $this->convert_calendar = new Convert();
@@ -326,7 +324,21 @@ class Datium
     public static function diff($start, $end)
     {
 
-        return date_diff($start, $end);
+        $difference = date_diff($start, $end);
+
+        $difference->second = $difference->s;
+
+        $difference->minute = $difference->i;
+
+        $difference->hour = $difference->h;
+
+        $difference->day = $difference->d;
+
+        $difference->month = $difference->m;
+
+        $difference->year = $difference->y;
+
+        return $difference;
 
     }
 
@@ -348,16 +360,14 @@ class Datium
 
         $unit = 'P';
 
-        if( strpos($this->date_interval_expression, 'T') ) {
+        if (strpos($this->date_interval_expression, 'T')) {
+            $this->date_interval_expression= str_replace(
+                'T',
+                '',
+                $this->date_interval_expression
+            );
 
-          $this->date_interval_expression= str_replace(
-            'T',
-            '',
-            $this->date_interval_expression
-          );
-
-          $unit = 'PT';
-
+            $unit = 'PT';
         }
 
         $this->date_interval_expression = str_replace(
@@ -392,16 +402,14 @@ class Datium
 
         $unit = 'P';
 
-        if( strpos($this->date_interval_expression, 'T') ) {
+        if (strpos($this->date_interval_expression, 'T')) {
+            $this->date_interval_expression= str_replace(
+                'T',
+                '',
+                $this->date_interval_expression
+            );
 
-          $this->date_interval_expression= str_replace(
-            'T',
-            '',
-            $this->date_interval_expression
-          );
-
-          $unit = 'PT';
-
+            $unit = 'PT';
         }
 
         $this->date_interval_expression = str_replace(
@@ -442,9 +450,9 @@ class Datium
     public function ago()
     {
 
-      $this->ago = new TimeAgo( $this->date_time, $this->language );
+        $this->ago = new TimeAgo($this->date_time, $this->language);
 
-      return $this->ago->get();
+        return $this->ago;
 
     }
 

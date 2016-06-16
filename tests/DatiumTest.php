@@ -1,8 +1,11 @@
 <?php
 
-use OpenCafe\Datium as Datium;
+namespace OpenCafe\Datium\Test;
 
-class DatiumTest extends PHPUnit_Framework_TestCase
+use OpenCafe\Datium;
+use DateTime;
+
+class DatiumTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testCreateDateTime()
@@ -31,140 +34,140 @@ class DatiumTest extends PHPUnit_Framework_TestCase
     public function testAddDateTime()
     {
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 01:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 hour')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 01:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 hour')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-02 01:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('25 hour')->get()
-      );
+        $this->assertEquals(
+            '2016-01-02 01:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('25 hour')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:01:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 minute')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:01:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 minute')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 01:01:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('61 minute')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 01:01:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('61 minute')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:01',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 second')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:01',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 second')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:01:01',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('61 second')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:01:01',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('61 second')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-02 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 day')->get()
-      );
+        $this->assertEquals(
+            '2016-01-02 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 day')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-11 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('10 day')->get()
-      );
+        $this->assertEquals(
+            '2016-01-11 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('10 day')->get()
+        );
 
-      $this->assertEquals(
-        '2016-02-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 month')->get()
-      );
+        $this->assertEquals(
+            '2016-02-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 month')->get()
+        );
 
-      $this->assertEquals(
-        '2016-11-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('10 month')->get()
-      );
+        $this->assertEquals(
+            '2016-11-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('10 month')->get()
+        );
 
-      $this->assertEquals(
-        '2017-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('1 year')->get()
-      );
+        $this->assertEquals(
+            '2017-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 year')->get()
+        );
 
-      $this->assertEquals(
-        '2116-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->add('100 year')->get()
-      );
+        $this->assertEquals(
+            '2116-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('100 year')->get()
+        );
 
     }
 
     public function testSubDateTime()
     {
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 1, 0, 0)->sub('1 hour')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 1, 0, 0)->sub('1 hour')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 2, 1, 0, 0)->sub('25 hour')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 2, 1, 0, 0)->sub('25 hour')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 1, 0)->sub('1 minute')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 1, 0)->sub('1 minute')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 1, 1, 0)->sub('61 minute')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 1, 1, 0)->sub('61 minute')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 1)->sub('1 second')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 1)->sub('1 second')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 1, 1)->sub('61 second')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 1, 1)->sub('61 second')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 1, 0, 0, 0)->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 2, 0, 0, 0)->sub('1 day')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 2, 0, 0, 0)->sub('1 day')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 1, 11, 0, 0, 0)->sub('10 day')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 11, 0, 0, 0)->sub('10 day')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 2, 1, 0, 0, 0)->sub('1 month')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 2, 1, 0, 0, 0)->sub('1 month')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2016, 11, 1, 0, 0, 0)->sub('10 month')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 11, 1, 0, 0, 0)->sub('10 month')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2017, 1, 1, 0, 0, 0)->sub('1 year')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2017, 1, 1, 0, 0, 0)->sub('1 year')->get()
+        );
 
-      $this->assertEquals(
-        '2016-01-01 00:00:00',
-        Datium::create(2116, 1, 1, 0, 0, 0)->sub('100 year')->get()
-      );
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2116, 1, 1, 0, 0, 0)->sub('100 year')->get()
+        );
 
     }
 

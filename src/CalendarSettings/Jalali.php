@@ -296,7 +296,14 @@ return array (
   */
   'day_of_week' => function ($date_time) {
 
-        $days = array( 1 => 'Shanbe',  2 => 'Yekshanbe', 3 => 'Doshanbe', 4 => 'Seshanbe', 5 => 'Chaharshanbe', 6 => 'Panjshanbe', 7 => 'Jome' );
+        $days = array(
+          1 => 'Shanbe',
+          2 => 'Yekshanbe',
+          3 => 'Doshanbe',
+          4 => 'Seshanbe',
+          5 => 'Chaharshanbe',
+          6 => 'Panjshanbe',
+          7 => 'Jome' );
 
         $configShamsi = include 'Jalali.php';
 
@@ -304,13 +311,17 @@ return array (
 
         $day = $date_time->format('l');
 
-        $day = str_replace($configGregorian[ 'days_of_week' ], $configShamsi[ 'days_of_week' ], $day);
+        $day = str_replace(
+            $configGregorian[ 'days_of_week' ],
+            $configShamsi[ 'days_of_week' ],
+            $day
+        );
 
-    foreach ($days as $key => $value) {
-        if ($day == $value) {
-            return $key;
+        foreach ($days as $key => $value) {
+            if ($day == $value) {
+                return $key;
+            }
         }
-    }
 
   },
 
@@ -322,16 +333,18 @@ return array (
    *
    *\_________________________________________________________/
    */
-  'leap_year' => function ( $year ) {
+  'leap_year' => function ($year) {
 
      $a = 0.025;
 
      $b = 266;
 
     if ($year > 0) {
-        $leapDays0 = (($year + 38) % 2820)*0.24219 + $a;  // 0.24219 ~ extra days of one year
-        $leapDays1 = (($year + 39) % 2820)*0.24219 + $a;  // 38 days is the difference of epoch to 2820-year cycle
-    } elseif($year < 0 ) {
+        $leapDays0 = (($year + 38) % 2820)*0.24219 + $a;
+        // 0.24219 ~ extra days of one year
+        $leapDays1 = (($year + 39) % 2820)*0.24219 + $a;
+        // 38 days is the difference of epoch to 2820-year cycle
+    } elseif ($year < 0) {
         $leapDays0 = (($year + 39) % 2820)*0.24219 + $a;
         $leapDays1 = (($year + 40) % 2820)*0.24219 + $a;
     } else {
@@ -342,10 +355,9 @@ return array (
      $frac1 = intval(($leapDays1 - intval($leapDays1))*1000);
 
     if ($frac0 <= $b && $frac1 > $b) {
-        return true; 
-    }
-    else {
-        return false; 
+        return true;
+    } else {
+        return false;
     }
 
   },

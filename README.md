@@ -135,44 +135,10 @@ $diff = Datium::diff(
 );
 
 echo $diff->days;
-
 // output => 5000
+echo $diff->year . ' year, ' .  $diff->month . ' month, ' . $diff->day . ' day ';
+// ouput => 13 year, 8 month, 7 day
 
-dd ( $diff );
-
-/**
-  output => object(DateInterval)#3 (15) {
-  ["y"]=>
-  int(13)
-  ["m"]=>
-  int(8)
-  ["d"]=>
-  int(7)
-  ["h"]=>
-  int(0)
-  ["i"]=>
-  int(0)
-  ["s"]=>
-  int(0)
-  ["weekday"]=>
-  int(0)
-  ["weekday_behavior"]=>
-  int(0)
-  ["first_last_day_of"]=>
-  int(0)
-  ["invert"]=>
-  int(0)
-  ["days"]=>
-  int(5000)
-  ["special_type"]=>
-  int(0)
-  ["special_amount"]=>
-  int(0)
-  ["have_weekday_relative"]=>
-  int(0)
-  ["have_special_relative"]=>
-  int(0)
-} */
 ```
 
 ## Leap year

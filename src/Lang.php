@@ -68,11 +68,12 @@ class Lang
 
     }
 
-    public static function get( $lang, $value ) {
+    public static function get($lang, $value)
+    {
 
-      $file = include( 'lang/' . $lang . '/general.php' );
+        $file = include('lang/' . $lang . '/general.php');
 
-      return $file[$value];
+        return $file[$value];
 
     }
 }
