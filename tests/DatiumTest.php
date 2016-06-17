@@ -29,6 +29,12 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
             Datium::create(2015, 1, 1)->timestamp()
         );
 
+        $this->assertEquals(
+            '2015-01-01 00:00:00',
+            Datium::createTimestamp( 1420057800 )->get()
+        );
+
+
     }
 
     public function testAddDateTime()

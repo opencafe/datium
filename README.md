@@ -76,7 +76,14 @@ Datium::now()->get( 'l jS F Y h:i:s A' );
 You can also simply create new time:
 
 ```js
-Datium::create( 2016, 1, 1, 12, 56, 13 )->get(); //ex: 2016-01-01 12:56:13
+// Create with YMD
+Datium::create( 2016, 1, 1, 12, 56, 13 )->get(); //ouput: 2016-01-01 12:56:13
+
+// Create with YMD without time
+Datium::create( 2016, 1, 1 )->get(); // output: 2016-01-01 12:56:13
+
+// Create with timestamp
+Datium::createTimestamp( 1420057800 )->get() // output => 2015-01-01 00:00:00
 ```
 
 ## Add Date

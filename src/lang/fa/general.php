@@ -74,6 +74,20 @@
         'Sunday' => 'یکشنبه',
         'th' => 'ام',
         'AM' => 'ق.ظ',
-        'PM' => 'ب.ظ'
+        'PM' => 'ب.ظ',
+        'just-now' => 'همین حالا',
+        'seconds-ago' => 'ثانیه پیش',
+        'one-minute-ago' => 'یک دقیقه پیش',
+        'minutes-ago' => 'دقیقه پیش',
+        'an-hour-ago' => 'یک ساعت پیش',
+        'hours-ago' => 'ساعت پیش',
+        'yesterday' => 'دیروز',
+        'days-ago' => 'روز پیش',
+        'a-week-ago' => 'یک هفته پیش',
+        'weeks-ago' => 'هفته پیش',
+        'a-month-ago' => 'یک ماه پیش',
+        'months-ago' => 'ماه پیش',
+        'one-year-ago' => 'یک سال پیش',
+        'years-ago' => 'سال پیش'
 
   );
