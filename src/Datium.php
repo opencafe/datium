@@ -90,6 +90,8 @@ class Datium
 
     protected $language;
 
+    protected static $timestamp;
+
     /**
     * Timeago
     *
@@ -118,14 +120,24 @@ class Datium
         $this->calendar_type = 'gregorian';
 
         switch (Datium::$call_type) {
-            case 'now':
-                $this->date_time = new DateTime('now');
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
+
+            case 'create-timestamp':
+
+                $this->date_time = new DateTime();
+
+                $this->date_time->setTimestamp( self::$timestamp );
+
+                break;
+
+            case 'now':
+
+                $this->date_time = new DateTime('now');
 
                 break;
 
             case 'make':
+
                 $this->date_time = new DateTime('now');
 
                 $this->date_time->setDate(
@@ -140,15 +152,15 @@ class Datium
                     self::$array_date[ 'second' ]
                 );
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
-
                 break;
 
             case 'set':
+
                 $this->date_time = Datium::$static_date_time;
 
-                $this->gregorian_DayofWeek = $this->date_time->format('w');
         }
+
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
 
         $this->convert_calendar = new Convert();
 
@@ -238,6 +250,33 @@ class Datium
         }
 
           return new Datium();
+
+    }
+
+    /**
+    * Accecpt Timestamp as Datium initializion
+    *
+    * @param  timestamp $timestamp Input timestamp value
+    * @return object
+    */
+    public static function createTimestamp( $timestamp )
+    {
+
+      if( $timestamp != null && is_int( $timestamp ) )
+      {
+
+        self::$call_type = 'create-timestamp';
+
+        self::$timestamp = $timestamp;
+
+        return new Datium();
+
+      } else {
+
+        throw new \Exception("Error timestamp is not entered in true format", 1);
+
+      }
+
 
     }
 
