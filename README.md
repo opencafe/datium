@@ -10,7 +10,7 @@
 
 
 
-Awsome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
+Awesome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
 * Simplicity in code and logic
 * Expandable in every part
