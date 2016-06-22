@@ -111,7 +111,7 @@ class Datium
 
         $this->translate_to = 'gregorian';
 
-        $this->config = include 'Config.php';
+        $this->config = include __DIR__.'/Config.php';
 
         $this->calendar_type = $this->config[ 'default_calendar' ];
 
@@ -593,13 +593,13 @@ class Datium
         // $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
 
         if (is_null($this->fromConfig)) {
-            $this->fromConfig = include 'CalendarSettings/' .
+            $this->fromConfig = include __DIR__.'/CalendarSettings/' .
                                 ucfirst($this->translate_from) . '.php';
         }
 
 
         if (is_null($this->toConfig)) {
-            $this->toConfig = include 'CalendarSettings/' .
+            $this->toConfig = include __DIR__.'/CalendarSettings/' .
                                        ucfirst($this->translate_to) . '.php';
         }
 

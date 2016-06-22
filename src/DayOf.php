@@ -25,7 +25,7 @@ class DayOf
     public function __construct($date_time, $calendar_type = 'gregorian')
     {
 
-        $this->config = include 'Config.php';
+        $this->config = include __DIR__.'/Config.php';
 
         $this->date_time = $date_time;
 
@@ -44,7 +44,7 @@ class DayOf
     public function year()
     {
 
-        $this->config = include 'CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
+        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
         return $this->config[ 'day_of_year' ]( $this->date_time );
 
@@ -60,7 +60,7 @@ class DayOf
     public function week()
     {
 
-        $this->config = include 'CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
+        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
         return $this->config[ 'day_of_week' ]( $this->date_time );
 
