@@ -71,14 +71,14 @@ class Convert
             $this->date_time = $date_time;
         }
 
-        $this->config = include 'Config.php';
+        $this->config = include __DIR__.'/Config.php';
 
     }
 
     public function from($calendar)
     {
 
-        $this->calendar_file = include 'CalendarSettings/' . ucfirst($calendar) . '.php';
+        $this->calendar_file = include __DIR__.'/CalendarSettings/' . ucfirst($calendar) . '.php';
 
         return $this->calendar_file[ 'convert_from' ]( $this->date_time );
 
@@ -95,7 +95,7 @@ class Convert
     public function to($calendar)
     {
 
-        $this->calendar_file = include 'CalendarSettings/' . ucfirst($calendar) . '.php';
+        $this->calendar_file = include __DIR__.'/CalendarSettings/' . ucfirst($calendar) . '.php';
 
         return $this->calendar_file[ 'convert_to' ]( $this->date_time );
 
@@ -110,7 +110,7 @@ class Convert
     public function jalaliToGregorian($date_time)
     {
 
-          $this->config = include 'Jalali.php';
+          $this->config = include __DIR__.'/Jalali.php';
 
           $this->date_time = $date_time;
 
@@ -146,7 +146,7 @@ class Convert
 
             $gregorian_year = intval($days_of_gregorain_years / 365) + 1;
 
-            $this->config = include 'Gregorian.php';
+            $this->config = include __DIR__.'/Gregorian.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
             if ($gregorian_month < $value) {
@@ -186,7 +186,7 @@ class Convert
 
         $this->temp_day = 0 ;
 
-        $this->config = include 'Jalali.php';
+        $this->config = include __DIR__.'/Jalali.php';
 
         for ($i = 1; $i < $this->month; $i++) {
             $this->temp_day += $this->config['month_days_number'][$i];
@@ -267,7 +267,7 @@ class Convert
 
           $days_of_year = 0;
 
-          $this->config = include 'Hijri.php';
+          $this->config = include __DIR__.'/Hijri.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
             if ($this->month > $month) {
@@ -289,7 +289,7 @@ class Convert
 
           $jalali_year = intval($days_of_jalali_years / 365) + 1;
 
-          $this->config = include 'Jalali.php';
+          $this->config = include __DIR__.'/Jalali.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
             if ($jalali_month < $value) {
@@ -328,7 +328,7 @@ class Convert
 
         $days_of_year = 0;
 
-        $this->config = include 'Hijri.php';
+        $this->config = include __DIR__.'/Hijri.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
             if ($this->month > $month) {
@@ -350,7 +350,7 @@ class Convert
 
         $gregorian_year = intval($days_of_gregorain_years / 365) + 1;
 
-        $this->config = include 'Gregorian.php';
+        $this->config = include __DIR__.'/Gregorian.php';
 
         foreach ($this->config[ 'month_days_number' ] as $month => $value) {
             if ($gregorian_month < $value) {
