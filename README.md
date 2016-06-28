@@ -255,3 +255,31 @@ Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
 
 
 ```
+
+### Change Configuration 
+
+You can change any configuration after initialize Datium object.
+
+```php
+$datium = Datium::create(
+                $date->format('Y'),
+                $date->format('m'),
+                $date->format('d'),
+                $date->format('h'),
+                $date->format('i'),
+                $date->format('s')
+            );
+$datium->setConfig(['timezone'=>'Europe/Istanbul']);
+```
+
+#### Default configuration
+
+```php
+[
+  'timezone' => 'Asia/Tehran',
+  'language' =>     'en',
+  'default_calendar' => 'gregorian',
+  'date_interval' => [ 'D', 'M', 'Y', 'HT', 'MT', 'ST' ],
+  'date_simple' => [ 'day', ' month', ' year', ' hour', ' minute', ' second' ],
+]
+```
