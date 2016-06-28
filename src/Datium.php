@@ -34,17 +34,17 @@ class Datium
 {
 
     /**
-   * Store DateTime object
-   */
+     * Store DateTime object
+     */
     protected $date_time;
 
     protected static $static_date_time;
 
     /**
-   * Store config file statements
-   *
-   * @param array
-   */
+     * Store config file statements
+     *
+     * @param array
+     */
     protected $config;
 
     protected $date_interval_expression;
@@ -62,10 +62,10 @@ class Datium
     protected $fromConfig;
 
     /**
-   * Return store day number
-   *
-   * @param integer
-   */
+     * Return store day number
+     *
+     * @param integer
+     */
     protected $day_of;
 
     protected $leap;
@@ -93,15 +93,15 @@ class Datium
     protected static $timestamp;
 
     /**
-    * Timeago
-    *
-    * @param integer
-    */
+     * Timeago
+     *
+     * @param integer
+     */
     protected $ago;
 
     /**
-    * Datium class constructure
-    */
+     * Datium class constructure
+     */
     public function __construct()
     {
 
@@ -110,12 +110,9 @@ class Datium
         $this->translate_from = 'gregorian';
 
         $this->translate_to = 'gregorian';
+        $this->setConfig();
 
-        $this->config = include __DIR__.'/Config.php';
-
-        $this->calendar_type = $this->config[ 'default_calendar' ];
-
-        date_default_timezone_set($this->config[ 'timezone' ]);
+        $this->calendar_type = $this->config['default_calendar'];
 
         $this->calendar_type = 'gregorian';
 
@@ -126,7 +123,7 @@ class Datium
 
                 $this->date_time = new DateTime();
 
-                $this->date_time->setTimestamp( self::$timestamp );
+                $this->date_time->setTimestamp(self::$timestamp);
 
                 break;
 
@@ -141,15 +138,15 @@ class Datium
                 $this->date_time = new DateTime('now');
 
                 $this->date_time->setDate(
-                    self::$array_date[ 'year' ],
-                    self::$array_date[ 'month' ],
-                    self::$array_date[ 'day' ]
+                    self::$array_date['year'],
+                    self::$array_date['month'],
+                    self::$array_date['day']
                 );
 
                 $this->date_time->setTime(
-                    self::$array_date[ 'hour' ],
-                    self::$array_date[ 'minute' ],
-                    self::$array_date[ 'second' ]
+                    self::$array_date['hour'],
+                    self::$array_date['minute'],
+                    self::$array_date['second']
                 );
 
                 break;
@@ -167,37 +164,37 @@ class Datium
     }
 
     /**
-    * Return all datetime parts as an object
-    *
-    * @return object
-    */
+     * Return all datetime parts as an object
+     *
+     * @return object
+     */
     public function all()
     {
 
-        return ( object ) array(
+        return ( object )array(
 
-        'second' => $this->date_time->format('s'),
+            'second' => $this->date_time->format('s'),
 
-        'minute' => $this->date_time->format('m'),
+            'minute' => $this->date_time->format('m'),
 
-        'hour' => $this->date_time->format('H'),
+            'hour' => $this->date_time->format('H'),
 
-        'day' => $this->date_time->format('d'),
+            'day' => $this->date_time->format('d'),
 
-        'month' => $this->date_time->format('m'),
+            'month' => $this->date_time->format('m'),
 
-        'year' => $this->date_time->format('Y')
+            'year' => $this->date_time->format('Y')
 
         );
 
     }
 
     /**
-   * Get current datetime
-   *
-   * @since  Aug 17 2015
-   * @return object
-   */
+     * Get current datetime
+     *
+     * @since  Aug 17 2015
+     * @return object
+     */
     public static function now()
     {
 
@@ -208,17 +205,35 @@ class Datium
     }
 
     /**
-   * Create new date time
-   *
-   * @param integer $year   Year number
-   * @param integer $month  month number
-   * @param integer $day    day number
-   * @param integer $hour   hour number
-   * @param integer $minute minute number
-   * @param integer $second second number
-   *
-   * @return object
-   */
+     * Set config
+     *
+     * @since June 28 2016
+     *
+     * @param array $config
+     *
+     * @return $this
+     */
+    public function setConfig($config = [])
+    {
+        $defaults     = include(__DIR__.'/Config.php');
+        $this->config = array_merge($defaults, $config);
+        date_default_timezone_set($this->config['timezone']);
+
+        return $this;
+    }
+
+    /**
+     * Create new date time
+     *
+     * @param integer $year   Year number
+     * @param integer $month  month number
+     * @param integer $day    day number
+     * @param integer $hour   hour number
+     * @param integer $minute minute number
+     * @param integer $second second number
+     *
+     * @return object
+     */
     public static function create(
         $year = 2000,
         $month = 1,
@@ -230,64 +245,64 @@ class Datium
 
 
         /**
-       * When we want to set a Datetime object to Datium
-       */
+         * When we want to set a Datetime object to Datium
+         */
         if (func_num_args() === 1) {
             self::$static_date_time = func_get_arg(0);
 
             self::$call_type = 'set';
         } else {
             self::$array_date = array(
-              'year' => $year,
-              'month' => $month,
-              'day' => $day,
-              'hour' => $hour,
-              'minute' => $minute,
-              'second' => $second
+                'year'   => $year,
+                'month'  => $month,
+                'day'    => $day,
+                'hour'   => $hour,
+                'minute' => $minute,
+                'second' => $second
             );
 
             self::$call_type = 'make';
         }
 
-          return new Datium();
-
-    }
-
-    /**
-    * Accecpt Timestamp as Datium initializion
-    *
-    * @param  timestamp $timestamp Input timestamp value
-    * @return object
-    */
-    public static function createTimestamp( $timestamp )
-    {
-
-      if( $timestamp != null && is_int( $timestamp ) )
-      {
-
-        self::$call_type = 'create-timestamp';
-
-        self::$timestamp = $timestamp;
-
         return new Datium();
 
-      } else {
+    }
 
-        throw new \Exception("Error timestamp is not entered in true format", 1);
+    /**
+     * Accept Timestamp as Datium initializion
+     *
+     * @param  timestamp $timestamp Input timestamp value
+     *
+     * @return object
+     */
+    public static function createTimestamp($timestamp)
+    {
 
-      }
+        if ($timestamp != null && is_int($timestamp)) {
+
+            self::$call_type = 'create-timestamp';
+
+            self::$timestamp = $timestamp;
+
+            return new Datium();
+
+        } else {
+
+            throw new \Exception("Error timestamp is not entered in true format", 1);
+
+        }
 
 
     }
 
     /**
-    * Select The range between two date object
-    *
-    * @param object $date_start Start of the DateTime
-    * @param object $date_end   End of the DateTime
-    *
-    * @return object
-    */
+     * Select The range between two date object
+     *
+     * @param object $date_start Start of the DateTime
+     * @param object $date_end   End of the DateTime
+     *
+     * @return object
+     */
     public static function between($date_start, $date_end)
     {
 
@@ -302,12 +317,12 @@ class Datium
     }
 
     /**
-   * Convert from current calendar, what type is current calendar?
-   *
-   * @param object $calendar Assigned calendar to start from
-   *
-   * @return $object
-   */
+     * Convert from current calendar, what type is current calendar?
+     *
+     * @param object $calendar Assigned calendar to start from
+     *
+     * @return $object
+     */
     public function from($calendar)
     {
 
@@ -317,8 +332,8 @@ class Datium
 
 
         /**
-     * We need this part for DayOf class
-     */
+         * We need this part for DayOf class
+         */
         $this->calendar_type = $calendar;
 
         $this->translate_to = $calendar;
@@ -328,12 +343,12 @@ class Datium
     }
 
     /**
-    * Convert date to current Date
-    *
-    * @param object $calendar Assigned calendar to when calendar should start.
-    *
-    * @return object
-    */
+     * Convert date to current Date
+     *
+     * @param object $calendar Assigned calendar to when calendar should start.
+     *
+     * @return object
+     */
     public function to($calendar)
     {
 
@@ -342,8 +357,8 @@ class Datium
         $this->date_time = $this->convert->to($calendar);
 
         /**
-     * We need this part for DayOf class
-     */
+         * We need this part for DayOf class
+         */
         $this->calendar_type = $calendar;
 
         $this->translate_to = $calendar;
@@ -353,13 +368,13 @@ class Datium
     }
 
     /**
-   * Difference between two time
-   *
-   * @param DateTime $start Start of the date
-   * @param DateTime $end   End of the date
-   *
-   * @return object
-   */
+     * Difference between two time
+     *
+     * @param DateTime $start Start of the date
+     * @param DateTime $end   End of the date
+     *
+     * @return object
+     */
     public static function diff($start, $end)
     {
 
@@ -382,25 +397,25 @@ class Datium
     }
 
     /**
-   * Add new date value to current date
-   *
-   * @param string $value How much date should be added to current date
-   *
-   * @return object
-   */
+     * Add new date value to current date
+     *
+     * @param string $value How much date should be added to current date
+     *
+     * @return object
+     */
     public function add($value)
     {
 
         $this->date_interval_expression = str_replace(
-            $this->config[ 'date_simple' ],
-            $this->config[ 'date_interval' ],
+            $this->config['date_simple'],
+            $this->config['date_interval'],
             $value
         );
 
         $unit = 'P';
 
         if (strpos($this->date_interval_expression, 'T')) {
-            $this->date_interval_expression= str_replace(
+            $this->date_interval_expression = str_replace(
                 'T',
                 '',
                 $this->date_interval_expression
@@ -412,7 +427,7 @@ class Datium
         $this->date_interval_expression = str_replace(
             ' ',
             '',
-            $unit . $this->date_interval_expression
+            $unit.$this->date_interval_expression
         );
 
         $this->date_time->add(
@@ -424,25 +439,25 @@ class Datium
     }
 
     /**
-   * Sub date from current date
-   *
-   * @param string $value How much date should increase from current date
-   *
-   * @return obejct
-   */
+     * Sub date from current date
+     *
+     * @param string $value How much date should increase from current date
+     *
+     * @return obejct
+     */
     public function sub($value)
     {
 
         $this->date_interval_expression = str_replace(
-            $this->config[ 'date_simple' ],
-            $this->config[ 'date_interval' ],
+            $this->config['date_simple'],
+            $this->config['date_interval'],
             $value
         );
 
         $unit = 'P';
 
         if (strpos($this->date_interval_expression, 'T')) {
-            $this->date_interval_expression= str_replace(
+            $this->date_interval_expression = str_replace(
                 'T',
                 '',
                 $this->date_interval_expression
@@ -454,7 +469,7 @@ class Datium
         $this->date_interval_expression = str_replace(
             ' ',
             '',
-            $unit . $this->date_interval_expression
+            $unit.$this->date_interval_expression
         );
 
         $this->date_time->sub(
@@ -466,12 +481,12 @@ class Datium
     }
 
     /**
-   * Check if current year is leap or not
-   *
-   * @param string $type Name of the calendar to caculate leap year
-   *
-   * @return boolean
-   */
+     * Check if current year is leap or not
+     *
+     * @param string $type Name of the calendar to caculate leap year
+     *
+     * @return boolean
+     */
     public function leap()
     {
 
@@ -482,10 +497,10 @@ class Datium
     }
 
     /**
-    * Calculate how many time ago datetime happens
-    *
-    * @return string
-    */
+     * Calculate how many time ago datetime happens
+     *
+     * @return string
+     */
     public function ago()
     {
 
@@ -496,12 +511,12 @@ class Datium
     }
 
     /**
-    * Caculate day of year or week
-    *
-    * @since Aug, 22 2015
-    *
-    * @return integer
-    */
+     * Caculate day of year or week
+     *
+     * @since Aug, 22 2015
+     *
+     * @return integer
+     */
     public function dayOf()
     {
 
@@ -529,12 +544,12 @@ class Datium
     // }
 
     /**
-    * Return Datetime as a original object
-    *
-    * @since Oct 22, 2015
-    *
-    * @return object
-    */
+     * Return Datetime as a original object
+     *
+     * @since Oct 22, 2015
+     *
+     * @return object
+     */
     public function object()
     {
 
@@ -543,12 +558,12 @@ class Datium
     }
 
     /**
-    * Translate current date string to selected language
-    *
-    * @param string $language language short name fa, en, ar ...
-    *
-    * @return object
-    */
+     * Translate current date string to selected language
+     *
+     * @param string $language language short name fa, en, ar ...
+     *
+     * @return object
+     */
     public function lang($language = 'fa')
     {
 
@@ -565,10 +580,10 @@ class Datium
     }
 
     /**
-    * Return object as timestamp
-    *
-    * @return timestamp
-    */
+     * Return object as timestamp
+     *
+     * @return timestamp
+     */
     public function timestamp()
     {
 
@@ -577,14 +592,14 @@ class Datium
     }
 
     /**
-   * Return fainal result
-   *
-   * @param string $format Date format
-   *
-   * @since Aug 17 2015
-   *
-   * @return string
-   */
+     * Return fainal result
+     *
+     * @param string $format Date format
+     *
+     * @since Aug 17 2015
+     *
+     * @return string
+     */
     public function get($format = 'Y-m-d H:i:s')
     {
 
@@ -593,63 +608,63 @@ class Datium
         // $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
 
         if (is_null($this->fromConfig)) {
-            $this->fromConfig = include __DIR__.'/CalendarSettings/' .
-                                ucfirst($this->translate_from) . '.php';
+            $this->fromConfig = include __DIR__.'/CalendarSettings/'.
+                                        ucfirst($this->translate_from).'.php';
         }
 
 
         if (is_null($this->toConfig)) {
-            $this->toConfig = include __DIR__.'/CalendarSettings/' .
-                                       ucfirst($this->translate_to) . '.php';
+            $this->toConfig = include __DIR__.'/CalendarSettings/'.
+                                      ucfirst($this->translate_to).'.php';
         }
 
         $string_date = $this->date_time->format($format);
 
         if ($this->translate_to != 'gregorian') {
             $string_date = str_replace(
-                $this->fromConfig[ 'month' ],
-                $this->toConfig[ 'month' ],
+                $this->fromConfig['month'],
+                $this->toConfig['month'],
                 $string_date
             );
 
             $string_date = str_replace(
-                $this->fromConfig[ 'days_of_week' ],
-                $this->toConfig[ 'days_of_week' ][ $this->gregorian_DayofWeek ],
+                $this->fromConfig['days_of_week'],
+                $this->toConfig['days_of_week'][$this->gregorian_DayofWeek],
                 $string_date
             );
 
             $string_date = str_replace(
-                $this->fromConfig[ 'numbers' ],
-                $this->toConfig[ 'numbers' ],
+                $this->fromConfig['numbers'],
+                $this->toConfig['numbers'],
                 $string_date
             );
 
             $string_date = str_replace(
-                $this->fromConfig[ 'am_time' ],
-                $this->toConfig[ 'am_time' ],
+                $this->fromConfig['am_time'],
+                $this->toConfig['am_time'],
                 $string_date
             );
 
             $string_date = str_replace(
-                $this->fromConfig[ 'pm_time' ],
-                $this->toConfig[ 'pm_time' ],
+                $this->fromConfig['pm_time'],
+                $this->toConfig['pm_time'],
                 $string_date
             );
 
             $string_date = str_replace(
-                $this->fromConfig[ 'end_of_days' ],
-                $this->toConfig[ 'end_of_days' ],
+                $this->fromConfig['end_of_days'],
+                $this->toConfig['end_of_days'],
                 $string_date
             );
         }
 
         // foreach( $this->translate_to_file as $key => $value ) {
         //
-          // $string_date = str_replace(
-          //   $this->translate_from_file[ $key ],
-          //   $this->translate_to_file[ $key ],
-          //   $string_date
-          // );
+        // $string_date = str_replace(
+        //   $this->translate_from_file[ $key ],
+        //   $this->translate_to_file[ $key ],
+        //   $string_date
+        // );
         //
         // }
 
