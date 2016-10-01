@@ -20,7 +20,7 @@ Awesome DateTime package ever written in PHP, with clean design pattern and gene
 
 ## Via Composer
 
-```
+```js
 composer require opencafe/datium
 ```
 
@@ -138,7 +138,7 @@ Datium::now()->sub('1 year')
 ## Date Difference
 This method will return the difference between two specific date with php date interval type.
 
-```
+```js
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
     Datium::now()->object(),
@@ -155,14 +155,14 @@ echo $diff->year . ' year, ' .  $diff->month . ' month, ' . $diff->day . ' day '
 ### Human readable time difference
 Datium also supports human readable date and time difference.
 
-```
+```js
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
     Datium::now()->object(),
     Datium::now()->add('5000 day')->object()
 )->simple->get();
 
-// result => 13 years ago 
+// result => 13 years ago
 
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
@@ -281,16 +281,13 @@ Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
 
 Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
 // ex: Saturday 25th June 2016 12:00:00 PM
-
-
-
 ```
 
 ### Change Configuration
 
 You can change any configuration after initialize Datium object.
 
-```php
+```js
 $datium = Datium::create(
                 $date->format('Y'),
                 $date->format('m'),
@@ -304,7 +301,7 @@ $datium->setConfig(['timezone'=>'Europe/Istanbul']);
 
 #### Default configuration
 
-```php
+```js
 [
   'timezone' => 'Asia/Tehran',
   'language' =>     'en',
