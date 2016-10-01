@@ -18,7 +18,7 @@ use OpenCafe\Tools\Convert;
 use OpenCafe\Tools\Leap;
 use OpenCafe\Tools\DayOf;
 use OpenCafe\Tools\Lang;
-use OpenCafe\Tools\TimeAgo;
+use OpenCafe\Tools\SimpleDiff;
 
 /**
  * Main Datium class
@@ -93,11 +93,11 @@ class Datium
     protected static $timestamp;
 
     /**
-     * Timeago
+     * SimpleDiff
      *
      * @param integer
      */
-    protected $ago;
+    protected $simpleDiff;
 
     /**
      * Datium class constructure
@@ -242,7 +242,6 @@ class Datium
         $minute = 0,
         $second = 0
     ) {
-
 
         /**
          * When we want to set a Datetime object to Datium
@@ -392,6 +391,8 @@ class Datium
 
         $difference->year = $difference->y;
 
+        $difference->simple = ( new SimpleDiff( $start, $end, $difference ) );
+
         return $difference;
 
     }
@@ -493,20 +494,6 @@ class Datium
         $this->leap = new Leap($this->date_time->format('Y'), $this->calendar_type);
 
         return $this->leap;
-
-    }
-
-    /**
-     * Calculate how many time ago datetime happens
-     *
-     * @return string
-     */
-    public function ago()
-    {
-
-        $this->ago = new TimeAgo($this->date_time, $this->language);
-
-        return $this->ago;
 
     }
 
@@ -657,16 +644,6 @@ class Datium
                 $string_date
             );
         }
-
-        // foreach( $this->translate_to_file as $key => $value ) {
-        //
-        // $string_date = str_replace(
-        //   $this->translate_from_file[ $key ],
-        //   $this->translate_to_file[ $key ],
-        //   $string_date
-        // );
-        //
-        // }
 
         return $string_date;
 

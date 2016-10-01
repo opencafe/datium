@@ -49,7 +49,7 @@ class Lang
         /**
         * Fetch translated expression to langTable attribute
         */
-        self::$langTable = include 'lang/' . $language . '/general.php';
+        self::$langTable = include __DIR__ . '/lang/' . $language . '/general.php';
 
         foreach (self::$langTable as $key => $translate) {
             if (isset(self::$config[ $key ])) {
@@ -71,9 +71,32 @@ class Lang
     public static function get($lang, $value)
     {
 
-        $file = include('lang/' . $lang . '/general.php');
+        $file = include( __DIR__ . '/lang/' . $lang . '/general.php');
 
         return $file[$value];
 
     }
+
+    /**
+     * Translate numbers
+     *
+     * @param  integer $numbers
+     * @return string
+     */
+    public static function getNumbers( $lang, $numbers )
+    {
+
+      $result = null;
+
+      $file = include( __DIR__ . '/lang/' . $lang . '/general.php');
+
+      foreach(  str_split( $numbers, 1 ) as $key => $value ) {
+
+        $result .= $file[$value];
+
+      }
+      return $result;
+
+    }
+
 }

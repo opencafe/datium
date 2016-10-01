@@ -152,6 +152,36 @@ echo $diff->year . ' year, ' .  $diff->month . ' month, ' . $diff->day . ' day '
 
 ```
 
+### Human readable time difference
+Datium also supports human readable date and time difference.
+
+```
+// current generated date difference with next 5000 days
+$diff = Datium::diff(
+    Datium::now()->object(),
+    Datium::now()->add('5000 day')->object()
+)->simple->get();
+
+// result => 13 years ago
+
+// current generated date difference with next 5000 days
+$diff = Datium::diff(
+    Datium::now()->object(),
+    Datium::now()->sub('5000 day')->object()
+)->simple->get();
+
+// result => 13 years remaining
+
+// current generated date difference with next 5000 days
+$diff = Datium::diff(
+    Datium::now()->object(),
+    Datium::now()->add('5000 day')->object()
+)->simple->lang('fa')->get();
+
+// result => ۱۳ سال پیش
+
+```
+
 ## Leap year
 Define leap year of current year with generalization support.
 
@@ -256,7 +286,7 @@ Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
 
 ```
 
-### Change Configuration 
+### Change Configuration
 
 You can change any configuration after initialize Datium object.
 
