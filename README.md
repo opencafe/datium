@@ -162,7 +162,7 @@ $diff = Datium::diff(
     Datium::now()->add('5000 day')->object()
 )->simple->get();
 
-// result => 13 years ago
+// result => 13 years ago 
 
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
