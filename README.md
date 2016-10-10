@@ -8,6 +8,17 @@
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 [![packagist](https://img.shields.io/badge/status-beta-orange.svg)]()
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85461933-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 
 
 Awesome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
