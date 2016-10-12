@@ -71,6 +71,37 @@ And even with custom PHP YMD [format](http://php.net/manual/en/function.date.php
 Datium::now()->get( 'l jS F Y h:i:s A' );
 ```
 
+Easy usage:
+
+```js
+Datium::now()->all();
+
+// Result
+object(stdClass)#5 (6) {
+  ["second"]=>
+  string(2) "03"
+  ["minute"]=>
+  string(2) "10"
+  ["hour"]=>
+  string(2) "15"
+  ["day"]=>
+  string(2) "12"
+  ["month"]=>
+  string(2) "10"
+  ["year"]=>
+  string(4) "2016"
+}
+
+Datium::now()->all()->year;    // 2016
+Datium::now()->all()->month;   // 10
+Datium::now()->all()->day;     // 12
+Datium::now()->all()->hour;    // 15
+Datium::now()->all()->minute;  // 10
+Datium::now()->all()->second;  // 03
+```
+
+
+
 
 ## Create
 You can also simply create new time:
@@ -301,7 +332,7 @@ $datium->setConfig(['timezone'=>'Europe/Istanbul']);
 
 #### Default configuration
 
-```js
+```
 [
   'timezone' => 'Asia/Tehran',
   'language' =>     'en',
