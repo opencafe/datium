@@ -8,8 +8,6 @@
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 [![packagist](https://img.shields.io/badge/status-beta-orange.svg)]()
 
-
-
 Awesome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
 * Simplicity in code and logic
