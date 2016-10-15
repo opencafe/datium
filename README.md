@@ -43,7 +43,7 @@ Datium::now()->get(); // ex: 2016-01-01 00:00:00
 
 Datium::now()->timestamp(); // ex: 1420057800
 
-Datium::now()->get('timestamp');
+Datium::now()->get('timestamp'); // ex: 1420057800
 ```
 Or working with date as simple as you need:
 
@@ -73,7 +73,7 @@ Datium::now()->get( 'l jS F Y h:i:s A' );
 
 Timestamp format:
 
-```
+```js
 Datium::create(2016,10,16)->get('timestamp');
 // Result : 1476563400
 ```
