@@ -42,6 +42,8 @@ As datium output
 Datium::now()->get(); // ex: 2016-01-01 00:00:00
 
 Datium::now()->timestamp(); // ex: 1420057800
+
+Datium::now()->get('timestamp');
 ```
 Or working with date as simple as you need:
 
@@ -67,6 +69,13 @@ And even with custom PHP YMD [format](http://php.net/manual/en/function.date.php
 
 ```js
 Datium::now()->get( 'l jS F Y h:i:s A' );
+```
+
+Timestamp format:
+
+```
+Datium::create(2016,10,16)->get('timestamp');
+// Result : 1476563400
 ```
 
 Easy usage:
@@ -289,9 +298,11 @@ Datium::create( 2015, 11, 9 )->to( 'hijri' )->get()
 Convert all calendars which supported on Datium or event your customized calendars as simple as possible:
 
 ```js
-Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'gregorian' )->get();
+Datium::create( 1395, 7, 25 )->from( 'jalali' )->get(); // Gregorian is default value for destination calendar.
+// result: 2016-10-16 00:00:00
 
-Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'hijri' )->get();
+Datium::create( 1395, 7, 25 )->from( 'jalali' )->to( 'hijri' )->get();
+// result: 1438-01-14 00:00:00
 ```
 
 ### Translation Generalization
