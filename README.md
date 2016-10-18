@@ -281,8 +281,7 @@ Datium::now()->to( 'hijri' )->dayOf()->week();
 ```
 
 ## Last Day of Month
-What day of week is current day:
-
+How many days is current month
 ```js
 
 // Last Day of Current Month to Gregorian
