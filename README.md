@@ -280,6 +280,22 @@ Datium::now()->to( 'hijri' )->dayOf()->week();
 
 ```
 
+## Last Day of Month
+What day of week is current day:
+
+```js
+
+// Last Day of Current Month to Gregorian
+Datium::now()->dayOf()->lastDayMonth();
+
+// Last Day of Current Month to Jalali
+Datium::now()->to( 'jalali' )->dayOf()->lastDayMonth();
+
+// Last Day of Current Month to Hijri
+Datium::now()->to( 'hijri' )->dayOf()->lastDayMonth();
+
+```
+
 ## Generalization
 
 ### Calendar generalization
