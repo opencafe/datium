@@ -6,9 +6,6 @@
 [![Build Status](https://travis-ci.org/opencafe/datium.svg?branch=master)](https://travis-ci.org/opencafe/datium)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/opencafe/datium/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/opencafe/datium/?branch=master)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
-[![packagist](https://img.shields.io/badge/status-beta-orange.svg)]()
-
-
 
 Awesome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
 
@@ -20,7 +17,7 @@ Awesome DateTime package ever written in PHP, with clean design pattern and gene
 
 ## Via Composer
 
-```
+```js
 composer require opencafe/datium
 ```
 
@@ -44,6 +41,8 @@ As datium output
 Datium::now()->get(); // ex: 2016-01-01 00:00:00
 
 Datium::now()->timestamp(); // ex: 1420057800
+
+Datium::now()->get('timestamp'); // ex: 1420057800
 ```
 Or working with date as simple as you need:
 
@@ -70,6 +69,44 @@ And even with custom PHP YMD [format](http://php.net/manual/en/function.date.php
 ```js
 Datium::now()->get( 'l jS F Y h:i:s A' );
 ```
+
+Timestamp format:
+
+```js
+Datium::create(2016,10,16)->get('timestamp');
+// Result : 1476563400
+```
+
+Easy usage:
+
+```js
+Datium::now()->all();
+
+// Result
+object(stdClass)#5 (6) {
+  ["second"]=>
+  string(2) "03"
+  ["minute"]=>
+  string(2) "10"
+  ["hour"]=>
+  string(2) "15"
+  ["day"]=>
+  string(2) "12"
+  ["month"]=>
+  string(2) "10"
+  ["year"]=>
+  string(4) "2016"
+}
+
+Datium::now()->all()->year;    // 2016
+Datium::now()->all()->month;   // 10
+Datium::now()->all()->day;     // 12
+Datium::now()->all()->hour;    // 15
+Datium::now()->all()->minute;  // 10
+Datium::now()->all()->second;  // 03
+```
+
+
 
 
 ## Create
@@ -138,7 +175,7 @@ Datium::now()->sub('1 year')
 ## Date Difference
 This method will return the difference between two specific date with php date interval type.
 
-```
+```js
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
     Datium::now()->object(),
@@ -155,14 +192,14 @@ echo $diff->year . ' year, ' .  $diff->month . ' month, ' . $diff->day . ' day '
 ### Human readable time difference
 Datium also supports human readable date and time difference.
 
-```
+```js
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
     Datium::now()->object(),
     Datium::now()->add('5000 day')->object()
 )->simple->get();
 
-// result => 13 years ago 
+// result => 13 years ago
 
 // current generated date difference with next 5000 days
 $diff = Datium::diff(
@@ -243,6 +280,21 @@ Datium::now()->to( 'hijri' )->dayOf()->week();
 
 ```
 
+## Last Day of Month
+How many days is current month
+```js
+
+// Last Day of Current Month to Gregorian
+Datium::now()->dayOf()->lastDayMonth();
+
+// Last Day of Current Month to Jalali
+Datium::now()->to( 'jalali' )->dayOf()->lastDayMonth();
+
+// Last Day of Current Month to Hijri
+Datium::now()->to( 'hijri' )->dayOf()->lastDayMonth();
+
+```
+
 ## Generalization
 
 ### Calendar generalization
@@ -260,9 +312,11 @@ Datium::create( 2015, 11, 9 )->to( 'hijri' )->get()
 Convert all calendars which supported on Datium or event your customized calendars as simple as possible:
 
 ```js
-Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'gregorian' )->get();
+Datium::create( 1395, 7, 25 )->from( 'jalali' )->get(); // Gregorian is default value for destination calendar.
+// result: 2016-10-16 00:00:00
 
-Datium::create( 2015, 11, 9 )->from( 'jalali' )->to( 'hijri' )->get();
+Datium::create( 1395, 7, 25 )->from( 'jalali' )->to( 'hijri' )->get();
+// result: 1438-01-14 00:00:00
 ```
 
 ### Translation Generalization
@@ -281,16 +335,13 @@ Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
 
 Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
 // ex: Saturday 25th June 2016 12:00:00 PM
-
-
-
 ```
 
 ### Change Configuration
 
 You can change any configuration after initialize Datium object.
 
-```php
+```js
 $datium = Datium::create(
                 $date->format('Y'),
                 $date->format('m'),
@@ -304,7 +355,7 @@ $datium->setConfig(['timezone'=>'Europe/Istanbul']);
 
 #### Default configuration
 
-```php
+```
 [
   'timezone' => 'Asia/Tehran',
   'language' =>     'en',

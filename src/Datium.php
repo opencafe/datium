@@ -590,9 +590,11 @@ class Datium
     public function get($format = 'Y-m-d H:i:s')
     {
 
-        // $this->translate_from_file = include( 'Lang/en/general.php' );
-        //
-        // $this->translate_to_file = include( 'Lang/' . $this->language . '/general.php' );
+        if( $format === 'timestamp' ) {
+
+          return $this->timestamp();
+
+        }
 
         if (is_null($this->fromConfig)) {
             $this->fromConfig = include __DIR__.'/CalendarSettings/'.

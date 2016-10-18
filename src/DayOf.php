@@ -65,4 +65,18 @@ class DayOf
         return $this->config[ 'day_of_week' ]( $this->date_time );
 
     }
+
+	/**
+	 * Return last day of current month
+	 *
+	 * @since  Oct, 18 2016
+	 * @return integer
+	 */
+	public function lastDayMonth() {
+
+		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
+
+		return $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+	}
 }

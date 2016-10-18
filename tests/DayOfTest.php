@@ -31,4 +31,15 @@ class DayOfTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(6, Datium::create(2015, 1, 1)->to('jalali')->dayOf()->week());
 
     }
+
+	public function testLastDayOfMonth()
+	{
+
+		$this->assertEquals(31, Datium::create(2015, 1, 1)->dayOf()->lastDayMonth());
+
+        $this->assertEquals(30, Datium::create(2015, 1, 1)->to('hijri')->dayOf()->lastDayMonth());
+
+        $this->assertEquals(30, Datium::create(2015, 1, 1)->to('jalali')->dayOf()->lastDayMonth());
+
+	}
 }
