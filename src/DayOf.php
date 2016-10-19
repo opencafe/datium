@@ -76,7 +76,39 @@ class DayOf
 
 		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
-		return $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+		$days = 0;
+
+		switch ( $this->calendar_type ) {
+
+			case 'gregorian':
+
+				if ( intval( $this->date_time->format( 'm' ) ) == 2 &&
+				      $this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
+				else
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+				break;
+
+			case 'jalali':
+
+				if ( intval( $this->date_time->format( 'm' ) ) == 12 &&
+				  		$this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
+				 	$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
+				else
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+			  	break;
+
+		  default:
+
+			$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+			break;
+
+		}
+
+		return $days;
 
 	}
 }
