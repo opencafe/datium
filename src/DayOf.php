@@ -7,29 +7,32 @@ namespace OpenCafe\Tools;
  */
 class DayOf
 {
-
+	/**
+     * @var object
+     */
     protected $date_time;
 
-    protected $month;
-
-    protected $day;
-
+	/**
+     * @var array
+     */
     protected $config;
 
-    protected $result;
+	/**
+	 * @var string
+	 */
+	protected $calendar_type;
 
-    protected $calendar_type;
-
-    protected $geregorian_DayofWeek;
-
+	/**
+   	 * Constructor of DayOf class
+     */
     public function __construct($date_time, $calendar_type = 'gregorian')
     {
 
-        $this->config = include __DIR__.'/Config.php';
+		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($calendar_type) . '.php';
+
+		$this->calendar_type = $calendar_type;
 
         $this->date_time = $date_time;
-
-        $this->calendar_type = $calendar_type;
 
         return $this;
 
@@ -43,8 +46,6 @@ class DayOf
    */
     public function year()
     {
-
-        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
         return $this->config[ 'day_of_year' ]( $this->date_time );
 
@@ -60,8 +61,6 @@ class DayOf
     public function week()
     {
 
-        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
-
         return $this->config[ 'day_of_week' ]( $this->date_time );
 
     }
@@ -73,8 +72,6 @@ class DayOf
 	 * @return integer
 	 */
 	public function lastDayMonth() {
-
-		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
 		$days = 0;
 
