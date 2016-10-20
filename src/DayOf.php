@@ -7,29 +7,32 @@ namespace OpenCafe\Tools;
  */
 class DayOf
 {
-
+	/**
+     * @var object
+     */
     protected $date_time;
 
-    protected $month;
-
-    protected $day;
-
+	/**
+     * @var array
+     */
     protected $config;
 
-    protected $result;
+	/**
+	 * @var string
+	 */
+	protected $calendar_type;
 
-    protected $calendar_type;
-
-    protected $geregorian_DayofWeek;
-
+	/**
+   	 * Constructor of DayOf class
+     */
     public function __construct($date_time, $calendar_type = 'gregorian')
     {
 
-        $this->config = include __DIR__.'/Config.php';
+		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($calendar_type) . '.php';
+
+		$this->calendar_type = $calendar_type;
 
         $this->date_time = $date_time;
-
-        $this->calendar_type = $calendar_type;
 
         return $this;
 
@@ -43,8 +46,6 @@ class DayOf
    */
     public function year()
     {
-
-        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
 
         return $this->config[ 'day_of_year' ]( $this->date_time );
 
@@ -60,8 +61,6 @@ class DayOf
     public function week()
     {
 
-        $this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
-
         return $this->config[ 'day_of_week' ]( $this->date_time );
 
     }
@@ -74,9 +73,39 @@ class DayOf
 	 */
 	public function lastDayMonth() {
 
-		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($this->calendar_type) . '.php';
+		$days = 0;
 
-		return $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+		switch ( $this->calendar_type ) {
+
+			case 'gregorian':
+
+				if ( intval( $this->date_time->format( 'm' ) ) == 2 &&
+				      $this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
+				else
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+				break;
+
+			case 'jalali':
+
+				if ( intval( $this->date_time->format( 'm' ) ) == 12 &&
+				  		$this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
+				 	$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
+				else
+					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+			  	break;
+
+		  default:
+
+			$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+
+			break;
+
+		}
+
+		return $days;
 
 	}
 }

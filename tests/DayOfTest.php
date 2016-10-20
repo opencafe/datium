@@ -34,7 +34,9 @@ class DayOfTest extends \PHPUnit_Framework_TestCase
 
 	public function testLastDayOfMonth()
 	{
-
+		// leap year
+		$this->assertEquals(29, Datium::create(2016, 2, 1)->dayOf()->lastDayMonth());
+		
 		$this->assertEquals(31, Datium::create(2015, 1, 1)->dayOf()->lastDayMonth());
 
         $this->assertEquals(30, Datium::create(2015, 1, 1)->to('hijri')->dayOf()->lastDayMonth());
