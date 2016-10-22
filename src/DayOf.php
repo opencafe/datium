@@ -79,21 +79,19 @@ class DayOf
 
 			case 'gregorian':
 
-				if ( intval( $this->date_time->format( 'm' ) ) == 2 &&
-				      $this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
-					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
-				else
-					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+				$days = ( intval( $this->date_time->format( 'm' ) ) == 2 &&
+				      	$this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) ) ?
+						$this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1 :
+						$this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
 
 				break;
 
 			case 'jalali':
 
-				if ( intval( $this->date_time->format( 'm' ) ) == 12 &&
-				  		$this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) )
-				 	$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1;
-				else
-					$days = $this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
+				$days = ( intval( $this->date_time->format( 'm' ) ) == 12 &&
+				  		$this->config[ 'leap_year' ]( $this->date_time->format( 'Y' )) ) ?
+				 	 	$this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ] + 1 :
+					 	$this->config[ 'month_days_number' ][ intval( $this->date_time->format( 'm' ) ) ];
 
 			  	break;
 
