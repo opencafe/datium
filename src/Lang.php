@@ -44,7 +44,7 @@ class Lang
         /**
        * Fetch translated file to config attribute
        */
-        self::$config = include 'src/CalendarSettings/Jalali.php';
+        self::$config = include  __DIR__ . '/CalendarSettings/Jalali.php';
 
         /**
         * Fetch translated expression to langTable attribute
