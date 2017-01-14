@@ -13,6 +13,10 @@ Awesome DateTime package ever written in PHP, with clean design pattern and gene
 * Expandable in every part
 * Hijri and Jalali Calendars support
 
+# Support
+* ^PHP:5.4
+* PHP:7
+
 # Installation
 
 ## Via Composer
