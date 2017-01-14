@@ -9,6 +9,9 @@
             "email": "mehdi.hosseini.dev@gmail.com"
         }
     ],
+    "require": {
+      "fisharebest/ext-calendar": "2.*"
+    },
     "autoload": {
         "psr-4": {
             "OpenCafe\\" : "src/",
