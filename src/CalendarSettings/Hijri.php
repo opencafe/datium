@@ -97,8 +97,6 @@ return array (
     */
     'convert_from' => function ($date_time) {
 
-        $config = include 'Hijri.php';
-
         $year = $date_time->format('Y');
 
         $month = $date_time->format('m');

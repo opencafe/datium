@@ -60,4 +60,58 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1395-03-24 00:00:00', $date);
 
     }
+
+    public function testGregorianToJulian()
+    {
+
+        $date = Datium::create(2016, 1, 25)->to('julian')->get();
+
+        $this->assertEquals('2016-01-12 00:00:00', $date);
+
+    }
+
+    public function testJulianToGregorian()
+    {
+
+        $date = Datium::create(2016, 1, 12)->from('julian')->get();
+
+        $this->assertEquals('2016-01-25 00:00:00', $date);
+
+    }
+
+    public function testJulianToHijri()
+    {
+
+        $date = Datium::create(2016, 1, 12)->from('julian')->to('hijri')->get();
+
+        $this->assertEquals('1437-04-14 00:00:00', $date);
+
+    }
+
+    public function testJulianToJalali()
+    {
+
+        $date = Datium::create(2016, 01, 12)->from('julian')->to('jalali')->get();
+
+        $this->assertEquals('1394-11-05 00:00:00', $date);
+
+    }
+
+    public function testHijriToJulian()
+    {
+
+        $date = Datium::create(1437, 04, 14)->from('hijri')->to('julian')->get();
+
+        $this->assertEquals('2016-01-12 00:00:00', $date);
+
+    }
+
+    public function testJalaliToJulian()
+    {
+
+        // $date = Datium::create(1394, 11, 05)->from('jalali')->to('julian')->get();
+        //
+        // $this->assertEquals('2016-01-12 00:00:00', $date);
+
+    }
 }
