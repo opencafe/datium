@@ -24,13 +24,19 @@
   */
    'convert_to' => function ($date_time) {
 
-      $jd = unixtojd( $date_time->getTimestamp());
+     $year = $date_time->format('Y');
 
-      $date = cal_from_jd($jd, CAL_JULIAN);
+     $month = $date_time->format('m');
 
-      $date_time->setDate($date['year'], $date['month'], $date['day']);
+     $day = $date_time->format('d');
 
-      return $date_time;
+     $jd = gregoriantojd($month, $day, $year);
+
+     $date = explode('/', jdtojulian( $jd ));
+
+     $date_time->setDate($date[2], $date[0], $date[1]);
+
+     return $date_time;
 
    },
 
@@ -55,7 +61,7 @@
       $date = explode('/', JDToGregorian( $date ) );
 
       $date_time->setDate($date[2], $date[0], $date[1]);
-      
+
       return $date_time;
 
     },
