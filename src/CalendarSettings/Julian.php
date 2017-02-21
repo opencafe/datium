@@ -18,7 +18,7 @@
   *                        Convert to
   ************************************************************
   *
-  * Convert algorith to convert Gregorian to Jalali calerndar
+  * Convert algorith to convert Gregorian to Julian calerndar
   *
   *\_________________________________________________________/
   */
@@ -44,7 +44,7 @@
     *                        Convert From
     ************************************************************
     *
-    * Convert algorith to convert Jalali to Gregorian calerndar
+    * Convert algorith to convert Julian to Gregorian calerndar
     *
     *\_________________________________________________________/
     */
@@ -67,20 +67,20 @@
     },
 
     /************************************************************
-    *               Shorthand for jalali calendar
+    *               Shorthand for Julian calendar
     ************************************************************
     *
-    * Jalali calendar shorthand
+    * Julian calendar shorthand
     *
     *\_________________________________________________________/
     */
-    'shorthand' => 'gr',
+    'shorthand' => 'ju',
 
     /************************************************************
     *                        Month's name
     ************************************************************
     *
-    * Jalali month name
+    * Julian month name
     *
     *\_________________________________________________________/
     */
@@ -116,7 +116,7 @@
     *                        Days of Week
     ************************************************************
     *
-    * Here is week days on jalali calendar, offset 0 is first
+    * Here is week days on Julian calendar, offset 0 is first
     * day of week and offset 6 is the last one.
     *
     *\_________________________________________________________/
@@ -189,7 +189,7 @@
     *                       Leap year
     ************************************************************
     *
-    * Leap Year formula on jalali calendar
+    * Leap Year formula on Julian calendar
     *
     *\_________________________________________________________/
     */
@@ -203,7 +203,7 @@
     *                        Weekend
     ************************************************************
     *
-    * Jalali weekend
+    * Julian weekend
     *
     *\_________________________________________________________/
     */

@@ -18,7 +18,7 @@
   *                        Convert to
   ************************************************************
   *
-  * Convert algorith to convert Gregorian to Jalali calerndar
+  * Convert to Gregorian 
   *
   *\_________________________________________________________/
   */
@@ -32,7 +32,7 @@
     *                        Convert From
     ************************************************************
     *
-    * Convert algorith to convert Jalali to Gregorian calerndar
+    * Convert algorith to convert form x to Gregorian 
     *
     *\_________________________________________________________/
     */
@@ -43,10 +43,10 @@
     },
 
     /************************************************************
-    *               Shorthand for jalali calendar
+    *               Shorthand for Gregorian calendar
     ************************************************************
     *
-    * Jalali calendar shorthand
+    * Gregorian calendar shorthand
     *
     *\_________________________________________________________/
     */
@@ -56,7 +56,7 @@
     *                        Month's name
     ************************************************************
     *
-    * Jalali month name
+    * Gregorian month name
     *
     *\_________________________________________________________/
     */
@@ -92,7 +92,7 @@
     *                        Days of Week
     ************************************************************
     *
-    * Here is week days on jalali calendar, offset 0 is first
+    * Here is week days on Gregorian calendar, offset 0 is first
     * day of week and offset 6 is the last one.
     *
     *\_________________________________________________________/
@@ -165,7 +165,7 @@
     *                       Leap year
     ************************************************************
     *
-    * Leap Year formula on jalali calendar
+    * Leap Year formula on Gregorian calendar
     *
     *\_________________________________________________________/
     */
@@ -179,7 +179,7 @@
     *                        Weekend
     ************************************************************
     *
-    * Jalali weekend
+    * Gregorian weekend
     *
     *\_________________________________________________________/
     */

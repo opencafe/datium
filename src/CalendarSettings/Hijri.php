@@ -9,7 +9,7 @@ return array (
   *                        Convert to
   ************************************************************
   *
-  * Convert algorith to convert Gregorian to Jalali calerndar
+  * Convert algorith to convert Gregorian to Hijri calerndar
   *
   *\_________________________________________________________/
   */
@@ -91,7 +91,7 @@ return array (
     *                        Convert From
     ************************************************************
     *
-    * Convert algorith to convert Jalali to Gregorian calerndar
+    * Convert algorith to convert Hijri to Gregorian calerndar
     *
     *\_________________________________________________________/
     */
@@ -122,20 +122,20 @@ return array (
     },
 
     /************************************************************
-    *               Shorthand for jalali calendar
+    *               Shorthand for Hijri calendar
     ************************************************************
     *
-    * Jalali calendar shorthand
+    * Hijri calendar shorthand
     *
     *\_________________________________________________________/
     */
-    'shorthand' => 'sh',
+    'shorthand' => 'hi',
 
     /************************************************************
     *                        Month's name
     ************************************************************
     *
-    * Jalali month name
+    * Hijri month name
     *
     *\_________________________________________________________/
     */
@@ -171,7 +171,7 @@ return array (
     *                        Days of Week
     ************************************************************
     *
-    * Here is week days on jalali calendar, offset 0 is first
+    * Here is week days on Hijri calendar, offset 0 is first
     * day of week and offset 6 is the last one.
     *
     *\_________________________________________________________/
@@ -198,7 +198,7 @@ return array (
 
 
 
-    'month_days_number' => array(     1 => 30,
+    'month_days_number' => array(    1 => 30,
                                      2 => 29,
                                      3 => 30,
                                      4 => 30,
@@ -214,7 +214,7 @@ return array (
     *                      Day of year
     ************************************************************
     *
-    *  Return days of year on ghamari cleander
+    *  Return days of year on Hijri cleander
     *
     *\_________________________________________________________/
     */
@@ -244,7 +244,7 @@ return array (
       *                      Day of week
       ************************************************************
       *
-      *  Return day of week on ghamari cleander
+      *  Return day of week on Hijri calendar
       *  example : al-Aḥad = result is 1
       *\_________________________________________________________/
       */
@@ -270,7 +270,7 @@ return array (
       *                       Leap year
       ************************************************************
       *
-      * Leap Year formula on ghamari calendar
+      * Leap Year formula on Hijri calendar
       *
       *\_________________________________________________________/
       */
@@ -297,7 +297,7 @@ return array (
     *                        Weekend
     ************************************************************
     *
-    * weekend in arabic countries and some islamic countries
+    * weekend in Hijri calendar / arabic countries and some islamic countries
     *
     *\_________________________________________________________/
     */
