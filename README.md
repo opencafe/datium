@@ -364,3 +364,7 @@ $datium->setConfig(['timezone'=>'Europe/Istanbul']);
   'date_simple' => [ 'day', ' month', ' year', ' hour', ' minute', ' second' ],
 ]
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/opencafe/datium/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
