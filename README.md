@@ -299,6 +299,21 @@ Datium::now()->to( 'hijri' )->dayOf()->lastDayMonth();
 
 ```
 
+## First Day of
+You can check today is first day of Month, Week or Year
+```js
+
+// check today is first day of week or not
+Datium::now()->isFirstDayOfWeek();
+
+// check today is first day of month or not
+Datium::now()->isFirstDayOfMonth();
+
+// check today is first day of year or not
+Datium::now()->isFirstDayOfYear();
+
+```
+
 ## Generalization
 
 ### Calendar generalization
