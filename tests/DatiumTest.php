@@ -252,4 +252,37 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Saturday 25th June 2016 12:00:00 PM', $gregorian);
 
     }
+
+    public function testTodayIsFirstOfWeek()
+    {
+        $date = Datium::create(2016, 1, 1, 1, 0, 0);
+
+        $this->assertFalse($date->isFirstDayOfWeek());
+
+        $date->add('1 day');
+
+        $this->assertTrue($date->isFirstDayOfWeek());
+    }
+
+    public function testTodayIsFirstDayOfYear()
+    {
+        $date = Datium::create(2016, 1, 1, 1, 0, 0);
+
+        $this->assertTrue($date->isFirstDayOfYear());
+
+        $date->add('1 day');
+
+        $this->assertFalse($date->isFirstDayOfYear());
+    }
+
+    public function testTodayIsFirstDayOfMonth()
+    {
+        $date = Datium::create(2016, 1, 1, 1, 0, 0);
+
+        $this->assertTrue($date->isFirstDayOfMonth());
+
+        $date->add('1 day');
+
+        $this->assertFalse($date->isFirstDayOfMonth());
+    }
 }

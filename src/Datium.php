@@ -513,6 +513,38 @@ class Datium
 
     }
 
+    /**
+     * Return true if today is first day of month
+     *
+     * @return bool
+     */
+    public function isFirstDayOfWeek()
+    {
+        $this->language = 'en';
+
+        return ( $this->get('l') == 'Saturday' ? true : false );
+    }
+
+    /**
+     * Return true if today is first day of month
+     *
+     * @return bool
+     */
+    public function isFirstDayOfMonth()
+    {
+        return ( $this->get('d') == '01' ? true : false );
+    }
+
+    /**
+     * Return true if today is first day of year
+     *
+     * @return bool
+     */
+    public function isFirstDayOfYear()
+    {
+        return ( $this->get('d') == '01' && $this->get('m') == '01' ? true : false );
+    }
+    
     // public function events()
     // {
     //
