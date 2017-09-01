@@ -252,4 +252,12 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Saturday 25th June 2016 12:00:00 PM', $gregorian);
 
     }
+
+    public function testJalaliSubDateTime()
+    {
+        $jalali = Datium::create(2017, 9, 1, 12, 0, 0)->sub('1 day')->to('jalali')
+                        ->get('l jS F Y h:i:s');
+
+        $this->assertEquals("Panjshanbe 9th Shahrivar 1396 12:00:00", $jalali);
+    }
 }
