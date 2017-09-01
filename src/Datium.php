@@ -160,7 +160,6 @@ class Datium
         $this->gregorian_DayofWeek = $this->date_time->format('w');
 
         $this->convert_calendar = new Convert();
-
     }
 
     /**
@@ -477,6 +476,8 @@ class Datium
             new DateInterval($this->date_interval_expression)
         );
 
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
+        
         return $this;
 
     }
@@ -590,7 +591,7 @@ class Datium
     public function get($format = 'Y-m-d H:i:s')
     {
 
-        if( $format === 'timestamp' ) {
+        if ($format === 'timestamp') {
 
           return $this->timestamp();
 

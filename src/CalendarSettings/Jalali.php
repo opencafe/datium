@@ -165,6 +165,16 @@ return array (
 
       $gregorian_month = $month;
 
+      if ( ( ( $gregorian_year % 4 ) == 0 ) && ( ( ( $gregorian_year % 100 ) != 0 ) || ( ( $gregorian_year % 400 ) == 0 ) ) ) {
+
+        if ( $gregorian_month < 3 || ( $gregorian_month == 3 && $gregorian_day < 22 ) ) {
+
+          $gregorian_day++;
+
+        }
+
+      }
+
       $date_time->setDate($gregorian_year, $gregorian_month, $gregorian_day);
 
 
@@ -180,7 +190,7 @@ return array (
    *
    *\_________________________________________________________/
    */
-  'shorthand' => 'sh',
+  'shorthand' => 'ja',
 
   /************************************************************
    *                        Month's name

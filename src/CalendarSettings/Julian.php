@@ -18,13 +18,25 @@
   *                        Convert to
   ************************************************************
   *
-  * Convert to Gregorian 
+  * Convert algorith to convert Gregorian to Julian calerndar
   *
   *\_________________________________________________________/
   */
    'convert_to' => function ($date_time) {
 
-     return null;
+     $year = $date_time->format('Y');
+
+     $month = $date_time->format('m');
+
+     $day = $date_time->format('d');
+
+     $jd = gregoriantojd($month, $day, $year);
+
+     $date = explode('/', jdtojulian( $jd ));
+
+     $date_time->setDate($date[2], $date[0], $date[1]);
+
+     return $date_time;
 
    },
 
@@ -32,31 +44,43 @@
     *                        Convert From
     ************************************************************
     *
-    * Convert algorith to convert form x to Gregorian 
+    * Convert algorith to convert Julian to Gregorian calerndar
     *
     *\_________________________________________________________/
     */
     'convert_from' => function ($date_time) {
 
-        return null;
+      $year = $date_time->format('Y');
+
+      $month = $date_time->format('m');
+
+      $day = $date_time->format('d');
+
+      $date = juliantojd( $month, $day, $year );
+
+      $date = explode('/', JDToGregorian( $date ) );
+
+      $date_time->setDate($date[2], $date[0], $date[1]);
+
+      return $date_time;
 
     },
 
     /************************************************************
-    *               Shorthand for Gregorian calendar
+    *               Shorthand for Julian calendar
     ************************************************************
     *
-    * Gregorian calendar shorthand
+    * Julian calendar shorthand
     *
     *\_________________________________________________________/
     */
-    'shorthand' => 'gr',
+    'shorthand' => 'ju',
 
     /************************************************************
     *                        Month's name
     ************************************************************
     *
-    * Gregorian month name
+    * Julian month name
     *
     *\_________________________________________________________/
     */
@@ -92,7 +116,7 @@
     *                        Days of Week
     ************************************************************
     *
-    * Here is week days on Gregorian calendar, offset 0 is first
+    * Here is week days on Julian calendar, offset 0 is first
     * day of week and offset 6 is the last one.
     *
     *\_________________________________________________________/
@@ -109,7 +133,7 @@
     ),
 
 
-    'month_days_number' => array(   1 => 31,
+    'month_days_number' => array(  1 => 31,
                                    2 => 28,
                                    3 => 31,
                                    4 => 30,
@@ -129,7 +153,7 @@
 
         $_month = null;
 
-        $config = include 'Gregorian.php';
+        $config = include 'Julian.php';
 
         $month = $date_time->format('n');
 
@@ -149,7 +173,7 @@
 
     'day_of_week' => function ($date_time) {
 
-        $config = include 'Gregorian.php';
+        $config = include 'Julian.php';
 
         $day = $date_time->format('l');
 
@@ -165,7 +189,7 @@
     *                       Leap year
     ************************************************************
     *
-    * Leap Year formula on Gregorian calendar
+    * Leap Year formula on Julian calendar
     *
     *\_________________________________________________________/
     */
@@ -179,7 +203,7 @@
     *                        Weekend
     ************************************************************
     *
-    * Gregorian weekend
+    * Julian weekend
     *
     *\_________________________________________________________/
     */
