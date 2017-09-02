@@ -434,6 +434,8 @@ class Datium
             new DateInterval($this->date_interval_expression)
         );
 
+        $this->gregorian_DayofWeek = $this->date_time->format('w');
+
         return $this;
 
     }
