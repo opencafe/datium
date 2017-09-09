@@ -48,13 +48,11 @@ return array (
    */
   'convert_from' => function ($date_time) {
 
-    var_dump($date_time); exit;
-
     $jalali = include 'Jalali.php';
 
-    $date_time = $jalali['convert_from']($date_time);
-
     $date_time->modify('-1321 year');
+
+    $date_time = $jalali['convert_from']($date_time);
 
     return $date_time;
 
@@ -120,13 +118,13 @@ return array (
 
   'days_of_week' => array (
 
+     'Yekşeme',
      'Dúşeme',
      'Séşeme',
      'Çúwarşeme',
      'Péncşeme',
      'Heyní',
      'Şeme',
-     'Yekşeme',
   ),
 
   'start_day_of_week' => 'Şeme',

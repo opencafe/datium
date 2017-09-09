@@ -248,7 +248,7 @@ return array (
      'Panjshanbe',
      'Jome',
      'Shanbe',
-     
+
   ),
 
   'start_day_of_week' => 'Shanbe',

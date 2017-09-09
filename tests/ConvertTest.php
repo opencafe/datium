@@ -128,15 +128,15 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    // public function testKurdishToGregorian()
-    // {
-    //
-    //     $date = Datium::create(2715, 11, 05)->from('Kurdish')->get();
-    //
-    //     $this->assertEquals('2016-01-25 00:00:00', $date);
-    //
-    // }
-    //
+    public function testKurdishToGregorian()
+    {
+
+        $date = Datium::create(2715, 11, 05)->from('Kurdish')->get();
+
+        $this->assertEquals('2016-01-25 00:00:00', $date);
+
+    }
+
     public function testKurdishToHijri()
     {
 

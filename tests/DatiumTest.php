@@ -252,4 +252,15 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Saturday 25th June 2016 12:00:00 PM', $gregorian);
 
     }
+
+    public function testKurdishCalendar()
+    {
+
+        $kurdish =  Datium::create(2016, 6, 25, 12, 0, 0)
+                              ->to('kurdish')
+                              ->get('l jS F Y h:i:s A');
+
+        $this->assertEquals('Şeme 5th Puşper 2716 12:00:00 PM', $kurdish);
+
+    }
 }
