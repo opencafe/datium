@@ -304,7 +304,17 @@ return array (
    *  example : Yekshanbe = result is 2
    *\_________________________________________________________/
   */
-  'day_of_week' => function ($date_time) {
+  'day_of_week' => function ($date_timem, $day_of_week) {
+
+      $days_of_week = array(
+          'Doshanbe',
+          'Seshanbe',
+          'Chaharshanbe',
+          'Panjshanbe',
+          'Jome',
+          'Shanbe',
+          'Yekshanbe',
+      );
 
         $days = array(
           1 => 'Shanbe',
@@ -315,16 +325,12 @@ return array (
           6 => 'Panjshanbe',
           7 => 'Jome' );
 
-        $configShamsi = include 'Jalali.php';
-
         $configGregorian = include 'Gregorian.php';
-
-        $day = $date_time->format('l');
 
         $day = str_replace(
             $configGregorian[ 'days_of_week' ],
-            $configShamsi[ 'days_of_week' ],
-            $day
+            $days_of_week,
+            $day_of_week
         );
 
         foreach ($days as $key => $value) {

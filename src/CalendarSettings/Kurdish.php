@@ -125,6 +125,7 @@ return array (
      'Péncşeme',
      'Heyní',
      'Şeme',
+
   ),
 
   'start_day_of_week' => 'Şeme',
@@ -180,29 +181,34 @@ return array (
    *  example : Yekshanbe = result is 2
    *\_________________________________________________________/
   */
-  'day_of_week' => function ($date_time) {
+  'day_of_week' => function ($date_tim, $day_of_week) {
 
-        $days = array(
+      $days_of_week = array(
+          'Dúşeme',
+          'Séşeme',
+          'Çúwarşeme',
+          'Péncşeme',
+          'Heyní',
+          'Şeme',
+          'Yekşeme',
+      );
+
+      $days = array(
           1 => 'Şeme',
           2 => 'Yekşeme',
           3 => 'Dúşeme',
           4 => 'Séşeme',
           5 => 'Çúwarşeme',
           6 => 'Péncşeme',
-          7 => 'Heyní' );
-
-        $configKurdish = include 'Kurdish.php';
-
-        $date = $configKurdish['convert_from']($date_time);
+          7 => 'Heyní'
+      );
 
         $configGregorian = include 'Gregorian.php';
 
-        $day = $date->format('l');
-
         $day = str_replace(
             $configGregorian[ 'days_of_week' ],
-            $configKurdish[ 'days_of_week' ],
-            $day
+            $days_of_week,
+            $day_of_week
         );
 
         foreach ($days as $key => $value) {

@@ -177,6 +177,7 @@ return array (
     *\_________________________________________________________/
     */
     'days_of_week' => array (
+        
          'al-Aḥad',
          'al-Ithnayn',
          'ath-Thulatha\'',
@@ -184,7 +185,6 @@ return array (
          'al-Khamees',
          'al-Jumu\'ah',
          'as-Sabt',
-
     ),
 
     'numbers' => array( '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'),
@@ -248,19 +248,35 @@ return array (
       *  example : al-Aḥad = result is 1
       *\_________________________________________________________/
       */
-     'day_of_week' => function ($date_time) {
+     'day_of_week' => function ($date_time, $day_of_week) {
 
-        $configGhamari = include 'Hijri.php';
+         $days_of_week = array(
+            'al-Ithnayn',
+            'ath-Thulatha\'',
+            'al-Arbi\'a',
+            'al-Khamees',
+            'al-Jumu\'ah',
+            'as-Sabt',
+            'al-Aḥad',
+         );
+
+         $days = array(
+            1 => 'al-Aḥad',
+            2 => 'al-Ithnayn',
+            3 => 'ath-Thulatha\'',
+            4 => 'al-Arbi\'a',
+            5 => 'al-Khamees',
+            6 => 'al-Jumu\'ah',
+            7 => 'as-Sabt',
+         );
 
         $configGregorian = include 'Gregorian.php';
 
-        $day = $date_time->format('l');
+        $day = str_replace($configGregorian['days_of_week'], $days_of_week, $day_of_week);
 
-        $day = str_replace($configGregorian['days_of_week'], $configGhamari['days_of_week'], $day);
-
-        foreach ($configGhamari['days_of_week'] as $key => $value) {
+        foreach ($days as $key => $value) {
             if ($value == $day) {
-                return $key += 1;
+                return $key;
             }
         }
 

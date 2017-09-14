@@ -29,14 +29,14 @@ class DayOfTest extends \PHPUnit_Framework_TestCase
     public function testDayOfWeek()
     {
 
-        // First january of 2015 is Thursday
+        //First january of 2015 is Thursday
         $this->assertEquals(4, Datium::create(2015, 1, 1)->dayOf()->week());
 
-        $this->assertEquals(3, Datium::create(2015, 1, 1)->to('hijri')->dayOf()->week());
+        $this->assertEquals(5, Datium::create(2015, 1, 1)->to('hijri')->dayOf()->week());
 
         $this->assertEquals(6, Datium::create(2015, 1, 1)->to('jalali')->dayOf()->week());
 
-        // $this->assertEquals(6, Datium::create(2015, 1, 1)->to('kurdish')->dayOf()->week());
+        $this->assertEquals(6, Datium::create(2015, 1, 1)->to('kurdish')->dayOf()->week());
 
     }
 
