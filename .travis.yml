@@ -9,7 +9,7 @@ php:
 script:
   - composer update
   - composer dump-autoload
-  - phpunit
+  - vendor/bin/phpunit
 
 matrix:
   allow_failures:
