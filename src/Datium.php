@@ -92,6 +92,8 @@ class Datium
 
     protected static $timestamp;
 
+    protected $day_of_week;
+
     /**
      * SimpleDiff
      *
@@ -158,6 +160,8 @@ class Datium
         }
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
+
+        $this->day_of_week = $this->date_time->format('l');
 
         $this->convert_calendar = new Convert();
     }
@@ -479,7 +483,7 @@ class Datium
         );
 
         $this->gregorian_DayofWeek = $this->date_time->format('w');
-        
+
         return $this;
 
     }
@@ -509,8 +513,7 @@ class Datium
      */
     public function dayOf()
     {
-
-        $this->day_of = new DayOf($this->date_time, $this->calendar_type);
+        $this->day_of = new DayOf($this->date_time, $this->calendar_type, $this->day_of_week);
 
         return $this->day_of;
 

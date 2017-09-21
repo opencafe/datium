@@ -11,7 +11,7 @@ Awesome DateTime package ever written in PHP, with clean design pattern and gene
 
 * Simplicity in code and logic
 * Expandable in every part
-* Hijri and Jalali Calendars support
+* Hijri, Jalali, Julian and Kurdish Calendars support
 
 # Support
 * ^PHP:5.4
@@ -109,8 +109,6 @@ Datium::now()->all()->hour;    // 15
 Datium::now()->all()->minute;  // 10
 Datium::now()->all()->second;  // 03
 ```
-
-
 
 
 ## Create
@@ -262,6 +260,9 @@ Datium::now()->to( 'jalali' )->dayOf()->year();
 // Day of year to Hijri
 Datium::now()->to( 'hijri' )->dayOf()->year();
 
+// Day of year to kurdish
+Datium::now()->to( 'kurdish' )->dayOf()->year();
+
 ```
 
 ## Day of Week
@@ -282,6 +283,9 @@ Datium::now()->to( 'jalali' )->dayOf()->week();
 // Day of week to Hijri
 Datium::now()->to( 'hijri' )->dayOf()->week();
 
+// Day of week to Kurdish
+Datium::now()->to( 'kurdish' )->dayOf()->week();
+
 ```
 
 ## Last Day of Month
@@ -297,6 +301,9 @@ Datium::now()->to( 'jalali' )->dayOf()->lastDayMonth();
 // Last Day of Current Month to Hijri
 Datium::now()->to( 'hijri' )->dayOf()->lastDayMonth();
 
+// Last Day of Current Month to Kurdish
+Datium::now()->to( 'kurdish' )->dayOf()->lastDayMonth();
+
 ```
 
 ## Generalization
@@ -306,10 +313,13 @@ Datium supports calendar generalization, you can add customized calendars to Dat
 
 ```js
 Datium::create( 2015, 11, 9 )->to( 'jalali' )->get()
-//Convert Gregorian to Jalali calendar: 1394-08-19 00:00:00
+//Convert Gregorian to Jalali calendar: 1394-08-18 00:00:00
 
 Datium::create( 2015, 11, 9 )->to( 'hijri' )->get()
-//Convert Gregorian to Hijri calendar: 1437-01-27 00:00:00
+//Convert Gregorian to Hijri calendar: 1437-01-26 00:00:00
+
+Datium::create( 2015, 11, 9 )->to( 'kurdish' )->get()
+//Convert Gregorian to Kurdish calendar: 2715-08-18 00:00:00
 
 ```
 
@@ -333,9 +343,11 @@ Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->lang( 'fa' )->get('l jS
 Datium::create( 2016, 6, 25, 12, 0, 0 )->to( 'jalali' )->get('l jS F Y h:i:s A');
 // ex: Shanbe 5th Tir 1395 12:00:00 PM
 
-
 Datium::create(2016, 6, 25, 12, 0, 0)->to('hijri')->get('l jS F Y h:i:s A');
 // ex: as-Sabt 19th Ramadan 1437 12:00:00 PM
+
+Datium::create(2016, 6, 25, 12, 0, 0)->to('kurdish')->get('l jS F Y h:i:s A');
+// ex: Şeme 5th Puşper 2716 12:00:00 PM
 
 Datium::create(2016, 6, 25, 12, 0, 0)->get('l jS F Y h:i:s A');
 // ex: Saturday 25th June 2016 12:00:00 PM

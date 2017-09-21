@@ -118,4 +118,58 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2016-01-12 00:00:00', $date);
 
     }
+
+    public function testGregorianToKurdish()
+    {
+
+        $date = Datium::create(2016, 1, 25)->to('kurdish')->get();
+
+        $this->assertEquals('2715-11-05 00:00:00', $date);
+
+    }
+
+    public function testKurdishToGregorian()
+    {
+
+        $date = Datium::create(2715, 11, 05)->from('Kurdish')->get();
+
+        $this->assertEquals('2016-01-25 00:00:00', $date);
+
+    }
+
+    public function testKurdishToHijri()
+    {
+
+        $date = Datium::create(2715, 11, 05)->from('Kurdish')->to('hijri')->get();
+
+        $this->assertEquals('1437-04-14 00:00:00', $date);
+
+    }
+
+    public function testKurdishToJalali()
+    {
+
+        $date = Datium::create(2715, 11, 05)->from('Kurdish')->to('jalali')->get();
+
+        $this->assertEquals('1394-11-05 00:00:00', $date);
+
+    }
+
+    public function testHijriToKurdish()
+    {
+
+        $date = Datium::create(1437, 04, 14)->from('hijri')->to('Kurdish')->get();
+
+        $this->assertEquals('2715-11-05 00:00:00', $date);
+
+    }
+
+    public function testJalaliToKurdish()
+    {
+
+        $date = Datium::create(1394, 11, 05)->from('jalali')->to('Kurdish')->get();
+
+        $this->assertEquals('2715-11-05 00:00:00', $date);
+
+    }
 }

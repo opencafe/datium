@@ -22,10 +22,15 @@ class DayOf
 	 */
 	protected $calendar_type;
 
+    /**
+     * @var int
+     */
+    protected $day_of_week;
+
 	/**
    	 * Constructor of DayOf class
      */
-    public function __construct($date_time, $calendar_type = 'gregorian')
+    public function __construct($date_time, $calendar_type = 'gregorian', $day_of_week = null)
     {
 
 		$this->config = include __DIR__.'/CalendarSettings/' . ucfirst($calendar_type) . '.php';
@@ -33,6 +38,8 @@ class DayOf
 		$this->calendar_type = $calendar_type;
 
         $this->date_time = $date_time;
+
+        $this->day_of_week = $day_of_week;
 
         return $this;
 
@@ -60,8 +67,7 @@ class DayOf
    */
     public function week()
     {
-
-        return $this->config[ 'day_of_week' ]( $this->date_time );
+        return $this->config[ 'day_of_week' ]( $this->date_time, $this->day_of_week );
 
     }
 
