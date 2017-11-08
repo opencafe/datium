@@ -91,6 +91,16 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
+            '2016-01-08 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('1 week')->get()
+        );
+
+        $this->assertEquals(
+            '2016-01-29 00:00:00',
+            Datium::create(2016, 1, 1, 0, 0, 0)->add('4 week')->get()
+        );
+
+        $this->assertEquals(
             '2016-02-01 00:00:00',
             Datium::create(2016, 1, 1, 0, 0, 0)->add('1 month')->get()
         );
@@ -162,6 +172,16 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 8, 0, 0, 0)->sub('1 week')->get()
+        );
+
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
+            Datium::create(2016, 1, 15, 0, 0, 0)->sub('2 week')->get()
+        );
+
+        $this->assertEquals(
+            '2016-01-01 00:00:00',
             Datium::create(2016, 2, 1, 0, 0, 0)->sub('1 month')->get()
         );
 
@@ -205,6 +225,13 @@ class DatiumTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(5000, $diff->days);
+
+        $diff = Datium::diff(
+            Datium::now()->object(),
+            Datium::now()->add('1 week')->object()
+        );
+
+        $this->assertEquals(7, $diff->days);
 
     }
 
