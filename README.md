@@ -126,7 +126,7 @@ Datium::createTimestamp( 1420057800 )->get() // output => 2015-01-01 00:00:00
 ```
 
 ## Add Date
-This method allow you add some year, month, week, day, hour, minute and second to current date.
+This method allow you add some year, month, day, hour, minute and second to current date.
 
 ```js
 // If current date is 2016-01-01 00:00:00 then:
@@ -134,10 +134,6 @@ This method allow you add some year, month, week, day, hour, minute and second t
 // Add 3 years
 Datium::now()->add('3 year')->get();
 // output => 2019-01-01 00:00:00
-
-// Add 1 week
-Datium::create(2016, 1, 1)->add('1 week')->get();
-// output => 2016-01-08 00:00:00
 
 // Add one month
 Datium::now()->add('1 month')->get()
@@ -165,10 +161,6 @@ Sub some year, month, day, hour, minute and second from current date.
 // Sub 3 years
 Datium::now()->sub('3 year')->get();
 // output => 2013-01-01 00:00:00
-
-// Sub 1 week
-Datium::create(2016, 1, 8)->sub('1 week')->get();
-// output => 2016-01-01 00:00:00
 
 // Sub one month
 Datium::now()->sub('1 month')->get()

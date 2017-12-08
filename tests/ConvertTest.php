@@ -36,10 +36,6 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('2016-01-25 00:00:00', $date);
 
-        $date = Datium::create(1396, 9, 11)->from('jalali')->get();
-
-        $this->assertEquals('2017-12-02 00:00:00', $date);
-
     }
 
     public function testHijriToGregorian()
@@ -48,10 +44,6 @@ class ConvertTest extends \PHPUnit_Framework_TestCase
         $date = Datium::create(1437, 9, 7)->from('hijri')->get();
 
         $this->assertEquals('2016-06-13 00:00:00', $date);
-
-        $date = Datium::create(1439, 03, 12)->from('hijri')->get();
-
-        $this->assertEquals('2017-12-02 00:00:00', $date);
 
     }
 
