@@ -7,10 +7,6 @@
         {
             "name": "Mehdi Hosseini",
             "email": "mehdi.hosseini.dev@gmail.com"
-        },
-        {
-            "name": "Shahrokh Niakan",
-            "email": "shahrokhniakan@gmail.com"
         }
     ],
     "require-dev": {

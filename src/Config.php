@@ -20,9 +20,9 @@ return [
   'default_calendar' => 'gregorian',
 
 
-  'date_interval' => [ 'D', 'W','M', 'Y', 'HT', 'MT', 'ST' ],
+  'date_interval' => [ 'D', 'M', 'Y', 'HT', 'MT', 'ST' ],
 
 
-  'date_simple' => [ 'day', ' week', ' month', ' year', ' hour', ' minute', ' second' ],
+  'date_simple' => [ 'day', ' month', ' year', ' hour', ' minute', ' second' ],
 
 ];
