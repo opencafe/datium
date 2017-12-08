@@ -161,11 +161,11 @@ return array (
         $gregorian_month -= $value;
     }
 
-      $gregorian_day = $gregorian_month;
+    $gregorian_day = $gregorian_month;
 
-      $gregorian_month = $month;
+    $gregorian_month = $month;
 
-      if ( ( ( $gregorian_year % 4 ) == 0 ) && ( ( ( $gregorian_year % 100 ) != 0 ) || ( ( $gregorian_year % 400 ) == 0 ) ) ) {
+    if ( ( ( $gregorian_year % 4 ) == 0 ) && ( ( ( $gregorian_year % 100 ) != 0 ) || ( ( $gregorian_year % 400 ) == 0 ) ) ) {
 
         if ( $gregorian_month < 3 || ( $gregorian_month == 3 && $gregorian_day < 22 ) ) {
 
@@ -173,12 +173,15 @@ return array (
 
         }
 
-      }
+    }
 
-      $date_time->setDate($gregorian_year, $gregorian_month, $gregorian_day);
+    if (! $gregorian_day || $config['leap_year']($gregorian_year - 1) ) {
+        $gregorian_day++;
+    }
 
+    $date_time->setDate($gregorian_year, $gregorian_month, $gregorian_day);
 
-     return $date_time;
+    return $date_time;
 
   },
 

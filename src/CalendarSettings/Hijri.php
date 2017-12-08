@@ -97,6 +97,8 @@ return array (
     */
     'convert_from' => function ($date_time) {
 
+        $config = include 'Gregorian.php';
+
         $year = $date_time->format('Y');
 
         $month = $date_time->format('m');
@@ -113,6 +115,10 @@ return array (
         $day = $result[1];
 
         $year = $result[2];
+
+        if (! $day || $config['leap_year']($year - 1) ) {
+            $day++;
+        }
 
         $date_time->setDate($year, $month, $day);
 
@@ -177,7 +183,7 @@ return array (
     *\_________________________________________________________/
     */
     'days_of_week' => array (
-        
+
          'al-Aḥad',
          'al-Ithnayn',
          'ath-Thulatha\'',
