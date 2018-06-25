@@ -7,7 +7,7 @@
 [![Join the chat at https://gitter.im/opencafe/datium](https://badges.gitter.im/opencafe/datium.svg)](https://gitter.im/opencafe/datium?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm](https://img.shields.io/npm/l/express.svg?maxAge=2592000)]()
 
-Awesome DateTime package ever written in PHP, with clean design pattern and generalization support in calendar and translation, which makes Datium powerful and simple.
+Awesome DateTime package written in PHP, with generalization support in calendar and translation, which makes Datium powerful and simple.
 
 * Simplicity in code and logic
 * Expandable in every part
